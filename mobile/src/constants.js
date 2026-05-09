@@ -1,5 +1,5 @@
 export const COLORS = {
-  red: '#e10600',
+  red: '#c21515',
   dark: '#1a1a2e',
   bg: '#f4f6f8',
   card: '#ffffff',
@@ -17,4 +17,4 @@ export const PALETTE = [
   '#c5b0d5','#c49c94','#f7b6d2',
 ]
 
-export const PRIORITY_COLORS = { 1: '#e10600', 2: '#f59e0b', 3: '#16a34a' }
+export const PRIORITY_COLORS = { 1: '#c21515', 2: '#f59e0b', 3: '#16a34a' }

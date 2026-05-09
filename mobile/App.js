@@ -60,15 +60,25 @@ export default function App() {
       <Tab.Navigator
         screenOptions={{
           tabBarActiveTintColor: COLORS.red,
-          tabBarInactiveTintColor: COLORS.muted,
-          tabBarStyle: { borderTopColor: COLORS.border },
-          headerStyle: { backgroundColor: COLORS.dark },
+          tabBarInactiveTintColor: '#94a3b8',
+          tabBarStyle: {
+            backgroundColor: '#fff',
+            borderTopWidth: 0,
+            shadowColor: '#000',
+            shadowOpacity: 0.08,
+            shadowRadius: 16,
+            shadowOffset: { width: 0, height: -4 },
+            elevation: 12,
+            height: 60,
+            paddingBottom: 8,
+          },
+          tabBarLabelStyle: { fontSize: 11, fontWeight: '600', letterSpacing: 0.3 },
+          headerStyle: { backgroundColor: COLORS.red, height: 64 },
           headerTintColor: '#fff',
-          headerTitleStyle: { fontWeight: '700' },
-          headerTitle: 'DAMM Smart Truck',
+          headerTitleStyle: { fontWeight: '700', fontSize: 16, letterSpacing: 0.3 },
           headerRight: () => (
-            <Text style={{ color: '#9ca3af', fontSize: 11, marginRight: 16 }}>
-              Interhack BCN 2026
+            <Text style={{ color: 'rgba(255,255,255,0.7)', fontSize: 11, marginRight: 16, fontWeight: '500', letterSpacing: 0.5 }}>
+              DAMM
             </Text>
           ),
         }}
