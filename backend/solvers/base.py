@@ -26,6 +26,9 @@ if TYPE_CHECKING:
     from backend.models.truck import Camion
     from backend.models.zona import Zona
     from backend.models.ruta import Ruta
+    from backend.models.toro import Toro
+    from backend.models.tarea_pickup import TareaPickup
+    from backend.models.almacen import Almacen
 
 
 # ── Packing solver ────────────────────────────────────────────────────────────
@@ -158,6 +161,55 @@ class TSPSolver(ABC):
         **kwargs: Any,
     ) -> Ruta:
         """Tour all stores in *zona* with truck *camion_id*. Return one Ruta."""
+
+    def nombre(self) -> str:
+        return type(self).__name__
+
+
+# ── Solver registry (optional convenience) ────────────────────────────────────
+
+
+# ── Forklift (Toro) routing solver ───────────────────────────────────────────
+
+
+class ForkliftSolver(ABC):
+    """
+    Assigns TareaPickup objects to Toro forklifts and orders their routes to
+    minimise total warehouse travel distance.
+
+    Input   : list of TareaPickup + available Toro list + Almacen context
+    Output  : ForkliftPlan (from backend.solvers.forklift_optimizer)
+
+    Expected ForkliftPlan schema
+    ----------------------------
+    {
+        "distancia_total_celdas": int,
+        "tareas_asignadas": [
+            {
+                "tarea_id": str,
+                "palet_id": str,
+                "pedido_id": str,
+                "origin": [x, y],
+                "destino": [x, y],
+                "toro_id": str,
+                "secuencia": int,   # 1 = first task for this toro
+            },
+            ...
+        ],
+        "rutas_por_toro": { toro_id: [TareaAsignada, ...] },
+        "warnings": [str],
+    }
+    """
+
+    @abstractmethod
+    def solve(
+        self,
+        tareas: list[TareaPickup],
+        toros: list[Toro],
+        almacen: Almacen,
+        **kwargs: Any,
+    ) -> Any:
+        """Assign *tareas* to *toros*. Return a ForkliftPlan."""
 
     def nombre(self) -> str:
         return type(self).__name__

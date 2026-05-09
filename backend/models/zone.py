@@ -1,4 +1,5 @@
-from dataclasses import dataclass, field
+from __future__ import annotations
+from dataclasses import dataclass
 
 
 @dataclass
@@ -7,7 +8,7 @@ class Depot:
     lat: float
     lon: float
 
-    def to_dict(self):
+    def to_dict(self) -> dict:
         return {"name": self.name, "lat": self.lat, "lon": self.lon}
 
 
@@ -18,12 +19,10 @@ class Zone:
     city: str
     depot: Depot
 
-    def to_dict(self):
+    def to_dict(self) -> dict:
         return {
             "zone_id": self.zone_id,
             "name": self.name,
             "city": self.city,
             "depot": self.depot.to_dict(),
         }
-
-

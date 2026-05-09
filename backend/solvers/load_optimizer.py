@@ -1,5 +1,11 @@
+from __future__ import annotations
+from typing import TYPE_CHECKING
+
 from backend.models.truck import LoadPlan, PalletAssignment, Side, build_truck_slots
 from backend.solvers.inverse_logistics import ReturnablesPlan
+
+if TYPE_CHECKING:
+    from backend.solvers.forklift_optimizer import ForkliftPlan
 
 
 def optimize_load(
@@ -112,3 +118,74 @@ def _validate_lifo(assignments: list) -> list:
                 )
 
     return warnings
+
+
+# ── Forklift-order adapter ────────────────────────────────────────────────────
+
+
+def load_sequence_from_forklift_plan(
+    forklift_plan: ForkliftPlan,
+    route_id: str,
+    returnables_plan: ReturnablesPlan,
+) -> LoadPlan:
+    """
+    Derive a truck LoadPlan from the ordered pickup sequence produced by the
+    forklift optimizer.
+
+    Pallets arrive at the truck dock in the order they are listed in
+    *forklift_plan.ordered_pickups()*.  We assign them to truck slots
+    rear-to-front (LIFO-safe for delivery) while reserving returnable buffers
+    as specified by *returnables_plan*.
+
+    Each TareaAsignada contributes one pallet slot; the delivery_position is
+    derived from the task's secuencia so that LIFO validation still applies.
+    """
+    all_slots = build_truck_slots()
+    reserved_ids = set(returnables_plan.reserved_slot_ids)
+    delivery_slots = [
+        s for s in sorted(all_slots, key=lambda s: (s.row, s.col))
+        if s.slot_id not in reserved_ids
+    ]
+
+    assignments = []
+    warnings: list[str] = []
+
+    for slot_idx, assigned_task in enumerate(forklift_plan.ordered_pickups()):
+        if slot_idx >= len(delivery_slots):
+            warnings.append(
+                f"OVERLOAD: truck full; pallet {assigned_task.tarea.palet_id!r} "
+                f"(pedido {assigned_task.tarea.pedido_id!r}) could not be loaded."
+            )
+            continue
+        assignments.append(
+            PalletAssignment(
+                slot=delivery_slots[slot_idx],
+                client_id=assigned_task.tarea.pedido_id,
+                client_name=f"palet:{assigned_task.tarea.palet_id}",
+                boxes=0,   # box-level count resolved upstream by packing solver
+                is_returnable_buffer=False,
+                delivery_position=assigned_task.secuencia,
+            )
+        )
+
+    for slot in all_slots:
+        if slot.slot_id in reserved_ids:
+            assignments.append(
+                PalletAssignment(
+                    slot=slot,
+                    client_id=None,
+                    client_name="Retornables",
+                    boxes=0,
+                    is_returnable_buffer=True,
+                    delivery_position=0,
+                )
+            )
+
+    warnings.extend(_validate_lifo(assignments))
+
+    return LoadPlan(
+        route_id=route_id,
+        assignments=assignments,
+        returnable_slots=list(reserved_ids),
+        warnings=warnings,
+    )
