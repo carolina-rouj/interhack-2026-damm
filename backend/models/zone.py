@@ -25,3 +25,5 @@ class Zone:
             "city": self.city,
             "depot": self.depot.to_dict(),
         }
+
+

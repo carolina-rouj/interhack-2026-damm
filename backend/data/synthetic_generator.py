@@ -1,6 +1,6 @@
 import random
 from backend.models.client import Client, TimeWindow, AccessRestriction
-from backend.models.order import Order, OrderLine, Product
+from backend.models.product import Order, OrderLine, Product
 from backend.models.zone import Zone, Depot
 
 # Damm factory Barcelona
