@@ -7,6 +7,8 @@ import { generateScenario, optimizeScenario } from './src/api'
 import RouteScreen from './src/screens/RouteScreen'
 import LoadScreen from './src/screens/LoadScreen'
 import { COLORS } from './src/constants'
+import { Package, Map } from 'lucide-react-native'
+
 
 const Tab = createBottomTabNavigator()
 
@@ -74,7 +76,7 @@ export default function App() {
         <Tab.Screen
           name="Ruta"
           options={{
-            tabBarIcon: ({ color }) => <Text style={{ fontSize: 18, color }}>🗺</Text>,
+            tabBarIcon: ({ color }) => <Map size={22} color={color} />,
           }}
         >
           {() => <RouteScreen {...sharedProps} />}
@@ -83,7 +85,7 @@ export default function App() {
         <Tab.Screen
           name="Carga"
           options={{
-            tabBarIcon: ({ color }) => <Text style={{ fontSize: 18, color }}>📦</Text>,
+            tabBarIcon: ({ color }) => <Package size={22} color={color} />,
           }}
         >
           {() => <LoadScreen {...sharedProps} />}
