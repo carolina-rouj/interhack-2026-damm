@@ -19,7 +19,7 @@ import uuid
 from typing import Optional
 
 from backend.models.almacen import Almacen
-from backend.models.pedido import Pedido, EstadoPedido
+from backend.models.pedido import Pedido
 from backend.models.tarea_pickup import TareaPickup
 
 
@@ -37,16 +37,13 @@ def generar_tareas_pickup(
     pedidos        : orders to fulfil
     almacen        : warehouse with placed pallets
     staging_pos    : global (x, y) of the truck loading dock / staging area
-    solo_pendientes: if True, skip Pedidos whose estado != PENDIENTE
+    solo_pendientes: kept for API compatibility; all pedidos are processed
 
     Returns
     -------
     (tareas, warnings) — warnings list non-empty when coverage is incomplete.
     """
-    target_pedidos = [
-        p for p in pedidos
-        if (not solo_pendientes) or p.estado == EstadoPedido.PENDIENTE
-    ]
+    target_pedidos = list(pedidos)
 
     # demand[pedido_id][sku] = remaining boxes still needed
     demand: dict[str, dict[str, int]] = {

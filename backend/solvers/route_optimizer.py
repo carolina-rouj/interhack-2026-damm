@@ -1,8 +1,6 @@
 import math
 from dataclasses import dataclass, field
 
-from backend.models.client import Client
-from backend.models.zone import Depot
 
 
 def haversine_km(lat1: float, lon1: float, lat2: float, lon2: float) -> float:

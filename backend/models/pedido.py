@@ -1,17 +1,8 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
-from enum import Enum
 from typing import Optional
 
 from backend.models.product import Product, OrderLine
-
-
-class EstadoPedido(Enum):
-    PENDIENTE = "pendiente"       # not yet assigned to any pallet or route
-    ASIGNADO = "asignado"         # allocated to a pallet / route by a solver
-    EN_RUTA = "en_ruta"           # truck is currently delivering
-    ENTREGADO = "entregado"       # fully delivered
-    PARCIAL = "parcial"           # partially delivered
 
 
 @dataclass
@@ -20,15 +11,14 @@ class Pedido:
     A delivery order placed by a Tienda.
 
     *lineas* mirrors OrderLine so existing product definitions are reused
-    without duplication.  Solver-populated fields (estado, palets assigned,
-    etc.) start as PENDIENTE / 0 and are filled in by external solvers — this
-    class is intentionally free of packing or routing logic.
+    without duplication.  Solver-populated fields (palets assigned, etc.)
+    are filled in by external solvers — this class is intentionally free
+    of packing or routing logic.
     """
 
     pedido_id: str
     tienda_id: str
     lineas: list[OrderLine] = field(default_factory=list)
-    estado: EstadoPedido = field(default=EstadoPedido.PENDIENTE)
     es_retornable: bool = False
     num_envases_recogida: int = 0
 
@@ -51,24 +41,6 @@ class Pedido:
     @property
     def num_cajas(self) -> int:
         return sum(l.quantity_boxes for l in self.lineas)
-
-    @property
-    def esta_pendiente(self) -> bool:
-        return self.estado == EstadoPedido.PENDIENTE
-
-    # ── state transitions ─────────────────────────────────────────────────
-
-    def marcar_asignado(self) -> None:
-        self.estado = EstadoPedido.ASIGNADO
-
-    def marcar_en_ruta(self) -> None:
-        self.estado = EstadoPedido.EN_RUTA
-
-    def marcar_entregado(self) -> None:
-        self.estado = EstadoPedido.ENTREGADO
-
-    def marcar_parcial(self) -> None:
-        self.estado = EstadoPedido.PARCIAL
 
     # ── validation ────────────────────────────────────────────────────────
 
@@ -102,7 +74,6 @@ class Pedido:
                 }
                 for l in self.lineas
             ],
-            "estado": self.estado.value,
             "es_retornable": self.es_retornable,
             "num_envases_recogida": self.num_envases_recogida,
             "num_cajas": self.num_cajas,
@@ -130,7 +101,6 @@ class Pedido:
             pedido_id=data["pedido_id"],
             tienda_id=data["tienda_id"],
             lineas=lineas,
-            estado=EstadoPedido(data.get("estado", "pendiente")),
             es_retornable=data.get("es_retornable", False),
             num_envases_recogida=data.get("num_envases_recogida", 0),
         )
@@ -138,5 +108,5 @@ class Pedido:
     def __repr__(self) -> str:
         return (
             f"Pedido(id={self.pedido_id!r}, tienda={self.tienda_id!r}, "
-            f"{self.num_cajas} boxes, {self.peso_total}kg, {self.estado.value})"
+            f"{self.num_cajas} boxes, {self.peso_total}kg)"
         )

@@ -2,7 +2,7 @@ from __future__ import annotations
 from backend.models.almacen import Almacen
 from backend.models.zona import Zona
 from backend.models.tienda import Tienda
-from backend.models.pedido import Pedido, EstadoPedido
+from backend.models.pedido import Pedido
 from backend.models.ruta import Ruta
 
 
@@ -114,15 +114,9 @@ class Ciudad:
 
     def verify_all_deliveries(self) -> list[str]:
         """
-        Check that every order has been delivered.
-
-        Returns a list of undelivered pedido IDs (empty = all delivered).
+        Returns all pedido IDs (no delivery state is tracked on Pedido).
         """
-        return [
-            p.pedido_id
-            for p in self.pedidos_totales()
-            if p.estado not in (EstadoPedido.ENTREGADO, EstadoPedido.PARCIAL)
-        ]
+        return [p.pedido_id for p in self.pedidos_totales()]
 
     def verify_pallet_capacity(self) -> list[str]:
         """Return warnings for any registered pallet that is over capacity."""
@@ -153,14 +147,9 @@ class Ciudad:
         Returns a summary dict; a future solver can use this to detect gaps.
         """
         pedidos = self.pedidos_totales()
-        assigned = [p for p in pedidos if p.estado != EstadoPedido.PENDIENTE]
-        entregados = [p for p in pedidos if p.estado == EstadoPedido.ENTREGADO]
         return {
             "total_pedidos": len(pedidos),
-            "asignados": len(assigned),
-            "entregados": len(entregados),
-            "pendientes": len(pedidos) - len(assigned),
-            "trazabilidad_completa": len(entregados) == len(pedidos),
+            "trazabilidad_completa": False,
         }
 
     # ── metrics ───────────────────────────────────────────────────────────

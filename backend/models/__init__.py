@@ -14,10 +14,8 @@ from backend.models.truck import (
     CamionGrande,
     CamionFactory,
 )
-from backend.models.zone import Zone, Depot
-from backend.models.client import Client, TimeWindow, AccessRestriction
 from backend.models.almacen import ZonaAlmacen, Almacen
-from backend.models.pedido import Pedido, EstadoPedido
+from backend.models.pedido import Pedido
 from backend.models.tienda import Tienda
 from backend.models.ruta import Parada, Ruta
 from backend.models.zona import Zona, TipoMatriz
@@ -44,18 +42,11 @@ __all__ = [
     "CamionMediano",
     "CamionGrande",
     "CamionFactory",
-    # geographic zone / depot / client (existing solvers)
-    "Zone",
-    "Depot",
-    "Client",
-    "TimeWindow",
-    "AccessRestriction",
     # almacen
     "ZonaAlmacen",
     "Almacen",
     # logistics domain
     "Pedido",
-    "EstadoPedido",
     "Tienda",
     "Parada",
     "Ruta",

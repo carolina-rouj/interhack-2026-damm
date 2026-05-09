@@ -1,12 +1,15 @@
 from __future__ import annotations
 import math
+import os
+import re
 import random
+import subprocess
 from dataclasses import dataclass, field
 from enum import Enum
 from typing import Optional, TYPE_CHECKING
 
 from backend.models.tienda import Tienda
-from backend.models.pedido import Pedido, EstadoPedido
+from backend.models.pedido import Pedido
 from backend.models.ruta import Ruta
 
 if TYPE_CHECKING:
@@ -18,6 +21,7 @@ class TipoMatriz(Enum):
     EUCLIDEA = "euclidea"       # sqrt((xi-xj)² + (yi-yj)²)
     ALEATORIA = "aleatoria"     # random weights (reproducible via seed)
     PERSONALIZADA = "personalizada"  # provided externally
+    GOOGLE = "google"           # driving distances via Google Maps Distance Matrix API
 
 
 class Zona:
@@ -182,6 +186,199 @@ class Zona:
     def matriz(self) -> Optional[list[list[float]]]:
         return self._matriz
 
+    # ── Google distance matrix ────────────────────────────────────────────
+
+    def cargar_matriz_google(
+        self,
+        script_path: Optional[str] = None,
+        node_cmd: str = "node",
+        timeout: int = 30,
+    ) -> None:
+        """
+        Build a driving-distance matrix by calling backend/distance/index.js once
+        per store (each store as origin, the rest as destinations).
+
+        Treats tienda.x as latitude and tienda.y as longitude (decimal degrees).
+        Requires GOOGLE_MAPS_API_KEY in the .env file beside the script.
+        Raises RuntimeError / ValueError on script failure or unexpected output.
+        """
+        n = len(self.tiendas)
+        if n == 0:
+            self._matriz = []
+            self._tipo_matriz = TipoMatriz.GOOGLE
+            return
+
+        if script_path is None:
+            script_path = os.path.join(
+                os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                "distance", "index.js",
+            )
+
+        script_dir = os.path.dirname(script_path)
+        matrix: list[list[float]] = [[0.0] * n for _ in range(n)]
+
+        for i, origin in enumerate(self.tiendas):
+            dests = [(j, t) for j, t in enumerate(self.tiendas) if j != i]
+            if not dests:
+                continue  # single store — diagonal stays 0
+
+            args = [node_cmd, script_path, str(origin.x), str(origin.y)]
+            for _, dest in dests:
+                args += [str(dest.x), str(dest.y)]
+
+            result = subprocess.run(
+                args, capture_output=True, text=True, timeout=timeout, cwd=script_dir
+            )
+            if result.returncode != 0:
+                raise RuntimeError(
+                    f"Google distance script failed for tienda {origin.tienda_id!r}:\n"
+                    f"{result.stderr.strip()}"
+                )
+
+            parsed: list[float] = []
+            for line in result.stdout.splitlines():
+                m_ok = re.search(r":\s+(\d+)\s+m\s+\|", line)
+                m_err = re.search(r"Route error", line, re.IGNORECASE)
+                if m_ok:
+                    parsed.append(float(m_ok.group(1)))
+                elif m_err:
+                    parsed.append(0.0)
+
+            if len(parsed) != len(dests):
+                raise ValueError(
+                    f"Expected {len(dests)} distances for tienda {origin.tienda_id!r}, "
+                    f"got {len(parsed)}"
+                )
+
+            for k, (j, _) in enumerate(dests):
+                matrix[i][j] = parsed[k]
+
+        self._matriz = matrix
+        self._tipo_matriz = TipoMatriz.GOOGLE
+
+    def cargar_mejor_matriz(
+        self,
+        script_path: Optional[str] = None,
+        node_cmd: str = "node",
+        timeout: int = 30,
+    ) -> TipoMatriz:
+        """
+        Try to build a Google Maps matrix; fall back to Euclidean on any error.
+        Returns the TipoMatriz that was actually loaded.
+        """
+        try:
+            self.cargar_matriz_google(
+                script_path=script_path, node_cmd=node_cmd, timeout=timeout
+            )
+            return TipoMatriz.GOOGLE
+        except Exception:
+            self.generar_matriz(TipoMatriz.EUCLIDEA)
+            return TipoMatriz.EUCLIDEA
+
+    # ── shop clustering ───────────────────────────────────────────────────
+
+    def agrupar_tiendas(
+        self,
+        cajas_por_palet: int = 60,
+        distancia_max: Optional[float] = None,
+        parada_id_prefix: str = "parada",
+    ) -> list:
+        """
+        Group stores into delivery stops using greedy nearest-neighbour clustering.
+
+        Algorithm
+        ---------
+        1. Pick the smallest-index unvisited store as the cluster seed.
+        2. Sort remaining unvisited stores by (distance_from_seed, index).
+        3. Add each in turn while cluster_boxes + store_boxes <= cajas_por_palet
+           AND distance_from_seed <= distancia_max (when set).
+           Stop growing on the first store that fails either constraint.
+        4. Choose the cluster's representative (physical stop point) as the
+           medoid — the member with the smallest total distance to all others.
+        5. Return one Parada per cluster, representative store first in tiendas[].
+
+        A store whose demand alone exceeds cajas_por_palet becomes a forced
+        single-store stop (never merged into a larger cluster).
+
+        Requires a distance matrix to be loaded first.
+
+        Parameters
+        ----------
+        cajas_por_palet : one-pallet capacity cap (default 60)
+        distancia_max   : optional proximity radius in the same units as the
+                          distance matrix; stops cluster growth when the next
+                          nearest store exceeds this threshold
+        parada_id_prefix: prefix for generated Parada IDs
+        """
+        from backend.models.ruta import Parada
+
+        m = self._require_matriz()
+        n = len(self.tiendas)
+
+        if n == 0:
+            return []
+
+        unvisited: set[int] = set(range(n))
+        paradas: list[Parada] = []
+        counter = 0
+
+        while unvisited:
+            seed = min(unvisited)
+            unvisited.remove(seed)
+
+            seed_demand = self.tiendas[seed].num_cajas_total
+
+            # Forced single stop: store alone exceeds pallet capacity
+            if seed_demand > cajas_por_palet:
+                paradas.append(Parada(
+                    parada_id=f"{parada_id_prefix}-{counter}",
+                    orden=counter,
+                    tiendas=[self.tiendas[seed]],
+                    representante_id=self.tiendas[seed].tienda_id,
+                ))
+                counter += 1
+                continue
+
+            cluster: list[int] = [seed]
+            cluster_demand = seed_demand
+
+            # Sort by (distance from seed, index) for determinism
+            others = sorted(unvisited, key=lambda j: (m[seed][j], j))
+
+            for j in others:
+                if distancia_max is not None and m[seed][j] > distancia_max:
+                    break  # all subsequent are farther — stop growing
+                if cluster_demand + self.tiendas[j].num_cajas_total <= cajas_por_palet:
+                    cluster.append(j)
+                    cluster_demand += self.tiendas[j].num_cajas_total
+                    unvisited.discard(j)
+                else:
+                    break  # pallet full — stop growing
+
+            # Medoid: member that minimises sum of distances to other members
+            if len(cluster) == 1:
+                medoid = cluster[0]
+            else:
+                medoid = min(
+                    cluster,
+                    key=lambda i: sum(m[i][j] for j in cluster if j != i),
+                )
+
+            rep = self.tiendas[medoid]
+            tiendas_ordered = [rep] + [
+                self.tiendas[i] for i in cluster if i != medoid
+            ]
+
+            paradas.append(Parada(
+                parada_id=f"{parada_id_prefix}-{counter}",
+                orden=counter,
+                tiendas=tiendas_ordered,
+                representante_id=rep.tienda_id,
+            ))
+            counter += 1
+
+        return paradas
+
     # ── demand aggregation ────────────────────────────────────────────────
 
     @property
@@ -189,7 +386,7 @@ class Zona:
         return [p for t in self.tiendas for p in t.pedidos]
 
     def pedidos_pendientes(self) -> list[Pedido]:
-        return [p for p in self.pedidos if p.estado == EstadoPedido.PENDIENTE]
+        return list(self.pedidos)
 
     @property
     def demanda_total_cajas(self) -> int:

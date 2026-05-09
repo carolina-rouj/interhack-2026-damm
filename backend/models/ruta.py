@@ -34,6 +34,8 @@ class Parada:
     cajas_entregadas: int = 0
     cajas_recogidas: int = 0
     tiempo_estimado_min: Optional[float] = None
+    # set by agrupar_tiendas: the medoid store chosen as the physical stop point
+    representante_id: Optional[str] = None
 
     # ── convenience ───────────────────────────────────────────────────────
 
@@ -69,6 +71,7 @@ class Parada:
             "cajas_entregadas": self.cajas_entregadas,
             "cajas_recogidas": self.cajas_recogidas,
             "tiempo_estimado_min": self.tiempo_estimado_min,
+            "representante_id": self.representante_id,
         }
 
     @classmethod
@@ -82,6 +85,7 @@ class Parada:
             cajas_entregadas=data.get("cajas_entregadas", 0),
             cajas_recogidas=data.get("cajas_recogidas", 0),
             tiempo_estimado_min=data.get("tiempo_estimado_min"),
+            representante_id=data.get("representante_id"),
         )
 
     def __repr__(self) -> str:

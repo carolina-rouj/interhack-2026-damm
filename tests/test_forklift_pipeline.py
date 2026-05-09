@@ -16,7 +16,7 @@ import pytest
 from backend.models.almacen import Almacen
 from backend.models.palet import Palet
 from backend.models.product import Product
-from backend.models.pedido import Pedido, EstadoPedido
+from backend.models.pedido import Pedido
 from backend.models.product import OrderLine
 from backend.models.toro import Toro, EstadoToro
 from backend.models.tarea_pickup import TareaPickup, EstadoTarea
@@ -166,29 +166,20 @@ def test_task_generator_no_placed_pallets():
     assert any("SKU-X" in w for w in warnings)
 
 
-def test_task_generator_skips_non_pending():
+def test_task_generator_processes_all_pedidos():
+    """All pedidos are processed regardless of solo_pendientes (no state machine)."""
     almacen = _make_almacen()
     _place_pallet_with_sku(almacen, "p01", "SKU-A", x=2, y=2)
 
     pedido = _make_pedido("ped01", "SKU-A")
-    pedido.estado = EstadoPedido.ENTREGADO
 
-    tareas, warnings = generar_tareas_pickup([pedido], almacen, staging_pos=STAGING)
-    # solo_pendientes=True by default → ENTREGADO is skipped
-    assert len(tareas) == 0
+    tareas, _ = generar_tareas_pickup([pedido], almacen, staging_pos=STAGING)
+    assert len(tareas) == 1
 
-
-def test_task_generator_solo_pendientes_false():
-    almacen = _make_almacen()
-    _place_pallet_with_sku(almacen, "p01", "SKU-A", x=2, y=2)
-
-    pedido = _make_pedido("ped01", "SKU-A")
-    pedido.estado = EstadoPedido.ENTREGADO
-
-    tareas, _ = generar_tareas_pickup(
+    tareas2, _ = generar_tareas_pickup(
         [pedido], almacen, staging_pos=STAGING, solo_pendientes=False
     )
-    assert len(tareas) == 1
+    assert len(tareas2) == 1
 
 
 # ── Integration: optimizer (greedy path, no OR-Tools required) ────────────────

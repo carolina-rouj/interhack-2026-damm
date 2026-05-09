@@ -3,7 +3,7 @@ import math
 from dataclasses import dataclass, field
 from typing import Optional
 
-from backend.models.pedido import Pedido, EstadoPedido
+from backend.models.pedido import Pedido
 
 
 @dataclass
@@ -35,10 +35,7 @@ class Tienda:
         self.pedidos.append(pedido)
 
     def pedidos_pendientes(self) -> list[Pedido]:
-        return [p for p in self.pedidos if p.estado == EstadoPedido.PENDIENTE]
-
-    def pedidos_entregados(self) -> list[Pedido]:
-        return [p for p in self.pedidos if p.estado == EstadoPedido.ENTREGADO]
+        return list(self.pedidos)
 
     # ── demand metrics ────────────────────────────────────────────────────
 
