@@ -163,6 +163,12 @@ export default function RouteScreen({ scenario, result, deliveredIds, toggleDeli
       Alert.alert('Permiso denegado', 'Necesitas permitir el acceso a la ubicación para iniciar la navegación.')
       return
     }
+    const pos = await Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.High })
+    const origin = { lat: pos.coords.latitude, lon: pos.coords.longitude }
+    setLoadingLegs(true)
+    const legs = await fetchRouteLegs(origin, stops, MAPS_API_KEY)
+    setRouteLegs(legs)
+    setLoadingLegs(false)
     const sub = await Location.watchPositionAsync(
       { accuracy: Location.Accuracy.High, timeInterval: 2000, distanceInterval: 10 },
       loc => setDriverLocation({ latitude: loc.coords.latitude, longitude: loc.coords.longitude }),
