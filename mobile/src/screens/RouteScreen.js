@@ -172,6 +172,7 @@ export default function RouteScreen({ scenario, result, deliveredIds, toggleDeli
       }
       const pos = await Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.High })
       const origin = { lat: pos.coords.latitude, lon: pos.coords.longitude }
+      setDriverLocation({ latitude: pos.coords.latitude, longitude: pos.coords.longitude })
       setLoadingLegs(true)
       const legs = await fetchRouteLegs(origin, stops, MAPS_API_KEY)
       setRouteLegs(legs)
@@ -267,15 +268,22 @@ export default function RouteScreen({ scenario, result, deliveredIds, toggleDeli
           ref={mapRef}
           provider={PROVIDER_GOOGLE}
           style={StyleSheet.absoluteFill}
-          initialRegion={previewRegion}
+          initialRegion={
+            driverLocation
+              ? { ...driverLocation, latitudeDelta: 0.005, longitudeDelta: 0.005 }
+              : previewRegion
+          }
+          onMapReady={() => {
+            if (driverLocation) {
+              mapRef.current?.animateToRegion(
+                { ...driverLocation, latitudeDelta: 0.005, longitudeDelta: 0.005 },
+                300,
+              )
+            }
+          }}
           showsUserLocation
           showsMyLocationButton={false}
         >
-          <Marker
-            coordinate={{ latitude: depot.lat, longitude: depot.lon }}
-            title={depot.name ?? 'Fábrica Damm'}
-            pinColor={COLORS.dark}
-          />
           {remainingPolyline.length > 1 && (
             <Polyline coordinates={remainingPolyline} strokeColor="#3b82f6" strokeWidth={4} />
           )}
@@ -394,12 +402,6 @@ export default function RouteScreen({ scenario, result, deliveredIds, toggleDeli
                 style={StyleSheet.absoluteFill}
                 region={previewRegion}
               >
-                <Marker
-                  coordinate={{ latitude: depot.lat, longitude: depot.lon }}
-                  title={depot.name ?? 'Fábrica Damm'}
-                  description="Depósito de salida"
-                  pinColor={COLORS.dark}
-                />
                 <Polyline
                   coordinates={previewPolyline}
                   strokeColor="#1e293b"
