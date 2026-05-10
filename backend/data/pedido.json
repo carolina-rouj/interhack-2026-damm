@@ -5,16 +5,16 @@
     "lineas": [
       {
         "sku": "BAR20",
-        "quantity_boxes": 4
+        "quantity_boxes": 14
       },
       {
         "sku": "ED50",
-        "quantity_boxes": 4
+        "quantity_boxes": 14
       }
     ],
     "num_envases_recogida": 0,
-    "num_cajas": 8,
-    "peso_total": 106.4
+    "num_cajas": 28,
+    "peso_total": 372.4
   },
   {
     "pedido_id": "PED-0002",
@@ -22,12 +22,12 @@
     "lineas": [
       {
         "sku": "ED50",
-        "quantity_boxes": 6
+        "quantity_boxes": 12
       }
     ],
     "num_envases_recogida": 4,
-    "num_cajas": 6,
-    "peso_total": 39.6
+    "num_cajas": 12,
+    "peso_total": 79.2
   },
   {
     "pedido_id": "PED-0003",
@@ -35,20 +35,20 @@
     "lineas": [
       {
         "sku": "ED50",
-        "quantity_boxes": 3
+        "quantity_boxes": 16
       },
       {
         "sku": "ED33",
-        "quantity_boxes": 3
+        "quantity_boxes": 16
       },
       {
         "sku": "BAR20",
-        "quantity_boxes": 3
+        "quantity_boxes": 16
       }
     ],
     "num_envases_recogida": 0,
-    "num_cajas": 9,
-    "peso_total": 107.16
+    "num_cajas": 48,
+    "peso_total": 571.52
   },
   {
     "pedido_id": "PED-0004",
@@ -56,12 +56,12 @@
     "lineas": [
       {
         "sku": "ED33",
-        "quantity_boxes": 6
+        "quantity_boxes": 12
       }
     ],
     "num_envases_recogida": 7,
-    "num_cajas": 6,
-    "peso_total": 54.72
+    "num_cajas": 12,
+    "peso_total": 109.44
   },
   {
     "pedido_id": "PED-0005",
@@ -69,16 +69,16 @@
     "lineas": [
       {
         "sku": "ED33",
-        "quantity_boxes": 6
+        "quantity_boxes": 12
       },
       {
         "sku": "ED50",
-        "quantity_boxes": 4
+        "quantity_boxes": 14
       }
     ],
     "num_envases_recogida": 4,
-    "num_cajas": 10,
-    "peso_total": 81.12
+    "num_cajas": 26,
+    "peso_total": 201.84
   },
   {
     "pedido_id": "PED-0006",
@@ -86,20 +86,20 @@
     "lineas": [
       {
         "sku": "BAR20",
-        "quantity_boxes": 4
+        "quantity_boxes": 14
       },
       {
         "sku": "ED33",
-        "quantity_boxes": 4
+        "quantity_boxes": 14
       },
       {
         "sku": "ED50",
-        "quantity_boxes": 4
+        "quantity_boxes": 14
       }
     ],
     "num_envases_recogida": 7,
-    "num_cajas": 12,
-    "peso_total": 142.88
+    "num_cajas": 42,
+    "peso_total": 500.08
   },
   {
     "pedido_id": "PED-0007",
@@ -107,16 +107,16 @@
     "lineas": [
       {
         "sku": "VD33",
-        "quantity_boxes": 4
+        "quantity_boxes": 14
       },
       {
         "sku": "BAR20",
-        "quantity_boxes": 4
+        "quantity_boxes": 14
       }
     ],
     "num_envases_recogida": 0,
-    "num_cajas": 8,
-    "peso_total": 117.6
+    "num_cajas": 28,
+    "peso_total": 411.6
   },
   {
     "pedido_id": "PED-0008",
@@ -124,12 +124,12 @@
     "lineas": [
       {
         "sku": "ED33",
-        "quantity_boxes": 6
+        "quantity_boxes": 12
       }
     ],
     "num_envases_recogida": 0,
-    "num_cajas": 6,
-    "peso_total": 54.72
+    "num_cajas": 12,
+    "peso_total": 109.44
   },
   {
     "pedido_id": "PED-0009",
@@ -137,16 +137,16 @@
     "lineas": [
       {
         "sku": "ED33",
-        "quantity_boxes": 4
+        "quantity_boxes": 14
       },
       {
         "sku": "BAR20",
-        "quantity_boxes": 4
+        "quantity_boxes": 14
       }
     ],
     "num_envases_recogida": 7,
-    "num_cajas": 8,
-    "peso_total": 116.48
+    "num_cajas": 28,
+    "peso_total": 407.68
   },
   {
     "pedido_id": "PED-0010",
@@ -154,20 +154,20 @@
     "lineas": [
       {
         "sku": "ED50",
-        "quantity_boxes": 3
+        "quantity_boxes": 16
       },
       {
         "sku": "ED33",
-        "quantity_boxes": 3
+        "quantity_boxes": 16
       },
       {
         "sku": "BAR20",
-        "quantity_boxes": 3
+        "quantity_boxes": 16
       }
     ],
     "num_envases_recogida": 0,
-    "num_cajas": 9,
-    "peso_total": 107.16
+    "num_cajas": 48,
+    "peso_total": 571.52
   },
   {
     "pedido_id": "PED-0011",
@@ -175,16 +175,16 @@
     "lineas": [
       {
         "sku": "BAR20",
-        "quantity_boxes": 4
+        "quantity_boxes": 14
       },
       {
         "sku": "ED50",
-        "quantity_boxes": 4
+        "quantity_boxes": 14
       }
     ],
     "num_envases_recogida": 3,
-    "num_cajas": 8,
-    "peso_total": 106.4
+    "num_cajas": 28,
+    "peso_total": 372.4
   },
   {
     "pedido_id": "PED-0012",
@@ -192,20 +192,20 @@
     "lineas": [
       {
         "sku": "ED50",
-        "quantity_boxes": 2
+        "quantity_boxes": 16
       },
       {
         "sku": "ED33",
-        "quantity_boxes": 2
+        "quantity_boxes": 16
       },
       {
         "sku": "BAR20",
-        "quantity_boxes": 2
+        "quantity_boxes": 16
       }
     ],
     "num_envases_recogida": 0,
-    "num_cajas": 6,
-    "peso_total": 71.44
+    "num_cajas": 48,
+    "peso_total": 571.52
   },
   {
     "pedido_id": "PED-0013",
@@ -213,16 +213,16 @@
     "lineas": [
       {
         "sku": "BAR20",
-        "quantity_boxes": 4
+        "quantity_boxes": 14
       },
       {
         "sku": "ED33",
-        "quantity_boxes": 4
+        "quantity_boxes": 14
       }
     ],
     "num_envases_recogida": 7,
-    "num_cajas": 8,
-    "peso_total": 116.48
+    "num_cajas": 28,
+    "peso_total": 407.68
   },
   {
     "pedido_id": "PED-0014",
@@ -230,16 +230,16 @@
     "lineas": [
       {
         "sku": "BAR20",
-        "quantity_boxes": 4
+        "quantity_boxes": 14
       },
       {
         "sku": "ED33",
-        "quantity_boxes": 6
+        "quantity_boxes": 12
       }
     ],
     "num_envases_recogida": 0,
-    "num_cajas": 10,
-    "peso_total": 134.72
+    "num_cajas": 26,
+    "peso_total": 389.44
   },
   {
     "pedido_id": "PED-0015",
@@ -247,16 +247,16 @@
     "lineas": [
       {
         "sku": "BAR20",
-        "quantity_boxes": 4
+        "quantity_boxes": 14
       },
       {
         "sku": "ED50",
-        "quantity_boxes": 4
+        "quantity_boxes": 14
       }
     ],
     "num_envases_recogida": 2,
-    "num_cajas": 8,
-    "peso_total": 106.4
+    "num_cajas": 28,
+    "peso_total": 372.4
   },
   {
     "pedido_id": "PED-0016",
@@ -290,16 +290,16 @@
     "lineas": [
       {
         "sku": "BAR20",
-        "quantity_boxes": 4
+        "quantity_boxes": 14
       },
       {
         "sku": "ED33",
-        "quantity_boxes": 4
+        "quantity_boxes": 14
       }
     ],
     "num_envases_recogida": 2,
-    "num_cajas": 8,
-    "peso_total": 116.48
+    "num_cajas": 28,
+    "peso_total": 407.68
   },
   {
     "pedido_id": "PED-0019",
@@ -307,20 +307,20 @@
     "lineas": [
       {
         "sku": "ED33",
-        "quantity_boxes": 3
+        "quantity_boxes": 16
       },
       {
         "sku": "ED50",
-        "quantity_boxes": 3
+        "quantity_boxes": 16
       },
       {
         "sku": "BAR20",
-        "quantity_boxes": 3
+        "quantity_boxes": 16
       }
     ],
     "num_envases_recogida": 0,
-    "num_cajas": 9,
-    "peso_total": 107.16
+    "num_cajas": 48,
+    "peso_total": 571.52
   },
   {
     "pedido_id": "PED-0020",
@@ -328,12 +328,12 @@
     "lineas": [
       {
         "sku": "ED33",
-        "quantity_boxes": 6
+        "quantity_boxes": 12
       }
     ],
     "num_envases_recogida": 9,
-    "num_cajas": 6,
-    "peso_total": 54.72
+    "num_cajas": 12,
+    "peso_total": 109.44
   },
   {
     "pedido_id": "PED-0021",
@@ -341,12 +341,12 @@
     "lineas": [
       {
         "sku": "BAR20",
-        "quantity_boxes": 6
+        "quantity_boxes": 12
       }
     ],
     "num_envases_recogida": 0,
-    "num_cajas": 6,
-    "peso_total": 120.0
+    "num_cajas": 12,
+    "peso_total": 240.0
   },
   {
     "pedido_id": "PED-0022",
@@ -354,20 +354,20 @@
     "lineas": [
       {
         "sku": "ED33",
-        "quantity_boxes": 2
+        "quantity_boxes": 16
       },
       {
         "sku": "BAR20",
-        "quantity_boxes": 2
+        "quantity_boxes": 16
       },
       {
         "sku": "ED50",
-        "quantity_boxes": 2
+        "quantity_boxes": 16
       }
     ],
     "num_envases_recogida": 9,
-    "num_cajas": 6,
-    "peso_total": 71.44
+    "num_cajas": 48,
+    "peso_total": 571.52
   },
   {
     "pedido_id": "PED-0023",
@@ -375,12 +375,12 @@
     "lineas": [
       {
         "sku": "VD33",
-        "quantity_boxes": 20
+        "quantity_boxes": 160
       }
     ],
     "num_envases_recogida": 0,
-    "num_cajas": 20,
-    "peso_total": 188.0
+    "num_cajas": 160,
+    "peso_total": 1504.0
   },
   {
     "pedido_id": "PED-0024",
@@ -388,20 +388,20 @@
     "lineas": [
       {
         "sku": "BAR20",
-        "quantity_boxes": 3
+        "quantity_boxes": 16
       },
       {
         "sku": "ED50",
-        "quantity_boxes": 3
+        "quantity_boxes": 16
       },
       {
         "sku": "ED33",
-        "quantity_boxes": 3
+        "quantity_boxes": 16
       }
     ],
     "num_envases_recogida": 3,
-    "num_cajas": 9,
-    "peso_total": 107.16
+    "num_cajas": 48,
+    "peso_total": 571.52
   },
   {
     "pedido_id": "PED-0025",
@@ -409,16 +409,16 @@
     "lineas": [
       {
         "sku": "ED33",
-        "quantity_boxes": 4
+        "quantity_boxes": 14
       },
       {
         "sku": "BAR20",
-        "quantity_boxes": 4
+        "quantity_boxes": 14
       }
     ],
     "num_envases_recogida": 1,
-    "num_cajas": 8,
-    "peso_total": 116.48
+    "num_cajas": 28,
+    "peso_total": 407.68
   },
   {
     "pedido_id": "PED-0026",
@@ -426,20 +426,20 @@
     "lineas": [
       {
         "sku": "ED33",
-        "quantity_boxes": 3
+        "quantity_boxes": 16
       },
       {
         "sku": "BAR20",
-        "quantity_boxes": 3
+        "quantity_boxes": 16
       },
       {
         "sku": "ED50",
-        "quantity_boxes": 3
+        "quantity_boxes": 16
       }
     ],
     "num_envases_recogida": 3,
-    "num_cajas": 9,
-    "peso_total": 107.16
+    "num_cajas": 48,
+    "peso_total": 571.52
   },
   {
     "pedido_id": "PED-0027",
@@ -447,20 +447,20 @@
     "lineas": [
       {
         "sku": "ED50",
-        "quantity_boxes": 2
+        "quantity_boxes": 16
       },
       {
         "sku": "ED33",
-        "quantity_boxes": 2
+        "quantity_boxes": 16
       },
       {
         "sku": "BAR20",
-        "quantity_boxes": 2
+        "quantity_boxes": 16
       }
     ],
     "num_envases_recogida": 7,
-    "num_cajas": 6,
-    "peso_total": 71.44
+    "num_cajas": 48,
+    "peso_total": 571.52
   },
   {
     "pedido_id": "PED-0028",
@@ -468,12 +468,12 @@
     "lineas": [
       {
         "sku": "ED33",
-        "quantity_boxes": 8
+        "quantity_boxes": 16
       }
     ],
     "num_envases_recogida": 6,
-    "num_cajas": 8,
-    "peso_total": 72.96
+    "num_cajas": 16,
+    "peso_total": 145.92
   },
   {
     "pedido_id": "PED-0029",
@@ -481,16 +481,16 @@
     "lineas": [
       {
         "sku": "ED50",
-        "quantity_boxes": 4
+        "quantity_boxes": 14
       },
       {
         "sku": "BAR20",
-        "quantity_boxes": 4
+        "quantity_boxes": 14
       }
     ],
     "num_envases_recogida": 0,
-    "num_cajas": 8,
-    "peso_total": 106.4
+    "num_cajas": 28,
+    "peso_total": 372.4
   },
   {
     "pedido_id": "PED-0030",
@@ -498,12 +498,12 @@
     "lineas": [
       {
         "sku": "ED33",
-        "quantity_boxes": 6
+        "quantity_boxes": 12
       }
     ],
     "num_envases_recogida": 0,
-    "num_cajas": 6,
-    "peso_total": 54.72
+    "num_cajas": 12,
+    "peso_total": 109.44
   },
   {
     "pedido_id": "PED-0031",
@@ -550,12 +550,12 @@
     "lineas": [
       {
         "sku": "ED33",
-        "quantity_boxes": 6
+        "quantity_boxes": 12
       }
     ],
     "num_envases_recogida": 0,
-    "num_cajas": 6,
-    "peso_total": 54.72
+    "num_cajas": 12,
+    "peso_total": 109.44
   },
   {
     "pedido_id": "PED-0035",
@@ -563,12 +563,12 @@
     "lineas": [
       {
         "sku": "ED33",
-        "quantity_boxes": 8
+        "quantity_boxes": 16
       }
     ],
     "num_envases_recogida": 0,
-    "num_cajas": 8,
-    "peso_total": 72.96
+    "num_cajas": 16,
+    "peso_total": 145.92
   },
   {
     "pedido_id": "PED-0036",
@@ -576,12 +576,12 @@
     "lineas": [
       {
         "sku": "ED50",
-        "quantity_boxes": 4
+        "quantity_boxes": 14
       }
     ],
     "num_envases_recogida": 0,
-    "num_cajas": 4,
-    "peso_total": 26.4
+    "num_cajas": 14,
+    "peso_total": 92.4
   },
   {
     "pedido_id": "PED-0037",
@@ -589,16 +589,16 @@
     "lineas": [
       {
         "sku": "ED33",
-        "quantity_boxes": 4
+        "quantity_boxes": 14
       },
       {
         "sku": "BAR20",
-        "quantity_boxes": 4
+        "quantity_boxes": 14
       }
     ],
     "num_envases_recogida": 6,
-    "num_cajas": 8,
-    "peso_total": 116.48
+    "num_cajas": 28,
+    "peso_total": 407.68
   },
   {
     "pedido_id": "PED-0038",
@@ -623,12 +623,12 @@
     "lineas": [
       {
         "sku": "ED33",
-        "quantity_boxes": 8
+        "quantity_boxes": 16
       }
     ],
     "num_envases_recogida": 0,
-    "num_cajas": 8,
-    "peso_total": 72.96
+    "num_cajas": 16,
+    "peso_total": 145.92
   },
   {
     "pedido_id": "PED-0040",
@@ -636,12 +636,12 @@
     "lineas": [
       {
         "sku": "BAR20",
-        "quantity_boxes": 6
+        "quantity_boxes": 12
       }
     ],
     "num_envases_recogida": 0,
-    "num_cajas": 6,
-    "peso_total": 120.0
+    "num_cajas": 12,
+    "peso_total": 240.0
   },
   {
     "pedido_id": "PED-0041",
@@ -662,12 +662,12 @@
     "lineas": [
       {
         "sku": "ED33",
-        "quantity_boxes": 6
+        "quantity_boxes": 12
       }
     ],
     "num_envases_recogida": 0,
-    "num_cajas": 6,
-    "peso_total": 54.72
+    "num_cajas": 12,
+    "peso_total": 109.44
   },
   {
     "pedido_id": "PED-0043",
@@ -675,12 +675,12 @@
     "lineas": [
       {
         "sku": "FR33",
-        "quantity_boxes": 20
+        "quantity_boxes": 160
       }
     ],
     "num_envases_recogida": 18,
-    "num_cajas": 20,
-    "peso_total": 172.8
+    "num_cajas": 160,
+    "peso_total": 1382.4
   },
   {
     "pedido_id": "PED-0044",
@@ -688,20 +688,20 @@
     "lineas": [
       {
         "sku": "ED33",
-        "quantity_boxes": 3
+        "quantity_boxes": 16
       },
       {
         "sku": "BAR20",
-        "quantity_boxes": 3
+        "quantity_boxes": 16
       },
       {
         "sku": "FR33",
-        "quantity_boxes": 3
+        "quantity_boxes": 16
       }
     ],
     "num_envases_recogida": 8,
-    "num_cajas": 9,
-    "peso_total": 113.28
+    "num_cajas": 48,
+    "peso_total": 604.16
   },
   {
     "pedido_id": "PED-0045",
@@ -709,20 +709,20 @@
     "lineas": [
       {
         "sku": "BAR20",
-        "quantity_boxes": 2
+        "quantity_boxes": 16
       },
       {
         "sku": "ED50",
-        "quantity_boxes": 2
+        "quantity_boxes": 16
       },
       {
         "sku": "ED33",
-        "quantity_boxes": 2
+        "quantity_boxes": 16
       }
     ],
     "num_envases_recogida": 10,
-    "num_cajas": 6,
-    "peso_total": 71.44
+    "num_cajas": 48,
+    "peso_total": 571.52
   },
   {
     "pedido_id": "PED-0046",
@@ -730,16 +730,16 @@
     "lineas": [
       {
         "sku": "ED50",
-        "quantity_boxes": 4
+        "quantity_boxes": 14
       },
       {
         "sku": "ED33",
-        "quantity_boxes": 4
+        "quantity_boxes": 14
       }
     ],
     "num_envases_recogida": 0,
-    "num_cajas": 8,
-    "peso_total": 62.88
+    "num_cajas": 28,
+    "peso_total": 220.08
   },
   {
     "pedido_id": "PED-0047",
@@ -747,12 +747,12 @@
     "lineas": [
       {
         "sku": "ED33",
-        "quantity_boxes": 6
+        "quantity_boxes": 12
       }
     ],
     "num_envases_recogida": 0,
-    "num_cajas": 6,
-    "peso_total": 54.72
+    "num_cajas": 12,
+    "peso_total": 109.44
   },
   {
     "pedido_id": "PED-0048",
@@ -760,16 +760,16 @@
     "lineas": [
       {
         "sku": "ED33",
-        "quantity_boxes": 6
+        "quantity_boxes": 12
       },
       {
         "sku": "ED50",
-        "quantity_boxes": 4
+        "quantity_boxes": 14
       }
     ],
     "num_envases_recogida": 0,
-    "num_cajas": 10,
-    "peso_total": 81.12
+    "num_cajas": 26,
+    "peso_total": 201.84
   },
   {
     "pedido_id": "PED-0049",
@@ -777,16 +777,16 @@
     "lineas": [
       {
         "sku": "ED33",
-        "quantity_boxes": 4
+        "quantity_boxes": 14
       },
       {
         "sku": "ED50",
-        "quantity_boxes": 4
+        "quantity_boxes": 14
       }
     ],
     "num_envases_recogida": 0,
-    "num_cajas": 8,
-    "peso_total": 62.88
+    "num_cajas": 28,
+    "peso_total": 220.08
   },
   {
     "pedido_id": "PED-0050",
@@ -794,19 +794,19 @@
     "lineas": [
       {
         "sku": "ED33",
-        "quantity_boxes": 3
+        "quantity_boxes": 16
       },
       {
         "sku": "ED50",
-        "quantity_boxes": 3
+        "quantity_boxes": 16
       },
       {
         "sku": "BAR20",
-        "quantity_boxes": 3
+        "quantity_boxes": 16
       }
     ],
     "num_envases_recogida": 1,
-    "num_cajas": 9,
-    "peso_total": 107.16
+    "num_cajas": 48,
+    "peso_total": 571.52
   }
 ]
