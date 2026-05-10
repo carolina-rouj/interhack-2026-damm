@@ -36,6 +36,8 @@ class Parada:
     tiempo_estimado_min: Optional[float] = None
     # set by agrupar_tiendas: the medoid store chosen as the physical stop point
     representante_id: Optional[str] = None
+    # set by VRPTW solver: scheduled arrival (minutes since midnight)
+    llegada_min: Optional[int] = None
 
     # ── convenience ───────────────────────────────────────────────────────
 
@@ -46,6 +48,24 @@ class Parada:
     @property
     def ids_tiendas(self) -> list[str]:
         return [t.tienda_id for t in self.tiendas]
+
+    @property
+    def num_cajas_total(self) -> int:
+        return sum(t.num_cajas_total for t in self.tiendas)
+
+    @property
+    def horario_inicio_min(self) -> int:
+        """Effective window open: max of all member stores' open times."""
+        if not self.tiendas:
+            return 0
+        return max(t.horario_inicio_min for t in self.tiendas)
+
+    @property
+    def horario_fin_min(self) -> int:
+        """Effective window close: min of all member stores' close times."""
+        if not self.tiendas:
+            return 1439
+        return min(t.horario_fin_min for t in self.tiendas)
 
     # ── metrics ───────────────────────────────────────────────────────────
 
@@ -72,6 +92,7 @@ class Parada:
             "cajas_recogidas": self.cajas_recogidas,
             "tiempo_estimado_min": self.tiempo_estimado_min,
             "representante_id": self.representante_id,
+            "llegada_min": self.llegada_min,
         }
 
     @classmethod
@@ -86,6 +107,7 @@ class Parada:
             cajas_recogidas=data.get("cajas_recogidas", 0),
             tiempo_estimado_min=data.get("tiempo_estimado_min"),
             representante_id=data.get("representante_id"),
+            llegada_min=data.get("llegada_min"),
         )
 
     def __repr__(self) -> str:

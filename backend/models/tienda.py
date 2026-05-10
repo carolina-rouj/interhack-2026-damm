@@ -20,9 +20,35 @@ class Tienda:
     nombre: str
     x: float
     y: float
+    horario_inicio_min: int = 0     # delivery window open  (minutes since midnight)
+    horario_fin_min: int = 1439     # delivery window close (minutes since midnight)
     pedidos: list[Pedido] = field(default_factory=list)
     nombre_contacto: Optional[str] = None
     telefono: Optional[str] = None
+
+    # ── schedule helpers ──────────────────────────────────────────────────
+
+    @staticmethod
+    def _parse_horario(time_str: str) -> int:
+        """Parse 'H:MM:SS' or 'HH:MM:SS' to minutes since midnight."""
+        parts = time_str.split(":")
+        return int(parts[0]) * 60 + int(parts[1])
+
+    @staticmethod
+    def parse_schedule(inicio: str, fin: str) -> tuple[int, int]:
+        """
+        Parse opening-hour strings into (open_min, close_min).
+        '0:00:00'–'0:00:00' means open all day (0–1439).
+        """
+        open_min = Tienda._parse_horario(inicio)
+        close_min = Tienda._parse_horario(fin)
+        if open_min == 0 and close_min == 0:
+            close_min = 1439
+        return open_min, close_min
+
+    @property
+    def ventana_horaria(self) -> tuple[int, int]:
+        return (self.horario_inicio_min, self.horario_fin_min)
 
     # ── order management ──────────────────────────────────────────────────
 
@@ -83,6 +109,8 @@ class Tienda:
             "nombre": self.nombre,
             "x": self.x,
             "y": self.y,
+            "horario_inicio_min": self.horario_inicio_min,
+            "horario_fin_min": self.horario_fin_min,
             "nombre_contacto": self.nombre_contacto,
             "telefono": self.telefono,
             "pedidos": [p.to_dict() for p in self.pedidos],
@@ -93,11 +121,23 @@ class Tienda:
 
     @classmethod
     def from_dict(cls, data: dict) -> Tienda:
+        if "horario_inicio_min" in data:
+            inicio_min = data["horario_inicio_min"]
+            fin_min = data["horario_fin_min"]
+        elif "horario_inicio" in data:
+            inicio_min, fin_min = cls.parse_schedule(
+                data["horario_inicio"], data["horario_fin"]
+            )
+        else:
+            inicio_min, fin_min = 0, 1439
+
         tienda = cls(
             tienda_id=data["tienda_id"],
             nombre=data["nombre"],
             x=data["x"],
             y=data["y"],
+            horario_inicio_min=inicio_min,
+            horario_fin_min=fin_min,
             nombre_contacto=data.get("nombre_contacto"),
             telefono=data.get("telefono"),
         )

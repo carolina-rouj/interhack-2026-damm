@@ -72,11 +72,17 @@ def load_zona(zona_id: str) -> dict:
         if tid not in raw_tiendas:
             continue
         raw = raw_tiendas[tid]
+        inicio_min, fin_min = Tienda.parse_schedule(
+            raw.get("horario_inicio", "0:00:00"),
+            raw.get("horario_fin", "0:00:00"),
+        )
         tiendas[tid] = Tienda(
             tienda_id=tid,
             nombre=raw["nombre"],
             x=raw["lat"],
             y=raw["lon"],
+            horario_inicio_min=inicio_min,
+            horario_fin_min=fin_min,
         )
 
     # Attach Pedidos
