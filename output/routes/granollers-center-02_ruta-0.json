@@ -1,0 +1,60 @@
+{
+  "ruta_id": "ruta-0",
+  "zona_id": "granollers-center-02",
+  "tipo_camion": "grande",
+  "num_palets": 1,
+  "paradas": [
+    {
+      "orden": 0,
+      "llegada_min": 660,
+      "coordenadas": {
+        "lat": 41.6076,
+        "lon": 2.2868
+      },
+      "clientes": [
+        {
+          "nombre": "TAPES",
+          "total_cajas": 18,
+          "productos": [
+            {
+              "nombre": "Free Damm 33cl x24",
+              "sku": "FR33",
+              "cantidad_cajas": 18,
+              "tipo_envase": "caja"
+            }
+          ]
+        },
+        {
+          "nombre": "BAR MILANA BRASERIA",
+          "total_cajas": 18,
+          "productos": [
+            {
+              "nombre": "Barril Damm 20L",
+              "sku": "BAR20",
+              "cantidad_cajas": 18,
+              "tipo_envase": "barril"
+            }
+          ]
+        },
+        {
+          "nombre": "BAR CERVECERIA JORDI",
+          "total_cajas": 8,
+          "productos": [
+            {
+              "nombre": "Barril Damm 20L",
+              "sku": "BAR20",
+              "cantidad_cajas": 4,
+              "tipo_envase": "barril"
+            },
+            {
+              "nombre": "Estrella Damm 33cl x24",
+              "sku": "ED33",
+              "cantidad_cajas": 4,
+              "tipo_envase": "caja"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

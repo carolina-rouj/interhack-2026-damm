@@ -157,6 +157,12 @@ def solve(req: SolveRequest):
     }
 
 
+from fastapi.staticfiles import StaticFiles as _StaticFiles
+import os as _os
+_frontend_dir = _os.path.join(_os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))), "frontend")
+if _os.path.isdir(_frontend_dir):
+    app.mount("/", _StaticFiles(directory=_frontend_dir, html=True), name="static")
+
 # ── interactive terminal entry point ─────────────────────────────────────────
 # Run with:  python3 backend/main.py [--output DIR] [--google]
 
