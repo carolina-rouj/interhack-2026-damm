@@ -139,7 +139,7 @@ def solve(req: SolveRequest):
     """
     from backend.pipeline import export_routes_json
 
-    results = export_routes_json(
+    result = export_routes_json(
         req.zona_id,
         output_dir=req.output_dir,
         usar_google=req.usar_google,
@@ -148,30 +148,96 @@ def solve(req: SolveRequest):
     )
     return {
         "zona_id": req.zona_id,
-        "num_rutas": len(results),
+        "num_rutas": len(result["routes"]),
+        "metrics": result["metrics"],
         "routes": [
             {"file": str(r["path"]), "route": r["route"]}
-            for r in results
+            for r in result["routes"]
         ],
     }
 
 
-# ── terminal entry point ──────────────────────────────────────────────────────
-# Run with:  python3 backend/main.py [zona_id] [--output DIR] [--google]
+# ── interactive terminal entry point ─────────────────────────────────────────
+# Run with:  python3 backend/main.py [--output DIR] [--google]
+
+def _interactive_loop(output_dir: str, usar_google: bool) -> None:
+    from backend.pipeline import export_routes_json, _print_metrics
+
+    # Load zone list once
+    with open(DATA_DIR / "zona.json", encoding="utf-8-sig") as f:
+        zones = json.load(f)
+    zone_ids = [z["zona_id"] for z in zones]
+
+    sep = "═" * 54
+
+    print(f"\n{sep}")
+    print("   Damm Smart Truck — Interactive Route Solver")
+    print(f"{sep}")
+    print(f"   Output : {output_dir}")
+    print(f"   Google : {'yes' if usar_google else 'no (Euclidean fallback)'}")
+    print(sep)
+
+    while True:
+        print("\nAvailable zones:")
+        for i, zid in enumerate(zone_ids, 1):
+            print(f"  [{i}] {zid}")
+        print()
+
+        try:
+            raw = input("Enter zone number or ID (q to quit): ").strip()
+        except (EOFError, KeyboardInterrupt):
+            print("\nBye.")
+            break
+
+        if raw.lower() in ("q", "quit", "exit", ""):
+            print("Bye.")
+            break
+
+        # Accept number or direct ID
+        zona_id: str | None = None
+        if raw.isdigit():
+            idx = int(raw) - 1
+            if 0 <= idx < len(zone_ids):
+                zona_id = zone_ids[idx]
+            else:
+                print(f"  No zone with number {raw}. Try again.")
+                continue
+        elif raw in zone_ids:
+            zona_id = raw
+        else:
+            print(f"  Unknown zone {raw!r}. Try again.")
+            continue
+
+        print(f"\nSolving {zona_id} ...")
+        try:
+            result = export_routes_json(
+                zona_id,
+                output_dir=output_dir,
+                usar_google=usar_google,
+            )
+        except Exception as exc:
+            print(f"  ERROR: {exc}")
+            continue
+
+        routes = result["routes"]
+        print(f"\n{len(routes)} route file(s) written:")
+        for r in routes:
+            route = r["route"]
+            print(
+                f"  {r['path'].name}"
+                f"  |  {route['tipo_camion']}"
+                f"  |  {route['num_palets']} palets"
+                f"  |  {len(route['paradas'])} paradas"
+            )
+        print(f"  {result['summary_path'].name}  (metrics summary)")
+        _print_metrics(result["metrics"])
+
 
 if __name__ == "__main__":
-    from backend.pipeline import export_routes_json
-
     import argparse
 
     parser = argparse.ArgumentParser(
-        description="Damm Smart Truck — solve a zone and export route JSONs"
-    )
-    parser.add_argument(
-        "zona_id",
-        nargs="?",
-        default="granollers-center-01",
-        help="Zone ID (default: granollers-center-01)",
+        description="Damm Smart Truck — interactive route solver"
     )
     parser.add_argument(
         "--output", default="output/routes", metavar="DIR",
@@ -183,28 +249,4 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
 
-    print(f"Zone   : {args.zona_id}")
-    print(f"Output : {args.output}")
-    print(f"Google : {'yes' if args.google else 'no (Euclidean fallback)'}")
-    print()
-
-    results = export_routes_json(
-        args.zona_id,
-        output_dir=args.output,
-        usar_google=args.google,
-    )
-
-    print(f"{len(results)} route(s) written:")
-    sep = "─" * 56
-    print(sep)
-    for r in results:
-        route = r["route"]
-        path = r["path"]
-        num_stops = len(route["paradas"])
-        print(
-            f"  {path.name}"
-            f"  |  {route['tipo_camion']}"
-            f"  |  {route['num_palets']} palets"
-            f"  |  {num_stops} paradas"
-        )
-    print(sep)
+    _interactive_loop(output_dir=args.output, usar_google=args.google)
