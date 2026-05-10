@@ -26,11 +26,12 @@ def _truck_tipo(camion_id: Optional[str]) -> str:
     return "grande"
 
 
-def _tipo_envase(product: dict) -> str:
+def _tipo_envase(sku: str, skus: dict) -> str:
     """Return 'barril' for barrel products, 'caja' for everything else."""
-    if product.get("tipo", "").lower() == "barril":
+    product = skus.get(sku)
+    if product is not None and getattr(product, "tipo", "").lower() == "barril":
         return "barril"
-    if product.get("sku", "").upper().startswith("BAR"):
+    if sku.upper().startswith("BAR"):
         return "barril"
     return "caja"
 
@@ -38,7 +39,7 @@ def _tipo_envase(product: dict) -> str:
 # ── format ────────────────────────────────────────────────────────────────────
 
 
-def _format_route(route_result: dict) -> dict:
+def _format_route(route_result: dict, skus: dict) -> dict:
     """
     Transform one orchestrator route_result into the frontend route schema.
 
@@ -94,13 +95,16 @@ def _format_route(route_result: dict) -> dict:
             productos: list[dict] = []
             for pedido in tienda.get("pedidos", []):
                 for linea in pedido.get("lineas", []):
-                    product = linea["product"]
+                    sku = linea["sku"]
+                    qty = linea["quantity_boxes"]
+                    product = skus.get(sku)
+                    nombre = product.name if product else sku
                     productos.append(
                         {
-                            "nombre": product["name"],
-                            "sku": product["sku"],
-                            "cantidad_cajas": linea["quantity_boxes"],
-                            "tipo_envase": _tipo_envase(product),
+                            "nombre": nombre,
+                            "sku": sku,
+                            "cantidad_cajas": qty,
+                            "tipo_envase": _tipo_envase(sku, skus),
                         }
                     )
 
@@ -158,9 +162,11 @@ def export_routes_json(
         distancia_max=distancia_max,
     )
 
+    skus = result["skus"]
+
     written: list[dict] = []
     for route_result in result["routes"]:
-        route_json = _format_route(route_result)
+        route_json = _format_route(route_result, skus)
         ruta_id = route_json["ruta_id"]
         path = output_dir / f"{zona_id}_{ruta_id}.json"
         with open(path, "w", encoding="utf-8") as f:
