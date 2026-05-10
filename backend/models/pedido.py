@@ -72,35 +72,25 @@ class Pedido:
             "pedido_id": self.pedido_id,
             "tienda_id": self.tienda_id,
             "lineas": [
-                {
-                    "product": l.product.to_dict(),
-                    "quantity_boxes": l.quantity_boxes,
-                }
+                {"sku": l.product.sku, "quantity_boxes": l.quantity_boxes}
                 for l in self.lineas
             ],
-            "es_retornable": self.es_retornable,
             "num_envases_recogida": self.num_envases_recogida,
             "num_cajas": self.num_cajas,
             "peso_total": self.peso_total,
-            "volumen_total": self.volumen_total,
         }
 
     @classmethod
-    def from_dict(cls, data: dict) -> Pedido:
-        lineas = [
-            OrderLine(
-                product=Product(
-                    sku=l["product"]["sku"],
-                    name=l["product"]["name"],
-                    is_returnable=l["product"]["is_returnable"],
-                    weight_kg_per_box=l["product"]["weight_kg_per_box"],
-                    tipo=l["product"].get("tipo", "generico"),
-                    tamano=l["product"].get("tamano", 0.0),
-                ),
-                quantity_boxes=l["quantity_boxes"],
-            )
-            for l in data.get("lineas", [])
-        ]
+    def from_dict(cls, data: dict, skus: dict | None = None) -> Pedido:
+        lineas = []
+        for l in data.get("lineas", []):
+            sku = l["sku"]
+            if skus and sku in skus:
+                product = skus[sku]
+            else:
+                product = Product(sku=sku, name=sku, is_returnable=False,
+                                  weight_kg_per_box=0.0, tipo="generico", tamano=1.0)
+            lineas.append(OrderLine(product=product, quantity_boxes=l["quantity_boxes"]))
         return cls(
             pedido_id=data["pedido_id"],
             tienda_id=data["tienda_id"],

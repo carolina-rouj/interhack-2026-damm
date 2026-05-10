@@ -85,7 +85,7 @@ def load_zona(zona_id: str) -> dict:
         tid = raw["tienda_id"]
         if tid not in tiendas:
             continue
-        pedido = Pedido.from_dict(raw)
+        pedido = Pedido.from_dict(raw, skus=skus)
         tiendas[tid].añadir_pedido(pedido)
         pedidos.setdefault(tid, []).append(pedido)
 
