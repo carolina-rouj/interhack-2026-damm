@@ -1,8 +1,9 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { Text } from 'react-native'
 import { StatusBar } from 'expo-status-bar'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { generateScenario, optimizeScenario } from './src/api'
 import RouteScreen from './src/screens/RouteScreen'
 import LoadScreen from './src/screens/LoadScreen'
@@ -20,6 +21,17 @@ export default function App() {
   const [result, setResult] = useState(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
+  const [deliveredIds, setDeliveredIds] = useState(new Set())
+
+  useEffect(() => { setDeliveredIds(new Set()) }, [result])
+
+  function toggleDelivered(clientId) {
+    setDeliveredIds(prev => {
+      const next = new Set(prev)
+      next.has(clientId) ? next.delete(clientId) : next.add(clientId)
+      return next
+    })
+  }
 
   async function handleGenerate() {
     setLoading(true)
@@ -52,9 +64,11 @@ export default function App() {
   const sharedProps = {
     seed, setSeed, nClients, setNClients, startTime, setStartTime,
     scenario, result, loading, error, handleGenerate, handleOptimize,
+    deliveredIds, toggleDelivered,
   }
 
   return (
+    <SafeAreaProvider>
     <NavigationContainer>
       <StatusBar style="light" />
       <Tab.Navigator
@@ -69,11 +83,9 @@ export default function App() {
             shadowRadius: 16,
             shadowOffset: { width: 0, height: -4 },
             elevation: 12,
-            height: 60,
-            paddingBottom: 8,
           },
           tabBarLabelStyle: { fontSize: 11, fontWeight: '600', letterSpacing: 0.3 },
-          headerStyle: { backgroundColor: COLORS.red, height: 64 },
+          headerStyle: { backgroundColor: COLORS.red },
           headerTintColor: '#fff',
           headerTitleStyle: { fontWeight: '700', fontSize: 16, letterSpacing: 0.3 },
           headerRight: () => (
@@ -102,5 +114,6 @@ export default function App() {
         </Tab.Screen>
       </Tab.Navigator>
     </NavigationContainer>
+    </SafeAreaProvider>
   )
 }
