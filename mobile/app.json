@@ -13,7 +13,10 @@
       "backgroundColor": "#1a1a2e"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "Permite acceder a tu ubicación para la navegación GPS."
+      }
     },
     "android": {
       "package": "com.damm.smarttruck",
@@ -32,7 +35,10 @@
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
-      "expo-asset"
+      "expo-asset",
+      ["expo-location", {
+        "locationWhenInUsePermission": "Permite acceder a tu ubicación para la navegación GPS."
+      }]
     ],
     "extra": {
       "googleMapsApiKey": "AIzaSyA3MBZ23W--WXMDD9pntNrQh1ctSV_J7Ak"
