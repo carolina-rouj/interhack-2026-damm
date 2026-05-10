@@ -7,8 +7,10 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
-from backend.data.synthetic_generator import generate_scenario
+from backend.data.loader import load_zona, DATA_DIR
 from backend.models.zona import TipoMatriz
+
+import json
 
 app = FastAPI(title="Damm Smart Truck API", version="2.0.0")
 
@@ -19,52 +21,44 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# In-memory scenario store (enough for hackathon demo)
-_scenarios: dict = {}
+# In-memory zone cache (enough for hackathon demo)
+_zonas: dict = {}
 
 
-@app.get("/api/scenario/generate")
-def generate(seed: int = 42, n_tiendas: int = 16):
-    """Generate a fresh synthetic delivery scenario."""
-    data = generate_scenario(seed=seed, n_tiendas=n_tiendas)
-    scenario_id = f"scenario-{seed}-{n_tiendas}"
-    _scenarios[scenario_id] = data
+def _get_zona(zona_id: str):
+    if zona_id not in _zonas:
+        try:
+            _zonas[zona_id] = load_zona(zona_id)
+        except KeyError:
+            raise HTTPException(404, f"Zona {zona_id!r} not found. Check /api/zona/list.")
+    return _zonas[zona_id]
+
+
+@app.get("/api/zona/list")
+def list_zonas():
+    """List all available zone IDs from the checked-in data."""
+    with open(DATA_DIR / "zona.json", encoding="utf-8-sig") as f:
+        zones = json.load(f)
+    return {"zonas": [z["zona_id"] for z in zones]}
+
+
+@app.get("/api/zona/{zona_id}")
+def get_zona(zona_id: str):
+    """Load a real zone by ID and return its stores and demand summary."""
+    data = _get_zona(zona_id)
     zona = data["zona"]
     return {
-        "scenario_id": scenario_id,
-        "depot": {"lat": data["depot_lat"], "lon": data["depot_lon"]},
-        "zona": {
-            "zona_id": zona.zona_id,
-            "nombre": zona.nombre,
-            "num_tiendas": zona.num_tiendas,
-            "demanda_total_cajas": zona.demanda_total_cajas,
-            "demanda_total_peso_kg": zona.demanda_total_peso,
-        },
-        "tiendas": [t.to_dict() for t in zona.tiendas],
-    }
-
-
-@app.get("/api/scenario/{scenario_id}")
-def get_scenario(scenario_id: str):
-    if scenario_id not in _scenarios:
-        raise HTTPException(404, "Scenario not found. Generate one first via /api/scenario/generate")
-    data = _scenarios[scenario_id]
-    zona = data["zona"]
-    return {
-        "scenario_id": scenario_id,
-        "depot": {"lat": data["depot_lat"], "lon": data["depot_lon"]},
-        "zona": {
-            "zona_id": zona.zona_id,
-            "nombre": zona.nombre,
-            "num_tiendas": zona.num_tiendas,
-            "demanda_total_cajas": zona.demanda_total_cajas,
-        },
+        "zona_id": zona.zona_id,
+        "nombre": zona.nombre,
+        "num_tiendas": zona.num_tiendas,
+        "demanda_total_cajas": zona.demanda_total_cajas,
+        "demanda_total_peso_kg": zona.demanda_total_peso,
         "tiendas": [t.to_dict() for t in zona.tiendas],
     }
 
 
 class ClusterRequest(BaseModel):
-    scenario_id: str
+    zona_id: str
     cajas_por_palet: int = 60
     distancia_max: float | None = None
     usar_google: bool = False
@@ -73,18 +67,16 @@ class ClusterRequest(BaseModel):
 @app.post("/api/cluster")
 def cluster(req: ClusterRequest):
     """
-    Group the stores in a scenario into delivery stops (one pallet per stop).
+    Group the stores in a zone into delivery stops (one pallet per stop).
 
-    Set usar_google=true to load real driving distances via Google Maps
+    Set usar_google=true to use real driving distances via Google Maps
     (requires GOOGLE_MAPS_API_KEY in backend/distance/.env).
     Falls back to Euclidean distance automatically.
+    distancia_max is in cost units (1–10) when usar_google=true, degrees otherwise.
     """
-    if req.scenario_id not in _scenarios:
-        raise HTTPException(404, "Scenario not found. Generate one first via /api/scenario/generate")
-
-    zona = _scenarios[req.scenario_id]["zona"]
-    # Always rebuild the matrix so repeated calls with different params work
-    zona._matriz = None
+    data = _get_zona(req.zona_id)
+    zona = data["zona"]
+    zona._matriz = None  # Rebuild matrix on every call so params take effect
 
     if req.usar_google:
         tipo = zona.cargar_mejor_matriz()
@@ -98,7 +90,7 @@ def cluster(req: ClusterRequest):
     )
 
     return {
-        "scenario_id": req.scenario_id,
+        "zona_id": req.zona_id,
         "matriz_tipo": tipo.value,
         "cajas_por_palet": req.cajas_por_palet,
         "num_paradas": len(paradas),
@@ -131,78 +123,32 @@ def health():
     return {"status": "ok"}
 
 
-# ── clustering probe ──────────────────────────────────────────────────────────
+# ── terminal probe ────────────────────────────────────────────────────────────
 # Run with:  python3 backend/main.py
 
 if __name__ == "__main__":
-    from backend.models.tienda import Tienda
-    from backend.models.pedido import Pedido
-    from backend.models.product import Product, OrderLine
-    from backend.models.zona import Zona, TipoMatriz
+    from backend.models.zona import TipoMatriz
 
-    ESTRELLA = Product(sku="ED33", name="Estrella Damm 33cl", is_returnable=False, weight_kg_per_box=0.38)
-    VOLL     = Product(sku="VD33", name="Voll-Damm 33cl",    is_returnable=False, weight_kg_per_box=0.40)
+    ZONA_ID = "granollers-center-01"
+    data = load_zona(ZONA_ID)
+    zona = data["zona"]
 
-    def _t(tid, name, lat, lng, ed, vd=0):
-        t = Tienda(tienda_id=tid, nombre=name, x=lat, y=lng)
-        lineas = [OrderLine(product=ESTRELLA, quantity_boxes=ed)]
-        if vd:
-            lineas.append(OrderLine(product=VOLL, quantity_boxes=vd))
-        t.añadir_pedido(Pedido(pedido_id=f"p-{tid}", tienda_id=tid, lineas=lineas))
-        return t
-
-    # Three bars clustered in Poblenou + one restaurant in Barceloneta (far)
-    stores = [
-        _t("T01", "Bar Biciclot",   41.3975, 2.1885, ed=15),
-        _t("T02", "Bar Balboa",     41.3978, 2.1890, ed=18, vd=2),
-        _t("T03", "Bar Ke33",       41.3972, 2.1888, ed=12, vd=6),
-        _t("T04", "La Mar Salada",  41.3764, 2.1873, ed=25, vd=5),
-    ]
-
-    zona = Zona(zona_id="BCN-DEMO", nombre="Barcelona Demo")
-    for s in stores:
-        zona.añadir_tienda(s)
-
-    print("\nCargando matriz de distancias…")
+    print(f"\nZona : {zona.nombre}  ({zona.num_tiendas} tiendas, {zona.demanda_total_cajas} cajas)")
+    print("Cargando matriz de distancias…")
     tipo = zona.cargar_mejor_matriz()
 
-    unit = "metros (Google Maps)" if tipo == TipoMatriz.GOOGLE else "grados Euclídeos (fallback sin API)"
+    unit = "coste 1-10 (Google Maps)" if tipo == TipoMatriz.GOOGLE else "grados Euclídeos (fallback)"
     print(f"  → {tipo.value}  |  unidades: {unit}\n")
 
     PALET = 60
     paradas = zona.agrupar_tiendas(cajas_por_palet=PALET)
 
     sep = "─" * 58
-    print(f"Zona : {zona.nombre}  ({zona.num_tiendas} tiendas, {zona.demanda_total_cajas} cajas total)")
-    print(f"Palé : {PALET} cajas/palé")
     print(f"Resultado: {len(paradas)} parada(s)\n{sep}")
-
     for p in paradas:
         total = sum(t.num_cajas_total for t in p.tiendas)
-        print(f"\nParada {p.orden + 1}  [{p.parada_id}]")
-        print(f"  Representante : {p.representante_id}")
-        print(f"  Cajas totales : {total}/{PALET}")
-        print(f"  Tiendas ({p.num_tiendas}):")
+        print(f"\nParada {p.orden + 1}  [{p.parada_id}]  {total}/{PALET} cajas")
         for t in p.tiendas:
             tag = "  ← medoid" if t.tienda_id == p.representante_id else ""
-            print(f"    • {t.nombre:<22} {t.num_cajas_total:3d} cajas  ({t.x:.4f}, {t.y:.4f}){tag}")
-
-    print(f"\n{sep}")
-
-    # Show the raw distance sub-matrix for the first cluster
-    first = paradas[0]
-    if first.num_tiendas > 1:
-        m = zona.matriz
-        ids = [t.tienda_id for t in zona.tiendas]
-        print(f"\nSub-matriz de distancias — Parada 1 ({unit.split()[0]}):")
-        cluster_ids = [t.tienda_id for t in first.tiendas]
-        ci = [ids.index(tid) for tid in cluster_ids]
-        header = "         " + "".join(f"{tid:>12}" for tid in cluster_ids)
-        print(header)
-        for i in ci:
-            row = f"  {ids[i]:<6} " + "".join(
-                f"{'—':>12}" if i == j else f"{m[i][j]:>12.5g}"
-                for j in ci
-            )
-            print(row)
-    print()
+            print(f"    • {t.nombre:<30} {t.num_cajas_total:3d} cajas{tag}")
+    print(f"\n{sep}\n")

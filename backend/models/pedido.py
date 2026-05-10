@@ -42,6 +42,10 @@ class Pedido:
     def num_cajas(self) -> int:
         return sum(l.quantity_boxes for l in self.lineas)
 
+    @property
+    def total_boxes(self) -> int:
+        return self.num_cajas
+
     # ── validation ────────────────────────────────────────────────────────
 
     def validar(self) -> list[str]:

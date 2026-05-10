@@ -1,4 +1,1542 @@
-pedido id
-product name
-quantity
-return number
+[
+  {
+    "pedido_id": "PED-0001",
+    "tienda_id": "9100621389",
+    "lineas": [
+      {
+        "product": {
+          "sku": "BAR20",
+          "name": "Barril Damm 20L",
+          "is_returnable": true,
+          "weight_kg_per_box": 20.0,
+          "tipo": "barril",
+          "tamano": 20.0
+        },
+        "quantity_boxes": 12
+      },
+      {
+        "product": {
+          "sku": "ED50",
+          "name": "Estrella Damm 50cl x12",
+          "is_returnable": false,
+          "weight_kg_per_box": 6.6,
+          "tipo": "cerveza",
+          "tamano": 6.0
+        },
+        "quantity_boxes": 24
+      }
+    ],
+    "es_retornable": false,
+    "num_envases_recogida": 0,
+    "num_cajas": 36,
+    "peso_total": 398.4,
+    "volumen_total": 384.0
+  },
+  {
+    "pedido_id": "PED-0002",
+    "tienda_id": "9100054750",
+    "lineas": [
+      {
+        "product": {
+          "sku": "ED50",
+          "name": "Estrella Damm 50cl x12",
+          "is_returnable": false,
+          "weight_kg_per_box": 6.6,
+          "tipo": "cerveza",
+          "tamano": 6.0
+        },
+        "quantity_boxes": 54
+      }
+    ],
+    "es_retornable": true,
+    "num_envases_recogida": 4,
+    "num_cajas": 54,
+    "peso_total": 356.4,
+    "volumen_total": 324.0
+  },
+  {
+    "pedido_id": "PED-0003",
+    "tienda_id": "9100040724",
+    "lineas": [
+      {
+        "product": {
+          "sku": "ED50",
+          "name": "Estrella Damm 50cl x12",
+          "is_returnable": false,
+          "weight_kg_per_box": 6.6,
+          "tipo": "cerveza",
+          "tamano": 6.0
+        },
+        "quantity_boxes": 18
+      },
+      {
+        "product": {
+          "sku": "ED33",
+          "name": "Estrella Damm 33cl x24",
+          "is_returnable": false,
+          "weight_kg_per_box": 9.12,
+          "tipo": "cerveza",
+          "tamano": 7.92
+        },
+        "quantity_boxes": 12
+      },
+      {
+        "product": {
+          "sku": "BAR20",
+          "name": "Barril Damm 20L",
+          "is_returnable": true,
+          "weight_kg_per_box": 20.0,
+          "tipo": "barril",
+          "tamano": 20.0
+        },
+        "quantity_boxes": 24
+      }
+    ],
+    "es_retornable": false,
+    "num_envases_recogida": 0,
+    "num_cajas": 54,
+    "peso_total": 708.24,
+    "volumen_total": 683.04
+  },
+  {
+    "pedido_id": "PED-0004",
+    "tienda_id": "9100682415",
+    "lineas": [
+      {
+        "product": {
+          "sku": "ED33",
+          "name": "Estrella Damm 33cl x24",
+          "is_returnable": false,
+          "weight_kg_per_box": 9.12,
+          "tipo": "cerveza",
+          "tamano": 7.92
+        },
+        "quantity_boxes": 24
+      }
+    ],
+    "es_retornable": true,
+    "num_envases_recogida": 7,
+    "num_cajas": 24,
+    "peso_total": 218.88,
+    "volumen_total": 190.08
+  },
+  {
+    "pedido_id": "PED-0005",
+    "tienda_id": "9100296409",
+    "lineas": [
+      {
+        "product": {
+          "sku": "ED33",
+          "name": "Estrella Damm 33cl x24",
+          "is_returnable": false,
+          "weight_kg_per_box": 9.12,
+          "tipo": "cerveza",
+          "tamano": 7.92
+        },
+        "quantity_boxes": 24
+      },
+      {
+        "product": {
+          "sku": "ED50",
+          "name": "Estrella Damm 50cl x12",
+          "is_returnable": false,
+          "weight_kg_per_box": 6.6,
+          "tipo": "cerveza",
+          "tamano": 6.0
+        },
+        "quantity_boxes": 30
+      }
+    ],
+    "es_retornable": true,
+    "num_envases_recogida": 4,
+    "num_cajas": 54,
+    "peso_total": 416.88,
+    "volumen_total": 370.08
+  },
+  {
+    "pedido_id": "PED-0006",
+    "tienda_id": "9100230870",
+    "lineas": [
+      {
+        "product": {
+          "sku": "BAR20",
+          "name": "Barril Damm 20L",
+          "is_returnable": true,
+          "weight_kg_per_box": 20.0,
+          "tipo": "barril",
+          "tamano": 20.0
+        },
+        "quantity_boxes": 30
+      },
+      {
+        "product": {
+          "sku": "ED33",
+          "name": "Estrella Damm 33cl x24",
+          "is_returnable": false,
+          "weight_kg_per_box": 9.12,
+          "tipo": "cerveza",
+          "tamano": 7.92
+        },
+        "quantity_boxes": 12
+      },
+      {
+        "product": {
+          "sku": "ED50",
+          "name": "Estrella Damm 50cl x12",
+          "is_returnable": false,
+          "weight_kg_per_box": 6.6,
+          "tipo": "cerveza",
+          "tamano": 6.0
+        },
+        "quantity_boxes": 18
+      }
+    ],
+    "es_retornable": true,
+    "num_envases_recogida": 7,
+    "num_cajas": 60,
+    "peso_total": 828.24,
+    "volumen_total": 803.04
+  },
+  {
+    "pedido_id": "PED-0007",
+    "tienda_id": "9100190781",
+    "lineas": [
+      {
+        "product": {
+          "sku": "VD33",
+          "name": "Voll-Damm 33cl x24",
+          "is_returnable": false,
+          "weight_kg_per_box": 9.4,
+          "tipo": "cerveza",
+          "tamano": 7.92
+        },
+        "quantity_boxes": 42
+      },
+      {
+        "product": {
+          "sku": "BAR20",
+          "name": "Barril Damm 20L",
+          "is_returnable": true,
+          "weight_kg_per_box": 20.0,
+          "tipo": "barril",
+          "tamano": 20.0
+        },
+        "quantity_boxes": 60
+      }
+    ],
+    "es_retornable": false,
+    "num_envases_recogida": 0,
+    "num_cajas": 102,
+    "peso_total": 1594.8,
+    "volumen_total": 1532.64
+  },
+  {
+    "pedido_id": "PED-0008",
+    "tienda_id": "9100055221",
+    "lineas": [
+      {
+        "product": {
+          "sku": "ED33",
+          "name": "Estrella Damm 33cl x24",
+          "is_returnable": false,
+          "weight_kg_per_box": 9.12,
+          "tipo": "cerveza",
+          "tamano": 7.92
+        },
+        "quantity_boxes": 24
+      }
+    ],
+    "es_retornable": false,
+    "num_envases_recogida": 0,
+    "num_cajas": 24,
+    "peso_total": 218.88,
+    "volumen_total": 190.08
+  },
+  {
+    "pedido_id": "PED-0009",
+    "tienda_id": "9100681118",
+    "lineas": [
+      {
+        "product": {
+          "sku": "ED33",
+          "name": "Estrella Damm 33cl x24",
+          "is_returnable": false,
+          "weight_kg_per_box": 9.12,
+          "tipo": "cerveza",
+          "tamano": 7.92
+        },
+        "quantity_boxes": 18
+      },
+      {
+        "product": {
+          "sku": "BAR20",
+          "name": "Barril Damm 20L",
+          "is_returnable": true,
+          "weight_kg_per_box": 20.0,
+          "tipo": "barril",
+          "tamano": 20.0
+        },
+        "quantity_boxes": 24
+      }
+    ],
+    "es_retornable": true,
+    "num_envases_recogida": 7,
+    "num_cajas": 42,
+    "peso_total": 644.16,
+    "volumen_total": 622.56
+  },
+  {
+    "pedido_id": "PED-0010",
+    "tienda_id": "9100054705",
+    "lineas": [
+      {
+        "product": {
+          "sku": "ED50",
+          "name": "Estrella Damm 50cl x12",
+          "is_returnable": false,
+          "weight_kg_per_box": 6.6,
+          "tipo": "cerveza",
+          "tamano": 6.0
+        },
+        "quantity_boxes": 18
+      },
+      {
+        "product": {
+          "sku": "ED33",
+          "name": "Estrella Damm 33cl x24",
+          "is_returnable": false,
+          "weight_kg_per_box": 9.12,
+          "tipo": "cerveza",
+          "tamano": 7.92
+        },
+        "quantity_boxes": 6
+      },
+      {
+        "product": {
+          "sku": "BAR20",
+          "name": "Barril Damm 20L",
+          "is_returnable": true,
+          "weight_kg_per_box": 20.0,
+          "tipo": "barril",
+          "tamano": 20.0
+        },
+        "quantity_boxes": 18
+      }
+    ],
+    "es_retornable": false,
+    "num_envases_recogida": 0,
+    "num_cajas": 42,
+    "peso_total": 533.52,
+    "volumen_total": 515.52
+  },
+  {
+    "pedido_id": "PED-0011",
+    "tienda_id": "9100667988",
+    "lineas": [
+      {
+        "product": {
+          "sku": "BAR20",
+          "name": "Barril Damm 20L",
+          "is_returnable": true,
+          "weight_kg_per_box": 20.0,
+          "tipo": "barril",
+          "tamano": 20.0
+        },
+        "quantity_boxes": 24
+      },
+      {
+        "product": {
+          "sku": "ED50",
+          "name": "Estrella Damm 50cl x12",
+          "is_returnable": false,
+          "weight_kg_per_box": 6.6,
+          "tipo": "cerveza",
+          "tamano": 6.0
+        },
+        "quantity_boxes": 24
+      }
+    ],
+    "es_retornable": true,
+    "num_envases_recogida": 3,
+    "num_cajas": 48,
+    "peso_total": 638.4,
+    "volumen_total": 624.0
+  },
+  {
+    "pedido_id": "PED-0012",
+    "tienda_id": "9100702970",
+    "lineas": [
+      {
+        "product": {
+          "sku": "ED50",
+          "name": "Estrella Damm 50cl x12",
+          "is_returnable": false,
+          "weight_kg_per_box": 6.6,
+          "tipo": "cerveza",
+          "tamano": 6.0
+        },
+        "quantity_boxes": 6
+      },
+      {
+        "product": {
+          "sku": "ED33",
+          "name": "Estrella Damm 33cl x24",
+          "is_returnable": false,
+          "weight_kg_per_box": 9.12,
+          "tipo": "cerveza",
+          "tamano": 7.92
+        },
+        "quantity_boxes": 6
+      },
+      {
+        "product": {
+          "sku": "BAR20",
+          "name": "Barril Damm 20L",
+          "is_returnable": true,
+          "weight_kg_per_box": 20.0,
+          "tipo": "barril",
+          "tamano": 20.0
+        },
+        "quantity_boxes": 12
+      }
+    ],
+    "es_retornable": false,
+    "num_envases_recogida": 0,
+    "num_cajas": 24,
+    "peso_total": 334.32,
+    "volumen_total": 323.52
+  },
+  {
+    "pedido_id": "PED-0013",
+    "tienda_id": "9100547290",
+    "lineas": [
+      {
+        "product": {
+          "sku": "BAR20",
+          "name": "Barril Damm 20L",
+          "is_returnable": true,
+          "weight_kg_per_box": 20.0,
+          "tipo": "barril",
+          "tamano": 20.0
+        },
+        "quantity_boxes": 24
+      },
+      {
+        "product": {
+          "sku": "ED33",
+          "name": "Estrella Damm 33cl x24",
+          "is_returnable": false,
+          "weight_kg_per_box": 9.12,
+          "tipo": "cerveza",
+          "tamano": 7.92
+        },
+        "quantity_boxes": 36
+      }
+    ],
+    "es_retornable": true,
+    "num_envases_recogida": 7,
+    "num_cajas": 60,
+    "peso_total": 808.32,
+    "volumen_total": 765.12
+  },
+  {
+    "pedido_id": "PED-0014",
+    "tienda_id": "9100043853",
+    "lineas": [
+      {
+        "product": {
+          "sku": "BAR20",
+          "name": "Barril Damm 20L",
+          "is_returnable": true,
+          "weight_kg_per_box": 20.0,
+          "tipo": "barril",
+          "tamano": 20.0
+        },
+        "quantity_boxes": 18
+      },
+      {
+        "product": {
+          "sku": "ED33",
+          "name": "Estrella Damm 33cl x24",
+          "is_returnable": false,
+          "weight_kg_per_box": 9.12,
+          "tipo": "cerveza",
+          "tamano": 7.92
+        },
+        "quantity_boxes": 30
+      }
+    ],
+    "es_retornable": false,
+    "num_envases_recogida": 0,
+    "num_cajas": 48,
+    "peso_total": 633.6,
+    "volumen_total": 597.6
+  },
+  {
+    "pedido_id": "PED-0015",
+    "tienda_id": "9100566100",
+    "lineas": [
+      {
+        "product": {
+          "sku": "BAR20",
+          "name": "Barril Damm 20L",
+          "is_returnable": true,
+          "weight_kg_per_box": 20.0,
+          "tipo": "barril",
+          "tamano": 20.0
+        },
+        "quantity_boxes": 18
+      },
+      {
+        "product": {
+          "sku": "ED50",
+          "name": "Estrella Damm 50cl x12",
+          "is_returnable": false,
+          "weight_kg_per_box": 6.6,
+          "tipo": "cerveza",
+          "tamano": 6.0
+        },
+        "quantity_boxes": 30
+      }
+    ],
+    "es_retornable": true,
+    "num_envases_recogida": 2,
+    "num_cajas": 48,
+    "peso_total": 558.0,
+    "volumen_total": 540.0
+  },
+  {
+    "pedido_id": "PED-0016",
+    "tienda_id": "9100480482",
+    "lineas": [
+      {
+        "product": {
+          "sku": "BAR20",
+          "name": "Barril Damm 20L",
+          "is_returnable": true,
+          "weight_kg_per_box": 20.0,
+          "tipo": "barril",
+          "tamano": 20.0
+        },
+        "quantity_boxes": 114
+      }
+    ],
+    "es_retornable": false,
+    "num_envases_recogida": 0,
+    "num_cajas": 114,
+    "peso_total": 2280.0,
+    "volumen_total": 2280.0
+  },
+  {
+    "pedido_id": "PED-0017",
+    "tienda_id": "9100041442",
+    "lineas": [
+      {
+        "product": {
+          "sku": "BAR20",
+          "name": "Barril Damm 20L",
+          "is_returnable": true,
+          "weight_kg_per_box": 20.0,
+          "tipo": "barril",
+          "tamano": 20.0
+        },
+        "quantity_boxes": 72
+      }
+    ],
+    "es_retornable": false,
+    "num_envases_recogida": 0,
+    "num_cajas": 72,
+    "peso_total": 1440.0,
+    "volumen_total": 1440.0
+  },
+  {
+    "pedido_id": "PED-0018",
+    "tienda_id": "9100041053",
+    "lineas": [
+      {
+        "product": {
+          "sku": "BAR20",
+          "name": "Barril Damm 20L",
+          "is_returnable": true,
+          "weight_kg_per_box": 20.0,
+          "tipo": "barril",
+          "tamano": 20.0
+        },
+        "quantity_boxes": 18
+      },
+      {
+        "product": {
+          "sku": "ED33",
+          "name": "Estrella Damm 33cl x24",
+          "is_returnable": false,
+          "weight_kg_per_box": 9.12,
+          "tipo": "cerveza",
+          "tamano": 7.92
+        },
+        "quantity_boxes": 36
+      }
+    ],
+    "es_retornable": true,
+    "num_envases_recogida": 2,
+    "num_cajas": 54,
+    "peso_total": 688.32,
+    "volumen_total": 645.12
+  },
+  {
+    "pedido_id": "PED-0019",
+    "tienda_id": "9100044243",
+    "lineas": [
+      {
+        "product": {
+          "sku": "ED33",
+          "name": "Estrella Damm 33cl x24",
+          "is_returnable": false,
+          "weight_kg_per_box": 9.12,
+          "tipo": "cerveza",
+          "tamano": 7.92
+        },
+        "quantity_boxes": 18
+      },
+      {
+        "product": {
+          "sku": "ED50",
+          "name": "Estrella Damm 50cl x12",
+          "is_returnable": false,
+          "weight_kg_per_box": 6.6,
+          "tipo": "cerveza",
+          "tamano": 6.0
+        },
+        "quantity_boxes": 12
+      },
+      {
+        "product": {
+          "sku": "BAR20",
+          "name": "Barril Damm 20L",
+          "is_returnable": true,
+          "weight_kg_per_box": 20.0,
+          "tipo": "barril",
+          "tamano": 20.0
+        },
+        "quantity_boxes": 24
+      }
+    ],
+    "es_retornable": false,
+    "num_envases_recogida": 0,
+    "num_cajas": 54,
+    "peso_total": 723.36,
+    "volumen_total": 694.56
+  },
+  {
+    "pedido_id": "PED-0020",
+    "tienda_id": "9100153533",
+    "lineas": [
+      {
+        "product": {
+          "sku": "ED33",
+          "name": "Estrella Damm 33cl x24",
+          "is_returnable": false,
+          "weight_kg_per_box": 9.12,
+          "tipo": "cerveza",
+          "tamano": 7.92
+        },
+        "quantity_boxes": 42
+      }
+    ],
+    "es_retornable": true,
+    "num_envases_recogida": 9,
+    "num_cajas": 42,
+    "peso_total": 383.04,
+    "volumen_total": 332.64
+  },
+  {
+    "pedido_id": "PED-0021",
+    "tienda_id": "9100199329",
+    "lineas": [
+      {
+        "product": {
+          "sku": "BAR20",
+          "name": "Barril Damm 20L",
+          "is_returnable": true,
+          "weight_kg_per_box": 20.0,
+          "tipo": "barril",
+          "tamano": 20.0
+        },
+        "quantity_boxes": 24
+      }
+    ],
+    "es_retornable": false,
+    "num_envases_recogida": 0,
+    "num_cajas": 24,
+    "peso_total": 480.0,
+    "volumen_total": 480.0
+  },
+  {
+    "pedido_id": "PED-0022",
+    "tienda_id": "9100523980",
+    "lineas": [
+      {
+        "product": {
+          "sku": "ED33",
+          "name": "Estrella Damm 33cl x24",
+          "is_returnable": false,
+          "weight_kg_per_box": 9.12,
+          "tipo": "cerveza",
+          "tamano": 7.92
+        },
+        "quantity_boxes": 12
+      },
+      {
+        "product": {
+          "sku": "BAR20",
+          "name": "Barril Damm 20L",
+          "is_returnable": true,
+          "weight_kg_per_box": 20.0,
+          "tipo": "barril",
+          "tamano": 20.0
+        },
+        "quantity_boxes": 6
+      },
+      {
+        "product": {
+          "sku": "ED50",
+          "name": "Estrella Damm 50cl x12",
+          "is_returnable": false,
+          "weight_kg_per_box": 6.6,
+          "tipo": "cerveza",
+          "tamano": 6.0
+        },
+        "quantity_boxes": 6
+      }
+    ],
+    "es_retornable": true,
+    "num_envases_recogida": 9,
+    "num_cajas": 24,
+    "peso_total": 269.04,
+    "volumen_total": 251.04
+  },
+  {
+    "pedido_id": "PED-0023",
+    "tienda_id": "9100570635",
+    "lineas": [
+      {
+        "product": {
+          "sku": "VD33",
+          "name": "Voll-Damm 33cl x24",
+          "is_returnable": false,
+          "weight_kg_per_box": 9.4,
+          "tipo": "cerveza",
+          "tamano": 7.92
+        },
+        "quantity_boxes": 114
+      }
+    ],
+    "es_retornable": false,
+    "num_envases_recogida": 0,
+    "num_cajas": 114,
+    "peso_total": 1071.6,
+    "volumen_total": 902.88
+  },
+  {
+    "pedido_id": "PED-0024",
+    "tienda_id": "9100733214",
+    "lineas": [
+      {
+        "product": {
+          "sku": "BAR20",
+          "name": "Barril Damm 20L",
+          "is_returnable": true,
+          "weight_kg_per_box": 20.0,
+          "tipo": "barril",
+          "tamano": 20.0
+        },
+        "quantity_boxes": 24
+      },
+      {
+        "product": {
+          "sku": "ED50",
+          "name": "Estrella Damm 50cl x12",
+          "is_returnable": false,
+          "weight_kg_per_box": 6.6,
+          "tipo": "cerveza",
+          "tamano": 6.0
+        },
+        "quantity_boxes": 6
+      },
+      {
+        "product": {
+          "sku": "ED33",
+          "name": "Estrella Damm 33cl x24",
+          "is_returnable": false,
+          "weight_kg_per_box": 9.12,
+          "tipo": "cerveza",
+          "tamano": 7.92
+        },
+        "quantity_boxes": 12
+      }
+    ],
+    "es_retornable": true,
+    "num_envases_recogida": 3,
+    "num_cajas": 42,
+    "peso_total": 629.04,
+    "volumen_total": 611.04
+  },
+  {
+    "pedido_id": "PED-0025",
+    "tienda_id": "9100559085",
+    "lineas": [
+      {
+        "product": {
+          "sku": "ED33",
+          "name": "Estrella Damm 33cl x24",
+          "is_returnable": false,
+          "weight_kg_per_box": 9.12,
+          "tipo": "cerveza",
+          "tamano": 7.92
+        },
+        "quantity_boxes": 12
+      },
+      {
+        "product": {
+          "sku": "BAR20",
+          "name": "Barril Damm 20L",
+          "is_returnable": true,
+          "weight_kg_per_box": 20.0,
+          "tipo": "barril",
+          "tamano": 20.0
+        },
+        "quantity_boxes": 12
+      }
+    ],
+    "es_retornable": true,
+    "num_envases_recogida": 1,
+    "num_cajas": 24,
+    "peso_total": 349.44,
+    "volumen_total": 335.04
+  },
+  {
+    "pedido_id": "PED-0026",
+    "tienda_id": "9100120688",
+    "lineas": [
+      {
+        "product": {
+          "sku": "ED33",
+          "name": "Estrella Damm 33cl x24",
+          "is_returnable": false,
+          "weight_kg_per_box": 9.12,
+          "tipo": "cerveza",
+          "tamano": 7.92
+        },
+        "quantity_boxes": 18
+      },
+      {
+        "product": {
+          "sku": "BAR20",
+          "name": "Barril Damm 20L",
+          "is_returnable": true,
+          "weight_kg_per_box": 20.0,
+          "tipo": "barril",
+          "tamano": 20.0
+        },
+        "quantity_boxes": 18
+      },
+      {
+        "product": {
+          "sku": "ED50",
+          "name": "Estrella Damm 50cl x12",
+          "is_returnable": false,
+          "weight_kg_per_box": 6.6,
+          "tipo": "cerveza",
+          "tamano": 6.0
+        },
+        "quantity_boxes": 24
+      }
+    ],
+    "es_retornable": true,
+    "num_envases_recogida": 3,
+    "num_cajas": 60,
+    "peso_total": 682.56,
+    "volumen_total": 646.56
+  },
+  {
+    "pedido_id": "PED-0027",
+    "tienda_id": "9100670561",
+    "lineas": [
+      {
+        "product": {
+          "sku": "ED50",
+          "name": "Estrella Damm 50cl x12",
+          "is_returnable": false,
+          "weight_kg_per_box": 6.6,
+          "tipo": "cerveza",
+          "tamano": 6.0
+        },
+        "quantity_boxes": 12
+      },
+      {
+        "product": {
+          "sku": "ED33",
+          "name": "Estrella Damm 33cl x24",
+          "is_returnable": false,
+          "weight_kg_per_box": 9.12,
+          "tipo": "cerveza",
+          "tamano": 7.92
+        },
+        "quantity_boxes": 6
+      },
+      {
+        "product": {
+          "sku": "BAR20",
+          "name": "Barril Damm 20L",
+          "is_returnable": true,
+          "weight_kg_per_box": 20.0,
+          "tipo": "barril",
+          "tamano": 20.0
+        },
+        "quantity_boxes": 6
+      }
+    ],
+    "es_retornable": true,
+    "num_envases_recogida": 7,
+    "num_cajas": 24,
+    "peso_total": 253.92,
+    "volumen_total": 239.52
+  },
+  {
+    "pedido_id": "PED-0028",
+    "tienda_id": "9100640315",
+    "lineas": [
+      {
+        "product": {
+          "sku": "ED33",
+          "name": "Estrella Damm 33cl x24",
+          "is_returnable": false,
+          "weight_kg_per_box": 9.12,
+          "tipo": "cerveza",
+          "tamano": 7.92
+        },
+        "quantity_boxes": 48
+      }
+    ],
+    "es_retornable": true,
+    "num_envases_recogida": 6,
+    "num_cajas": 48,
+    "peso_total": 437.76,
+    "volumen_total": 380.16
+  },
+  {
+    "pedido_id": "PED-0029",
+    "tienda_id": "9100669529",
+    "lineas": [
+      {
+        "product": {
+          "sku": "ED50",
+          "name": "Estrella Damm 50cl x12",
+          "is_returnable": false,
+          "weight_kg_per_box": 6.6,
+          "tipo": "cerveza",
+          "tamano": 6.0
+        },
+        "quantity_boxes": 12
+      },
+      {
+        "product": {
+          "sku": "BAR20",
+          "name": "Barril Damm 20L",
+          "is_returnable": true,
+          "weight_kg_per_box": 20.0,
+          "tipo": "barril",
+          "tamano": 20.0
+        },
+        "quantity_boxes": 24
+      }
+    ],
+    "es_retornable": false,
+    "num_envases_recogida": 0,
+    "num_cajas": 36,
+    "peso_total": 559.2,
+    "volumen_total": 552.0
+  },
+  {
+    "pedido_id": "PED-0030",
+    "tienda_id": "9100701103",
+    "lineas": [
+      {
+        "product": {
+          "sku": "ED33",
+          "name": "Estrella Damm 33cl x24",
+          "is_returnable": false,
+          "weight_kg_per_box": 9.12,
+          "tipo": "cerveza",
+          "tamano": 7.92
+        },
+        "quantity_boxes": 60
+      }
+    ],
+    "es_retornable": false,
+    "num_envases_recogida": 0,
+    "num_cajas": 60,
+    "peso_total": 547.2,
+    "volumen_total": 475.2
+  },
+  {
+    "pedido_id": "PED-0031",
+    "tienda_id": "9100479079",
+    "lineas": [
+      {
+        "product": {
+          "sku": "VD33",
+          "name": "Voll-Damm 33cl x24",
+          "is_returnable": false,
+          "weight_kg_per_box": 9.4,
+          "tipo": "cerveza",
+          "tamano": 7.92
+        },
+        "quantity_boxes": 102
+      }
+    ],
+    "es_retornable": true,
+    "num_envases_recogida": 17,
+    "num_cajas": 102,
+    "peso_total": 958.8,
+    "volumen_total": 807.84
+  },
+  {
+    "pedido_id": "PED-0032",
+    "tienda_id": "9100169285",
+    "lineas": [
+      {
+        "product": {
+          "sku": "FR33",
+          "name": "Free Damm 33cl x24",
+          "is_returnable": false,
+          "weight_kg_per_box": 8.64,
+          "tipo": "cerveza_sinal",
+          "tamano": 7.92
+        },
+        "quantity_boxes": 114
+      }
+    ],
+    "es_retornable": true,
+    "num_envases_recogida": 14,
+    "num_cajas": 114,
+    "peso_total": 984.96,
+    "volumen_total": 902.88
+  },
+  {
+    "pedido_id": "PED-0033",
+    "tienda_id": "9100493598",
+    "lineas": [
+      {
+        "product": {
+          "sku": "FR33",
+          "name": "Free Damm 33cl x24",
+          "is_returnable": false,
+          "weight_kg_per_box": 8.64,
+          "tipo": "cerveza_sinal",
+          "tamano": 7.92
+        },
+        "quantity_boxes": 90
+      }
+    ],
+    "es_retornable": false,
+    "num_envases_recogida": 0,
+    "num_cajas": 90,
+    "peso_total": 777.6,
+    "volumen_total": 712.8
+  },
+  {
+    "pedido_id": "PED-0034",
+    "tienda_id": "9100565630",
+    "lineas": [
+      {
+        "product": {
+          "sku": "ED33",
+          "name": "Estrella Damm 33cl x24",
+          "is_returnable": false,
+          "weight_kg_per_box": 9.12,
+          "tipo": "cerveza",
+          "tamano": 7.92
+        },
+        "quantity_boxes": 54
+      }
+    ],
+    "es_retornable": false,
+    "num_envases_recogida": 0,
+    "num_cajas": 54,
+    "peso_total": 492.48,
+    "volumen_total": 427.68
+  },
+  {
+    "pedido_id": "PED-0035",
+    "tienda_id": "9100298616",
+    "lineas": [
+      {
+        "product": {
+          "sku": "ED33",
+          "name": "Estrella Damm 33cl x24",
+          "is_returnable": false,
+          "weight_kg_per_box": 9.12,
+          "tipo": "cerveza",
+          "tamano": 7.92
+        },
+        "quantity_boxes": 54
+      }
+    ],
+    "es_retornable": false,
+    "num_envases_recogida": 0,
+    "num_cajas": 54,
+    "peso_total": 492.48,
+    "volumen_total": 427.68
+  },
+  {
+    "pedido_id": "PED-0036",
+    "tienda_id": "122348",
+    "lineas": [
+      {
+        "product": {
+          "sku": "ED50",
+          "name": "Estrella Damm 50cl x12",
+          "is_returnable": false,
+          "weight_kg_per_box": 6.6,
+          "tipo": "cerveza",
+          "tamano": 6.0
+        },
+        "quantity_boxes": 36
+      }
+    ],
+    "es_retornable": false,
+    "num_envases_recogida": 0,
+    "num_cajas": 36,
+    "peso_total": 237.6,
+    "volumen_total": 216.0
+  },
+  {
+    "pedido_id": "PED-0037",
+    "tienda_id": "9100685852",
+    "lineas": [
+      {
+        "product": {
+          "sku": "ED33",
+          "name": "Estrella Damm 33cl x24",
+          "is_returnable": false,
+          "weight_kg_per_box": 9.12,
+          "tipo": "cerveza",
+          "tamano": 7.92
+        },
+        "quantity_boxes": 12
+      },
+      {
+        "product": {
+          "sku": "BAR20",
+          "name": "Barril Damm 20L",
+          "is_returnable": true,
+          "weight_kg_per_box": 20.0,
+          "tipo": "barril",
+          "tamano": 20.0
+        },
+        "quantity_boxes": 18
+      }
+    ],
+    "es_retornable": true,
+    "num_envases_recogida": 6,
+    "num_cajas": 30,
+    "peso_total": 469.44,
+    "volumen_total": 455.04
+  },
+  {
+    "pedido_id": "PED-0038",
+    "tienda_id": "9100056125",
+    "lineas": [
+      {
+        "product": {
+          "sku": "BAR20",
+          "name": "Barril Damm 20L",
+          "is_returnable": true,
+          "weight_kg_per_box": 20.0,
+          "tipo": "barril",
+          "tamano": 20.0
+        },
+        "quantity_boxes": 42
+      },
+      {
+        "product": {
+          "sku": "VD33",
+          "name": "Voll-Damm 33cl x24",
+          "is_returnable": false,
+          "weight_kg_per_box": 9.4,
+          "tipo": "cerveza",
+          "tamano": 7.92
+        },
+        "quantity_boxes": 42
+      }
+    ],
+    "es_retornable": true,
+    "num_envases_recogida": 9,
+    "num_cajas": 84,
+    "peso_total": 1234.8,
+    "volumen_total": 1172.64
+  },
+  {
+    "pedido_id": "PED-0039",
+    "tienda_id": "9100669500",
+    "lineas": [
+      {
+        "product": {
+          "sku": "ED33",
+          "name": "Estrella Damm 33cl x24",
+          "is_returnable": false,
+          "weight_kg_per_box": 9.12,
+          "tipo": "cerveza",
+          "tamano": 7.92
+        },
+        "quantity_boxes": 84
+      }
+    ],
+    "es_retornable": false,
+    "num_envases_recogida": 0,
+    "num_cajas": 84,
+    "peso_total": 766.08,
+    "volumen_total": 665.28
+  },
+  {
+    "pedido_id": "PED-0040",
+    "tienda_id": "9100700812",
+    "lineas": [
+      {
+        "product": {
+          "sku": "BAR20",
+          "name": "Barril Damm 20L",
+          "is_returnable": true,
+          "weight_kg_per_box": 20.0,
+          "tipo": "barril",
+          "tamano": 20.0
+        },
+        "quantity_boxes": 24
+      }
+    ],
+    "es_retornable": false,
+    "num_envases_recogida": 0,
+    "num_cajas": 24,
+    "peso_total": 480.0,
+    "volumen_total": 480.0
+  },
+  {
+    "pedido_id": "PED-0041",
+    "tienda_id": "9100381913",
+    "lineas": [
+      {
+        "product": {
+          "sku": "ED33",
+          "name": "Estrella Damm 33cl x24",
+          "is_returnable": false,
+          "weight_kg_per_box": 9.12,
+          "tipo": "cerveza",
+          "tamano": 7.92
+        },
+        "quantity_boxes": 54
+      }
+    ],
+    "es_retornable": false,
+    "num_envases_recogida": 0,
+    "num_cajas": 54,
+    "peso_total": 492.48,
+    "volumen_total": 427.68
+  },
+  {
+    "pedido_id": "PED-0042",
+    "tienda_id": "9100694778",
+    "lineas": [
+      {
+        "product": {
+          "sku": "ED33",
+          "name": "Estrella Damm 33cl x24",
+          "is_returnable": false,
+          "weight_kg_per_box": 9.12,
+          "tipo": "cerveza",
+          "tamano": 7.92
+        },
+        "quantity_boxes": 24
+      }
+    ],
+    "es_retornable": false,
+    "num_envases_recogida": 0,
+    "num_cajas": 24,
+    "peso_total": 218.88,
+    "volumen_total": 190.08
+  },
+  {
+    "pedido_id": "PED-0043",
+    "tienda_id": "9100056059",
+    "lineas": [
+      {
+        "product": {
+          "sku": "FR33",
+          "name": "Free Damm 33cl x24",
+          "is_returnable": false,
+          "weight_kg_per_box": 8.64,
+          "tipo": "cerveza_sinal",
+          "tamano": 7.92
+        },
+        "quantity_boxes": 144
+      }
+    ],
+    "es_retornable": true,
+    "num_envases_recogida": 18,
+    "num_cajas": 144,
+    "peso_total": 1244.16,
+    "volumen_total": 1140.48
+  },
+  {
+    "pedido_id": "PED-0044",
+    "tienda_id": "9100699710",
+    "lineas": [
+      {
+        "product": {
+          "sku": "ED33",
+          "name": "Estrella Damm 33cl x24",
+          "is_returnable": false,
+          "weight_kg_per_box": 9.12,
+          "tipo": "cerveza",
+          "tamano": 7.92
+        },
+        "quantity_boxes": 42
+      },
+      {
+        "product": {
+          "sku": "BAR20",
+          "name": "Barril Damm 20L",
+          "is_returnable": true,
+          "weight_kg_per_box": 20.0,
+          "tipo": "barril",
+          "tamano": 20.0
+        },
+        "quantity_boxes": 18
+      },
+      {
+        "product": {
+          "sku": "FR33",
+          "name": "Free Damm 33cl x24",
+          "is_returnable": false,
+          "weight_kg_per_box": 8.64,
+          "tipo": "cerveza_sinal",
+          "tamano": 7.92
+        },
+        "quantity_boxes": 24
+      }
+    ],
+    "es_retornable": true,
+    "num_envases_recogida": 8,
+    "num_cajas": 84,
+    "peso_total": 950.4,
+    "volumen_total": 882.72
+  },
+  {
+    "pedido_id": "PED-0045",
+    "tienda_id": "9100686343",
+    "lineas": [
+      {
+        "product": {
+          "sku": "BAR20",
+          "name": "Barril Damm 20L",
+          "is_returnable": true,
+          "weight_kg_per_box": 20.0,
+          "tipo": "barril",
+          "tamano": 20.0
+        },
+        "quantity_boxes": 12
+      },
+      {
+        "product": {
+          "sku": "ED50",
+          "name": "Estrella Damm 50cl x12",
+          "is_returnable": false,
+          "weight_kg_per_box": 6.6,
+          "tipo": "cerveza",
+          "tamano": 6.0
+        },
+        "quantity_boxes": 6
+      },
+      {
+        "product": {
+          "sku": "ED33",
+          "name": "Estrella Damm 33cl x24",
+          "is_returnable": false,
+          "weight_kg_per_box": 9.12,
+          "tipo": "cerveza",
+          "tamano": 7.92
+        },
+        "quantity_boxes": 12
+      }
+    ],
+    "es_retornable": true,
+    "num_envases_recogida": 10,
+    "num_cajas": 30,
+    "peso_total": 389.04,
+    "volumen_total": 371.04
+  },
+  {
+    "pedido_id": "PED-0046",
+    "tienda_id": "9100381733",
+    "lineas": [
+      {
+        "product": {
+          "sku": "ED50",
+          "name": "Estrella Damm 50cl x12",
+          "is_returnable": false,
+          "weight_kg_per_box": 6.6,
+          "tipo": "cerveza",
+          "tamano": 6.0
+        },
+        "quantity_boxes": 12
+      },
+      {
+        "product": {
+          "sku": "ED33",
+          "name": "Estrella Damm 33cl x24",
+          "is_returnable": false,
+          "weight_kg_per_box": 9.12,
+          "tipo": "cerveza",
+          "tamano": 7.92
+        },
+        "quantity_boxes": 24
+      }
+    ],
+    "es_retornable": false,
+    "num_envases_recogida": 0,
+    "num_cajas": 36,
+    "peso_total": 298.08,
+    "volumen_total": 262.08
+  },
+  {
+    "pedido_id": "PED-0047",
+    "tienda_id": "9100701291",
+    "lineas": [
+      {
+        "product": {
+          "sku": "ED33",
+          "name": "Estrella Damm 33cl x24",
+          "is_returnable": false,
+          "weight_kg_per_box": 9.12,
+          "tipo": "cerveza",
+          "tamano": 7.92
+        },
+        "quantity_boxes": 60
+      }
+    ],
+    "es_retornable": false,
+    "num_envases_recogida": 0,
+    "num_cajas": 60,
+    "peso_total": 547.2,
+    "volumen_total": 475.2
+  },
+  {
+    "pedido_id": "PED-0048",
+    "tienda_id": "9100699983",
+    "lineas": [
+      {
+        "product": {
+          "sku": "ED33",
+          "name": "Estrella Damm 33cl x24",
+          "is_returnable": false,
+          "weight_kg_per_box": 9.12,
+          "tipo": "cerveza",
+          "tamano": 7.92
+        },
+        "quantity_boxes": 18
+      },
+      {
+        "product": {
+          "sku": "ED50",
+          "name": "Estrella Damm 50cl x12",
+          "is_returnable": false,
+          "weight_kg_per_box": 6.6,
+          "tipo": "cerveza",
+          "tamano": 6.0
+        },
+        "quantity_boxes": 30
+      }
+    ],
+    "es_retornable": false,
+    "num_envases_recogida": 0,
+    "num_cajas": 48,
+    "peso_total": 362.16,
+    "volumen_total": 322.56
+  },
+  {
+    "pedido_id": "PED-0049",
+    "tienda_id": "9100419295",
+    "lineas": [
+      {
+        "product": {
+          "sku": "ED33",
+          "name": "Estrella Damm 33cl x24",
+          "is_returnable": false,
+          "weight_kg_per_box": 9.12,
+          "tipo": "cerveza",
+          "tamano": 7.92
+        },
+        "quantity_boxes": 18
+      },
+      {
+        "product": {
+          "sku": "ED50",
+          "name": "Estrella Damm 50cl x12",
+          "is_returnable": false,
+          "weight_kg_per_box": 6.6,
+          "tipo": "cerveza",
+          "tamano": 6.0
+        },
+        "quantity_boxes": 24
+      }
+    ],
+    "es_retornable": false,
+    "num_envases_recogida": 0,
+    "num_cajas": 42,
+    "peso_total": 322.56,
+    "volumen_total": 286.56
+  },
+  {
+    "pedido_id": "PED-0050",
+    "tienda_id": "9100044479",
+    "lineas": [
+      {
+        "product": {
+          "sku": "ED33",
+          "name": "Estrella Damm 33cl x24",
+          "is_returnable": false,
+          "weight_kg_per_box": 9.12,
+          "tipo": "cerveza",
+          "tamano": 7.92
+        },
+        "quantity_boxes": 18
+      },
+      {
+        "product": {
+          "sku": "ED50",
+          "name": "Estrella Damm 50cl x12",
+          "is_returnable": false,
+          "weight_kg_per_box": 6.6,
+          "tipo": "cerveza",
+          "tamano": 6.0
+        },
+        "quantity_boxes": 12
+      },
+      {
+        "product": {
+          "sku": "BAR20",
+          "name": "Barril Damm 20L",
+          "is_returnable": true,
+          "weight_kg_per_box": 20.0,
+          "tipo": "barril",
+          "tamano": 20.0
+        },
+        "quantity_boxes": 18
+      }
+    ],
+    "es_retornable": true,
+    "num_envases_recogida": 1,
+    "num_cajas": 48,
+    "peso_total": 603.36,
+    "volumen_total": 574.56
+  }
+]

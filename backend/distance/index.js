@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import 'dotenv/config';
+import fetch from 'node-fetch';
 
 const API_KEY = process.env.GOOGLE_MAPS_API_KEY;
 
@@ -23,6 +24,9 @@ async function getDrivingInfo(latA, lngA, destinations) {
     `&departure_time=now` +
     `&key=${API_KEY}`;
 
+  const redactedUrl = url.replace(API_KEY, API_KEY.slice(0, 6) + '…');
+  console.error(`[Google API] GET ${redactedUrl}`);
+
   let res;
   try {
     res = await fetch(url);
@@ -34,9 +38,9 @@ async function getDrivingInfo(latA, lngA, destinations) {
 
   const data = await res.json();
 
-  if (data.status !== 'OK') die(`API error: ${data.status} — ${data.error_message ?? ''}`);
+  if (data.status !== 'OK') die(`API error: ${data.status} — ${data.error_message || ''}`);
 
-  const elements = data.rows?.[0]?.elements;
+  const elements = data.rows && data.rows[0] && data.rows[0].elements;
   if (!elements) die('Unexpected API response structure');
 
   return elements.map((element, i) => {
@@ -45,7 +49,7 @@ async function getDrivingInfo(latA, lngA, destinations) {
       index: i,
       distanceMeters: element.distance.value,
       // duration_in_traffic is present when departure_time=now is accepted
-      durationSeconds: element.duration_in_traffic?.value ?? element.duration.value,
+      durationSeconds: (element.duration_in_traffic && element.duration_in_traffic.value) || element.duration.value,
       trafficAware: !!element.duration_in_traffic,
     };
   });

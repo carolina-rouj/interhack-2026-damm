@@ -6,7 +6,10 @@ import random
 import subprocess
 from dataclasses import dataclass, field
 from enum import Enum
+from pathlib import Path
 from typing import Optional, TYPE_CHECKING
+
+from dotenv import dotenv_values
 
 from backend.models.tienda import Tienda
 from backend.models.pedido import Pedido
@@ -195,10 +198,13 @@ class Zona:
         timeout: int = 30,
     ) -> None:
         """
-        Build a driving-distance matrix by calling backend/distance/index.js once
-        per store (each store as origin, the rest as destinations).
+        Build a cost matrix by calling backend/distance/index.js once per store.
 
-        Treats tienda.x as latitude and tienda.y as longitude (decimal degrees).
+        Each cell holds the relative cost (1–10) returned by the script:
+        1 = cheapest route from that origin, 10 = most expensive.
+        Costs are normalised per origin row across all destinations in that call.
+        Diagonal stays 0 (a store has zero cost to reach itself).
+
         Requires GOOGLE_MAPS_API_KEY in the .env file beside the script.
         Raises RuntimeError / ValueError on script failure or unexpected output.
         """
@@ -215,6 +221,11 @@ class Zona:
             )
 
         script_dir = os.path.dirname(script_path)
+
+        # Load GOOGLE_MAPS_API_KEY from the project root .env (two levels above backend/models/)
+        project_root = Path(__file__).resolve().parents[2]
+        env = {**os.environ, **dotenv_values(project_root / ".env")}
+
         matrix: list[list[float]] = [[0.0] * n for _ in range(n)]
 
         for i, origin in enumerate(self.tiendas):
@@ -227,8 +238,11 @@ class Zona:
                 args += [str(dest.x), str(dest.y)]
 
             result = subprocess.run(
-                args, capture_output=True, text=True, timeout=timeout, cwd=script_dir
+                args, capture_output=True, text=True, timeout=timeout,
+                cwd=script_dir, env=env,
             )
+            if result.stderr:
+                print(result.stderr, end="", flush=True)
             if result.returncode != 0:
                 raise RuntimeError(
                     f"Google distance script failed for tienda {origin.tienda_id!r}:\n"
@@ -237,16 +251,16 @@ class Zona:
 
             parsed: list[float] = []
             for line in result.stdout.splitlines():
-                m_ok = re.search(r":\s+(\d+)\s+m\s+\|", line)
+                m_ok = re.search(r"cost\s+(\d+)/10", line)
                 m_err = re.search(r"Route error", line, re.IGNORECASE)
                 if m_ok:
                     parsed.append(float(m_ok.group(1)))
                 elif m_err:
-                    parsed.append(0.0)
+                    parsed.append(10.0)  # treat unreachable as worst cost
 
             if len(parsed) != len(dests):
                 raise ValueError(
-                    f"Expected {len(dests)} distances for tienda {origin.tienda_id!r}, "
+                    f"Expected {len(dests)} cost values for tienda {origin.tienda_id!r}, "
                     f"got {len(parsed)}"
                 )
 

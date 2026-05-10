@@ -1,4 +1,50 @@
-name
-returnable
-weight
-tamaño en caja estadística
+[
+  {
+    "sku": "ED33",
+    "name": "Estrella Damm 33cl x24",
+    "is_returnable": false,
+    "weight_kg_per_box": 9.12,
+    "tipo": "cerveza",
+    "tamano": 7.92
+  },
+  {
+    "sku": "ED50",
+    "name": "Estrella Damm 50cl x12",
+    "is_returnable": false,
+    "weight_kg_per_box": 6.6,
+    "tipo": "cerveza",
+    "tamano": 6.0
+  },
+  {
+    "sku": "VD33",
+    "name": "Voll-Damm 33cl x24",
+    "is_returnable": false,
+    "weight_kg_per_box": 9.4,
+    "tipo": "cerveza",
+    "tamano": 7.92
+  },
+  {
+    "sku": "BAR20",
+    "name": "Barril Damm 20L",
+    "is_returnable": true,
+    "weight_kg_per_box": 20.0,
+    "tipo": "barril",
+    "tamano": 20.0
+  },
+  {
+    "sku": "FR33",
+    "name": "Free Damm 33cl x24",
+    "is_returnable": false,
+    "weight_kg_per_box": 8.64,
+    "tipo": "cerveza_sinal",
+    "tamano": 7.92
+  },
+  {
+    "sku": "LD33",
+    "name": "Lemon Damm 33cl x24",
+    "is_returnable": false,
+    "weight_kg_per_box": 9.0,
+    "tipo": "refresco",
+    "tamano": 7.92
+  }
+]
