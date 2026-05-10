@@ -684,8 +684,8 @@
         ]
     },
     {
-        "zona_id": "zona-combinada-01",
-        "nombre": "Zona combinada 01",
+        "zona_id": "zona-sudoest-barcelona",
+        "nombre": "Zona sudoest Barcelona",
         "rango": {
             "lat_min": 41.534,
             "lat_max": 41.6425,
@@ -762,8 +762,8 @@
         ]
     },
     {
-        "zona_id": "zona-combinada-02",
-        "nombre": "Zona combinada 02",
+        "zona_id": "zona-oest-barcelona",
+        "nombre": "Zona oest Barcelona",
         "rango": {
             "lat_min": 41.5306,
             "lat_max": 41.66,
