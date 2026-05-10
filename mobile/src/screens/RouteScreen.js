@@ -1,8 +1,65 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { View, Text, ScrollView, TouchableOpacity, StyleSheet, useWindowDimensions } from 'react-native'
 import MapView, { Marker, Polyline, PROVIDER_GOOGLE } from 'react-native-maps'
 import { Check } from 'lucide-react-native'
+import Constants from 'expo-constants'
 import { COLORS, PRIORITY_COLORS, MOCK_STOPS, MOCK_DEPOT } from '../constants'
+
+const MAPS_API_KEY = Constants.expoConfig?.extra?.googleMapsApiKey
+
+function decodePolyline(encoded) {
+  const coords = []
+  let index = 0, lat = 0, lng = 0
+  while (index < encoded.length) {
+    let b, shift = 0, result = 0
+    do { b = encoded.charCodeAt(index++) - 63; result |= (b & 0x1f) << shift; shift += 5 } while (b >= 0x20)
+    lat += result & 1 ? ~(result >> 1) : result >> 1
+    shift = 0; result = 0
+    do { b = encoded.charCodeAt(index++) - 63; result |= (b & 0x1f) << shift; shift += 5 } while (b >= 0x20)
+    lng += result & 1 ? ~(result >> 1) : result >> 1
+    coords.push({ latitude: lat / 1e5, longitude: lng / 1e5 })
+  }
+  return coords
+}
+
+function getBearing(lat1, lon1, lat2, lon2) {
+  const φ1 = lat1 * Math.PI / 180
+  const φ2 = lat2 * Math.PI / 180
+  const Δλ = (lon2 - lon1) * Math.PI / 180
+  const y = Math.sin(Δλ) * Math.cos(φ2)
+  const x = Math.cos(φ1) * Math.sin(φ2) - Math.sin(φ1) * Math.cos(φ2) * Math.cos(Δλ)
+  return (Math.atan2(y, x) * 180 / Math.PI + 360) % 360
+}
+
+function sampleArrows(coords) {
+  const step = Math.max(1, Math.floor(coords.length / 8))
+  const arrows = []
+  for (let i = step; i < coords.length - 1; i += step) {
+    arrows.push({
+      coordinate: coords[i],
+      rotation: getBearing(coords[i - 1].latitude, coords[i - 1].longitude, coords[i].latitude, coords[i].longitude),
+    })
+  }
+  return arrows
+}
+
+async function fetchRouteCoords(depot, stops, apiKey) {
+  console.log('[Directions] API key:', apiKey ? 'loaded' : 'MISSING')
+  if (!stops.length || !apiKey) return null
+  const origin = `${depot.lat},${depot.lon}`
+  const waypoints = stops.map(s => `${s.client.lat},${s.client.lon}`).join('|')
+  const url = `https://maps.googleapis.com/maps/api/directions/json?origin=${origin}&destination=${origin}&waypoints=${encodeURIComponent(waypoints)}&key=${apiKey}`
+  try {
+    const res = await fetch(url)
+    const data = await res.json()
+    console.log('[Directions] status:', data.status, data.error_message ?? '')
+    if (data.status !== 'OK') return null
+    return decodePolyline(data.routes[0].overview_polyline.points)
+  } catch (e) {
+    console.log('[Directions] fetch error:', e.message)
+    return null
+  }
+}
 
 function lerpColor(t) {
   const [r1, g1, b1] = t < 0.5 ? [225, 6, 0] : [234, 179, 8]
@@ -74,6 +131,7 @@ function DeliveryStopRow({ stop, index, isDelivered, isCurrent, boxes, onToggle 
 export default function RouteScreen({ scenario, result, deliveredIds, toggleDelivered }) {
   const { width } = useWindowDimensions()
   const [containerHeight, setContainerHeight] = useState(0)
+  const [routeCoords, setRouteCoords] = useState(null)
 
   const stops = result?.route?.stops?.length > 0 ? result.route.stops : MOCK_STOPS
   const depot = scenario?.zone?.depot ?? MOCK_DEPOT
@@ -83,6 +141,13 @@ export default function RouteScreen({ scenario, result, deliveredIds, toggleDeli
   const deliveredCount = deliveredIds.size
   const currentStop = stops.find(s => !deliveredIds.has(s.client.client_id))
 
+  useEffect(() => {
+    setRouteCoords(null)
+    fetchRouteCoords(depot, stops, MAPS_API_KEY)
+      .then(coords => { if (coords) setRouteCoords(coords) })
+      .catch(() => {})
+  }, [depot, stops])
+
   const region = {
     latitude: depot.lat,
     longitude: depot.lon,
@@ -90,7 +155,7 @@ export default function RouteScreen({ scenario, result, deliveredIds, toggleDeli
     longitudeDelta: 0.04,
   }
 
-  const positions = [
+  const fallbackPositions = [
     { latitude: depot.lat, longitude: depot.lon },
     ...stops.map(s => ({ latitude: s.client.lat, longitude: s.client.lon })),
     { latitude: depot.lat, longitude: depot.lon },
@@ -123,11 +188,25 @@ export default function RouteScreen({ scenario, result, deliveredIds, toggleDeli
                   pinColor={COLORS.dark}
                 />
                 <Polyline
-                  coordinates={positions}
+                  coordinates={routeCoords ?? fallbackPositions}
                   strokeColor="#1e293b"
                   strokeWidth={3}
-                  lineDashPattern={[8, 5]}
+                  lineDashPattern={routeCoords ? undefined : [8, 5]}
                 />
+                {sampleArrows(routeCoords ?? fallbackPositions).map((arrow, i) => (
+                  <Marker
+                    key={`arrow-${i}`}
+                    coordinate={arrow.coordinate}
+                    rotation={arrow.rotation}
+                    anchor={{ x: 0.5, y: 0.5 }}
+                    flat
+                    tracksViewChanges={false}
+                  >
+                    <View style={styles.arrowMarker}>
+                      <Text style={styles.arrowText}>▲</Text>
+                    </View>
+                  </Marker>
+                ))}
                 {stops.map((stop, i) => {
                   const isDelivered = deliveredIds.has(stop.client.client_id)
                   const isCurrent = stop === currentStop
@@ -323,4 +402,7 @@ const styles = StyleSheet.create({
   },
   deliverBtnDone: { backgroundColor: '#22c55e' },
   deliverBtnText: { fontSize: 12, fontWeight: '700', color: '#fff' },
+
+  arrowMarker: { alignItems: 'center', justifyContent: 'center' },
+  arrowText: { fontSize: 10, color: '#1e293b', lineHeight: 10 },
 })

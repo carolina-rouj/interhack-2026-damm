@@ -33,6 +33,9 @@
     },
     "plugins": [
       "expo-asset"
-    ]
+    ],
+    "extra": {
+      "googleMapsApiKey": "AIzaSyA3MBZ23W--WXMDD9pntNrQh1ctSV_J7Ak"
+    }
   }
 }
