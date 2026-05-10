@@ -50,7 +50,7 @@ function PalletCell({ slotId, slotMap, clientColorMap }) {
       <Text style={[styles.boxesLabel, { color: textColor }]}>
         {assignments.map(a => `${a.boxes}`).join('+')} cajas
       </Text>
-      {isSplit && <Text style={[styles.splitLabel, { color: textColor }]}>split</Text>}
+      {isSplit && <Text style={[styles.splitLabel, { color: textColor }]}>partido</Text>}
     </View>
   )
 }

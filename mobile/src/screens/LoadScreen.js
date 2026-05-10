@@ -85,7 +85,7 @@ export default function LoadScreen({ result, deliveredIds }) {
         <TouchableOpacity style={styles.sheetHeader} onPress={toggleSheet} activeOpacity={0.9}>
           <View style={styles.dragHandle} />
           <Text style={styles.sheetTitle}>
-            {isExpanded ? 'Ocultar lista de picking' : 'Ver lista de picking'}
+            {isExpanded ? 'Ocultar listado de entregas' : 'Ver listado de entregas'}
           </Text>
         </TouchableOpacity>
 

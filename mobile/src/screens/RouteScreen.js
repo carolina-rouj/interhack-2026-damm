@@ -117,6 +117,7 @@ export default function RouteScreen({ scenario, result, deliveredIds, toggleDeli
   const [driverLocation, setDriverLocation] = useState(null)
   const [showReportPreview, setShowReportPreview] = useState(false)
   const [generatingReport, setGeneratingReport] = useState(false)
+  const [initiating, setInitiating] = useState(false)
 
   const mapRef = useRef(null)
   const locationSub = useRef(null)
@@ -162,24 +163,29 @@ export default function RouteScreen({ scenario, result, deliveredIds, toggleDeli
   }
 
   async function handleInitiate() {
-    const { status } = await Location.requestForegroundPermissionsAsync()
-    if (status !== 'granted') {
-      Alert.alert('Permiso denegado', 'Necesitas permitir el acceso a la ubicación para iniciar la navegación.')
-      return
+    setInitiating(true)
+    try {
+      const { status } = await Location.requestForegroundPermissionsAsync()
+      if (status !== 'granted') {
+        Alert.alert('Permiso denegado', 'Necesitas permitir el acceso a la ubicación para iniciar la navegación.')
+        return
+      }
+      const pos = await Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.High })
+      const origin = { lat: pos.coords.latitude, lon: pos.coords.longitude }
+      setLoadingLegs(true)
+      const legs = await fetchRouteLegs(origin, stops, MAPS_API_KEY)
+      setRouteLegs(legs)
+      setLoadingLegs(false)
+      const sub = await Location.watchPositionAsync(
+        { accuracy: Location.Accuracy.High, timeInterval: 2000, distanceInterval: 10 },
+        loc => setDriverLocation({ latitude: loc.coords.latitude, longitude: loc.coords.longitude }),
+      )
+      locationSub.current = sub
+      setCurrentStopIndex(0)
+      setNavState('navigating')
+    } finally {
+      setInitiating(false)
     }
-    const pos = await Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.High })
-    const origin = { lat: pos.coords.latitude, lon: pos.coords.longitude }
-    setLoadingLegs(true)
-    const legs = await fetchRouteLegs(origin, stops, MAPS_API_KEY)
-    setRouteLegs(legs)
-    setLoadingLegs(false)
-    const sub = await Location.watchPositionAsync(
-      { accuracy: Location.Accuracy.High, timeInterval: 2000, distanceInterval: 10 },
-      loc => setDriverLocation({ latitude: loc.coords.latitude, longitude: loc.coords.longitude }),
-    )
-    locationSub.current = sub
-    setCurrentStopIndex(0)
-    setNavState('navigating')
   }
 
   function handleDelivered() {
@@ -440,13 +446,21 @@ export default function RouteScreen({ scenario, result, deliveredIds, toggleDeli
             <View style={styles.mapBottom}>
               <DeliveryProgressBar delivered={deliveredCount} total={totalStops} />
               <TouchableOpacity
-                style={[styles.initiateBtn, loadingLegs && styles.initiateBtnDisabled]}
+                style={[styles.initiateBtn, (loadingLegs || initiating) && styles.initiateBtnDisabled]}
                 onPress={handleInitiate}
                 activeOpacity={0.85}
-                disabled={loadingLegs}
+                disabled={loadingLegs || initiating}
               >
-                <Navigation size={18} color="#fff" />
-                <Text style={styles.initiateBtnText}>Iniciar Ruta</Text>
+                {initiating
+                  ? <>
+                      <ActivityIndicator size="small" color="#fff" />
+                      <Text style={styles.initiateBtnText}>Iniciando...</Text>
+                    </>
+                  : <>
+                      <Navigation size={18} color="#fff" />
+                      <Text style={styles.initiateBtnText}>Iniciar Ruta</Text>
+                    </>
+                }
               </TouchableOpacity>
               <View style={styles.swipeChip}>
                 <Text style={styles.swipeChipText}>Desliza para ver paradas →</Text>

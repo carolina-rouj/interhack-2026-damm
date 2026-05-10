@@ -12,7 +12,7 @@ function StopRow({ stop, index, orders }) {
   const order = orders?.[stop.client.client_id]
 
   const badgeStyle = isViolated ? styles.badgeRed : hasWait ? styles.badgeYellow : styles.badgeGreen
-  const badgeText = isViolated ? 'Incumplido' : hasWait ? 'Espera' : 'OK'
+  const badgeText = isViolated ? 'Incumplido' : hasWait ? 'Espera' : 'Correcto'
 
   return (
     <View style={styles.row}>
