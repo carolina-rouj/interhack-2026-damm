@@ -1,232 +1,244 @@
 # Damm Smart Truck
 
-Logistics optimization tool for last-mile delivery routing and truck load planning, built for **Interhack BCN 2026**. Simulates a Estrella Damm distribution truck making deliveries across Barcelona, optimizing route order, pallet loading, and returnable container collection.
+Herramienta de optimización logística para rutas de última milla y planificación de carga de camiones, construida para **Interhack BCN 2026**. Simula la distribución de un camión de Estrella Damm por Barcelona, optimizando el orden de ruta, la carga de palés y la recogida de envases retornables.
+
+El sistema tiene tres capas: un **backend** Python que corre los algoritmos de optimización, un **panel web** para gestores que visualiza las rutas resultantes, y una **app móvil** para el conductor con navegación GPS en tiempo real.
 
 ---
 
-## Tech Stack
+## Stack tecnológico
 
-| Layer | Technology |
-|-------|-----------|
-| Backend | Python, FastAPI, Uvicorn |
-| Data validation | Pydantic v2 |
-| Frontend | React 18, Vite 5 |
-| Maps | Leaflet + React-Leaflet |
-| Numerics | NumPy, Pandas |
+| Capa | Tecnología |
+|------|-----------|
+| Backend | Python, FastAPI, OR-Tools (Google) |
+| Panel web | HTML + CSS + JavaScript vanilla |
+| App móvil | React Native, Expo, react-native-maps, Three.js |
+| Mapas (móvil) | Google Maps Directions API, expo-location |
 
 ---
 
-## Directory Structure
+## Estructura del proyecto
 
 ```
 interhack-2026-damm/
-├── requirements.txt              # Python dependencies
 ├── backend/
-│   ├── main.py                   # FastAPI app and all API endpoints
-│   ├── data/
-│   │   └── synthetic_generator.py  # Generates synthetic delivery scenarios
-│   ├── models/
-│   │   ├── client.py             # Client, TimeWindow, AccessRestriction
-│   │   ├── order.py              # Product, OrderLine, Order
-│   │   ├── truck.py              # PalletSlot, PalletAssignment, LoadPlan
-│   │   └── zone.py               # Zone, Depot
-│   └── solvers/
-│       ├── route_optimizer.py    # Nearest-neighbor + 2-opt TSP solver
-│       ├── load_optimizer.py     # LIFO pallet assignment
-│       └── inverse_logistics.py  # Returnable container planning
-└── frontend/
-    ├── package.json
-    ├── vite.config.js            # Dev proxy: /api → localhost:8000
-    └── src/
-        ├── main.jsx              # React entry point
-        ├── App.jsx               # Root component, state, layout
-        ├── api.js                # HTTP client for backend API
-        ├── index.css             # Global styles and theme variables
-        └── components/
-            ├── MetricsPanel.jsx  # KPI dashboard
-            ├── RouteMap.jsx      # Leaflet map with delivery stops
-            ├── TruckDiagram.jsx  # Visual pallet layout
-            └── ClientTable.jsx   # Delivery stops table with timestamps
+│   ├── main.py                    # FastAPI — endpoints REST
+│   ├── pipeline.py                # Orquestador del pipeline completo
+│   ├── models/                    # Modelos de dominio
+│   │   ├── zona.py                # Zona con tiendas + matriz de distancias
+│   │   ├── tienda.py              # Punto de entrega (bar, restaurante, super...)
+│   │   ├── pedido.py              # Pedido con líneas de producto
+│   │   ├── product.py             # Definición de SKU
+│   │   ├── ruta.py                # Ruta con paradas ordenadas
+│   │   ├── palet.py               # Palé físico
+│   │   └── truck.py               # Tipo de camión y plan de carga
+│   ├── solvers/
+│   │   ├── orchestrator.py        # run_pipeline() — punto de entrada
+│   │   ├── vrptw_solver.py        # Solver VRPTW con OR-Tools
+│   │   └── palletizer.py          # Paletizado, retornables, carga del camión
+│   └── data/
+│       ├── loader.py              # load_zona() — carga los JSON
+│       ├── tienda.json            # ~1500 tiendas de Granollers
+│       ├── pedido.json            # Pedidos por tienda
+│       ├── producto.json          # Catálogo de SKUs
+│       └── zona.json              # Definición de zonas
+│
+├── frontend/
+│   └── index.html                 # Panel web (app de una sola página)
+│
+├── mobile/
+│   ├── App.js                     # Raíz de la app — navegación por pestañas
+│   ├── metro.config.js            # Configuración del bundler Metro
+│   └── src/
+│       ├── api.js                 # Cliente HTTP hacia el backend
+│       ├── constants.js           # Colores, configs de camión, MOCK_DEPOT
+│       ├── screens/
+│       │   ├── RouteScreen.js     # Mapa + paradas + navegación GPS
+│       │   └── LoadScreen.js      # Visualización 3D del camión + listado
+│       ├── components/
+│       │   ├── TruckGrid3D.js     # Modelo 3D del camión (Three.js)
+│       │   ├── TruckGrid.js       # Vista 2D de la rejilla de palés
+│       │   ├── ReportPreviewModal.js  # Modal de previsualización del informe
+│       │   ├── MetricsBar.js      # Barra de KPIs
+│       │   └── StopsList.js       # Lista de paradas
+│       ├── services/
+│       │   └── directionsService.js   # Google Directions API
+│       └── utils/
+│           ├── transform.js       # JSON del backend → objetos internos
+│           └── reportGenerator.js # Generación y descarga de informes PDF
+│
+└── output/
+    └── routes/                    # Archivos JSON de rutas generadas
 ```
 
 ---
 
-## Backend Architecture
+## Flujo de datos — visión general
 
-### Entry Point — `backend/main.py`
+```
+┌───────────────────────────────────────────────────────┐
+│                  PANEL WEB (gestor)                   │
+│  1. Selecciona zona                                   │
+│  2. Ajusta cajas/palé                                 │
+│  3. Pulsa "Optimizar"  ──── POST /api/solve ──────►  │
+│                                                       │
+│  ◄── rutas + métricas ────────────────────────────── │
+│  4. Visualiza rutas, paradas, métricas                │
+└───────────────────────────────────────────────────────┘
+                          │
+               Backend ejecuta pipeline
+                          │
+┌───────────────────────────────────────────────────────┐
+│                APP MÓVIL (conductor)                  │
+│  1. Carga ruta asignada                               │
+│  2. Pestaña "Ruta": mapa + navegación GPS             │
+│  3. Marca paradas como entregadas                     │
+│  4. Pestaña "Carga": visualización 3D del camión      │
+│  5. Genera informe PDF al finalizar                   │
+└───────────────────────────────────────────────────────┘
+```
 
-FastAPI application with in-memory scenario storage (`_scenarios` dict). No database — data lives in memory for the duration of the server process.
+---
 
-**Endpoints:**
+## Backend
 
-| Method | Path | Description |
+### API REST — `backend/main.py`
+
+FastAPI corriendo en el puerto 8000. Sirve también el panel web como archivos estáticos.
+
+| Método | Ruta | Descripción |
 |--------|------|-------------|
-| `GET` | `/api/scenario/generate` | Generate a new synthetic scenario |
-| `GET` | `/api/scenario/{scenario_id}` | Retrieve a stored scenario |
-| `POST` | `/api/optimize` | Run route + load optimization |
+| `GET` | `/api/zona/list` | Lista de zonas disponibles |
+| `GET` | `/api/zona/{zona_id}` | Metadatos de una zona |
+| `POST` | `/api/solve` | Ejecuta el pipeline completo de optimización |
 | `GET` | `/health` | Health check |
 
-**`GET /api/scenario/generate`**
-- Query params: `seed` (int, default 42), `n_clients` (int, default 16)
-- Returns: `{ scenario_id, zone, clients[], orders{}, products[] }`
-- `scenario_id` is deterministic: `"scenario-{seed}-{n_clients}"`
+**`POST /api/solve`**
+```json
+// Request
+{ "zona_id": "granollers-center-01", "cajas_por_palet": 60 }
 
-**`POST /api/optimize`**
-- Body: `{ scenario_id: string, start_time: "HH:MM" }`
-- Runs the three solvers in sequence, then aggregates metrics
-- Returns: `{ route, load_plan, returnables_plan, metrics }`
-
----
-
-### Models — `backend/models/`
-
-**`client.py`**
-- `TimeWindow` — `open_min`, `close_min` (minutes since midnight)
-- `AccessRestriction` — enum: `NONE`, `PEDESTRIAN_ZONE`, `RESTRICTED_HOURS`
-- `Client` — delivery location with `lat/lon`, `time_window`, `priority` (1–3), `unload_time_min`, `expected_returnables`
-
-**`order.py`**
-- `Product` — SKU with `weight_kg`, `returnable` flag
-- `OrderLine` — product + quantity
-- `Order` — list of `OrderLine`s for one client
-
-**`truck.py`**
-- `PalletSlot` — one of 6 slots defined by `row` (1=rear, 3=front) and `col` (1=left, 2=right), with a list of sides it is `accessible_from`
-- `PalletAssignment` — maps a slot to a client delivery or returnable buffer
-- `LoadPlan` — full set of assignments, warnings, and `utilization_pct` (out of 6 slots × 60 boxes each = 360 boxes total)
-
-Truck geometry (viewed from above):
-```
-[REAR DOOR]
-[ P1 | P2 ]  row=1  <- first to unload  (rear + lona access)
-[ P3 | P4 ]  row=2                       (lona access only)
-[ P5 | P6 ]  row=3  <- last to unload   (lona access only)
-[CABIN]
+// Response
+{
+  "zona_id": "granollers-center-01",
+  "num_rutas": 3,
+  "metrics": { "num_rutas": 3, "total_palets": 8, "coste_total": 450.75, ... },
+  "routes": [
+    {
+      "route": {
+        "tipo_camion": "grande",
+        "paradas": [
+          {
+            "orden": 1,
+            "llegada_min": 510,
+            "coordenadas": { "lat": 41.405, "lon": 2.160 },
+            "clientes": [
+              {
+                "nombre": "Bar Central",
+                "total_cajas": 24,
+                "productos": [{ "sku": "DAMM-LATA-33", "cantidad_cajas": 12, "tipo_envase": "caja" }]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
 ```
 
-**`zone.py`**
-- `Depot` — warehouse coordinates (Damm factory: 41.3985 N, 2.1620 E)
-- `Zone` — named area containing a `Depot`
+### Pipeline de optimización — `backend/solvers/orchestrator.py`
 
----
+`run_pipeline(zona_id)` ejecuta estas etapas en orden:
 
-### Solvers — `backend/solvers/`
+1. **Carga de datos** — `load_zona()` hidrata los objetos Zona, Tienda, Pedido desde los JSON
+2. **Matriz de distancias** — distancia euclídea entre tiendas (o Google Maps si está disponible)
+3. **Clustering** — agrupa tiendas cercanas en Paradas (una parada puede incluir varias tiendas)
+4. **VRPTW** — OR-Tools asigna paradas a camiones respetando ventanas horarias y capacidad
+5. **Paletizado** — asigna las cajas de cada parada a palés físicos
+6. **Retornables** — calcula envases vacíos a recoger, reserva slots traseros
+7. **Plan de carga** — mapea palés a los slots del camión respetando restricciones LIFO
 
-#### `route_optimizer.py` — TSP Solver
+**Modelo de tráfico:**
 
-Finds an efficient delivery order respecting time windows and client priorities.
+| Franja horaria | Velocidad |
+|----------------|-----------|
+| 07:00–09:00 | 15 km/h (hora punta) |
+| 09:00–13:00 | 25 km/h |
+| 13:00–15:00 | 20 km/h (mediodía) |
+| Resto | 30 km/h |
 
-**Key functions:**
+**Tipos de camión:**
 
-| Function | Description |
-|----------|-------------|
-| `haversine_km()` | Real-world geodesic distance between two lat/lon points |
-| `avg_speed_kmh(time_min)` | Time-dependent traffic speed |
-| `nearest_neighbor()` | Greedy initial route; scores candidates by `distance x priority_weight` |
-| `two_opt()` | Local search: swaps route segments if they reduce distance without violating time windows |
-| `_simulate_times()` | Simulates arrival, wait, and departure times for a given stop order |
-| `optimize_route()` | Orchestrates nearest-neighbor -> 2-opt -> time simulation -> CO2 calculation |
+| Tipo | Slots de palé |
+|------|--------------|
+| Furgoneta | 3 |
+| Mediano | 6 |
+| Grande | 8 |
 
-**Traffic model:**
-
-| Time window | Speed |
-|-------------|-------|
-| 07:00–09:00 | 15 km/h (rush hour) |
-| 09:00–13:00 | 25 km/h (normal) |
-| 13:00–15:00 | 20 km/h (lunch) |
-| Other | 30 km/h |
-
-**Priority weights** (used in nearest-neighbor scoring):
-- Priority 1 (restaurants, supermarkets) — 0.5x distance (served first)
-- Priority 2 (bars, hotels) — 1.0x
-- Priority 3 (kiosks) — 1.5x (served last)
-
-**CO2:** `total_distance_km x 0.27 kg/km` (diesel truck factor)
-
----
-
-#### `load_optimizer.py` — LIFO Pallet Assignment
-
-Assigns client deliveries to the 6 pallet slots so that the first delivery is loaded last (rear door = first unloaded). Validates LIFO constraints and emits warnings when a client's pallet would be blocked by a later delivery.
-
----
-
-#### `inverse_logistics.py` — Returnable Container Planning
-
-Calculates expected empty boxes/cases to collect from each client (`expected_returnables` field on `Client`). Reserves front pallet slots (row 3) as a returnable buffer before load optimization runs.
-
----
-
-### Data Generator — `backend/data/synthetic_generator.py`
-
-`generate_scenario(seed, n_clients)` produces a reproducible Barcelona delivery scenario with randomized-but-realistic clients drawn from five archetypes:
-
-| Archetype | Order size | Time window | Priority |
-|-----------|-----------|-------------|---------|
-| Bar | 30–90 boxes | 09:00–13:00 | 2 |
-| Restaurante | 60–150 boxes | 08:00–11:00 | 1 |
-| Supermercado | 90–240 boxes | 07:00–10:00 | 1 |
-| Hotel | 60–120 boxes | 09:00–12:00 | 2 |
-| Kiosco | 24–60 boxes | 10:00–14:00 | 3 |
-
----
-
-## Frontend Architecture
-
-### State & Layout — `App.jsx`
-
-Holds all application state: current scenario, optimization results, active tab. Calls `api.js` functions and passes data down to the four display components via props.
-
-### API Layer — `api.js`
-
-Thin HTTP client wrapping `fetch`. Exports:
-- `generateScenario(seed, nClients)` — `GET /api/scenario/generate`
-- `optimizeScenario(scenarioId, startTime)` — `POST /api/optimize`
-
-Vite proxies `/api/*` to `localhost:8000` in development (`vite.config.js`).
-
-### Components — `src/components/`
-
-| Component | What it shows |
-|-----------|--------------|
-| `MetricsPanel` | KPI cards: distance, time, CO2, utilization %, violations, priority served |
-| `RouteMap` | Leaflet map with depot marker, numbered stop markers, polyline route |
-| `TruckDiagram` | 6-slot grid coloured by client, shows LIFO warnings |
-| `ClientTable` | Stop-by-stop table: name, arrival time, wait, departure, status badge |
-
----
-
-## Data Flow
-
+**Geometría del camión (vista desde arriba):**
 ```
-User fills sidebar (seed, n_clients, start_time)
-        |
-        v
-GET /api/scenario/generate
-        |
-        +-- synthetic_generator.generate_scenario()
-        |       Creates Zone, Clients, Orders, Products
-        |
-        +-- Returns scenario_id + full data
-               Frontend renders zone + client list
-        |
-User clicks "Optimizar"
-        |
-        v
-POST /api/optimize { scenario_id, start_time }
-        |
-        +-- 1. optimize_route()       -> RouteResult (stops, distance, CO2)
-        +-- 2. plan_returnables()     -> ReturnablesPlan (reserved slots)
-        +-- 3. optimize_load()        -> LoadPlan (assignments, warnings)
-        +-- 4. metrics aggregation
-        |
-        +-- Returns { route, load_plan, returnables_plan, metrics }
-               Frontend renders MetricsPanel, RouteMap, ClientTable, TruckDiagram
+[PUERTA TRASERA]
+[ P1 | P2 ]  fila 1  ← primero en descargar  (acceso trasero + lona)
+[ P3 | P4 ]  fila 2                           (acceso lona)
+[ P5 | P6 ]  fila 3  ← último en descargar   (acceso lona)
+[CABINA]
 ```
 
 ---
 
-## Running the App
+## Panel web
+
+**Archivo único:** `frontend/index.html` — HTML + CSS + JavaScript vanilla, sin framework ni build step.
+
+**Flujo de uso:**
+1. Al cargar la página → `GET /api/zona/list` → renderiza tarjetas de zona
+2. El gestor selecciona una zona y ajusta el slider de cajas/palé
+3. Al pulsar "Optimizar" → `POST /api/solve` → muestra spinner con mensajes de carga
+4. Con la respuesta renderiza: métricas globales, productos por SKU y tarjetas de ruta con paradas
+
+---
+
+## App móvil
+
+React Native + Expo con dos pestañas principales.
+
+### Pestaña Ruta — `RouteScreen.js`
+
+Gestiona la navegación del conductor desde la salida hasta la última entrega.
+
+**Estados de la pantalla:**
+
+| Estado | Descripción |
+|--------|-------------|
+| `preview` | Vista completa de la ruta en el mapa, antes de salir |
+| `navigating` | Navegación activa: mapa centrado en el conductor, distancia a la próxima parada |
+| `completed` | Todas las paradas entregadas, opción de generar informe |
+
+**Al pulsar "Iniciar Ruta":**
+1. Solicita permisos de ubicación
+2. Obtiene la posición GPS actual del conductor (`getCurrentPositionAsync`)
+3. Recalcula los tramos de ruta desde esa posición real (Google Directions API)
+4. Inicia seguimiento continuo (`watchPositionAsync`) — el mapa sigue al conductor
+
+**Seguimiento GPS:**
+- Actualización cada 2 segundos o cada 10 metros de desplazamiento
+- `haversineM()` calcula la distancia en tiempo real a la próxima parada
+
+### Pestaña Carga — `LoadScreen.js`
+
+Muestra el plan de carga del camión y el listado de entregas.
+
+- **TruckGrid3D** (Three.js): modelo 3D del camión con los palés coloreados por parada; las entregas realizadas se atenúan
+- **Listado de entregas** (panel deslizable): divide las paradas en "Por entregar" y "Entregado", con el conteo de cajas y barriles por cliente
+
+### Generación de informes — `reportGenerator.js`
+
+Al finalizar la ruta, el conductor puede generar un PDF con el resumen de entregas (paradas, cajas, barriles por SKU) y compartirlo vía la hoja de compartir nativa del dispositivo.
+
+---
+
+## Ejecución
 
 **Backend:**
 ```bash
@@ -234,11 +246,13 @@ pip install -r requirements.txt
 uvicorn backend.main:app --reload --port 8000
 ```
 
-**Frontend:**
+**Panel web:** abrir `frontend/index.html` directamente en el navegador (o servirlo desde FastAPI en `localhost:8000`).
+
+**App móvil:**
 ```bash
-cd frontend
+cd mobile
 npm install
-npm run dev   # starts on http://localhost:5173
+npx expo start --clear
 ```
 
-The Vite dev server proxies `/api` requests to `http://localhost:8000`, so no CORS configuration is needed during development.
+Editar `mobile/src/constants.js` → `BASE_URL` con la IP local del servidor backend.

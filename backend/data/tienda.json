@@ -1,0 +1,2162 @@
+[
+    {
+        "tienda_id":  "104047",
+        "turno":  1,
+        "nombre":  "VIENA GRANOLLERS (ANSELM CLAVE) 10",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "23:59:59",
+        "lat": 41.6075,
+        "lon": 2.2882
+    },
+    {
+        "tienda_id":  "122348",
+        "turno":  1,
+        "nombre":  "FRANKFURT LEO BOECK GRANOLLERS",
+        "horario_inicio":  "10:30:00",
+        "horario_fin":  "11:00:00",
+        "lat": 41.6080,
+        "lon": 2.2895
+    },
+    {
+        "tienda_id":  "123142",
+        "turno":  1,
+        "nombre":  "ARAMARK MUTUA DEL CARMEN",
+        "horario_inicio":  "9:00:00",
+        "horario_fin":  "14:00:00",
+        "lat": 41.6125,
+        "lon": 2.2870
+    },
+    {
+        "tienda_id":  "128061",
+        "turno":  1,
+        "nombre":  "755_SUBLIME",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "0:00:00",
+        "lat": 41.6062,
+        "lon": 2.2910
+    },
+    {
+        "tienda_id":  "128915",
+        "turno":  1,
+        "nombre":  "A MOSSEGADES BURGUER",
+        "horario_inicio":  "12:30:00",
+        "horario_fin":  "15:00:00",
+        "lat": 41.6088,
+        "lon": 2.2865
+    },
+    {
+        "tienda_id":  "136720",
+        "turno":  1,
+        "nombre":  "UDON GRANOLLERS",
+        "horario_inicio":  "6:00:00",
+        "horario_fin":  "18:00:00",
+        "lat": 41.6070,
+        "lon": 2.2940
+    },
+    {
+        "tienda_id":  "9100040724",
+        "turno":  1,
+        "nombre":  "CASA FONDA EUROPA",
+        "horario_inicio":  "7:00:00",
+        "horario_fin":  "12:00:00",
+        "lat": 41.6093,
+        "lon": 2.2853
+    },
+    {
+        "tienda_id":  "9100041053",
+        "turno":  1,
+        "nombre":  "BAR CERVECERIA JORDI",
+        "horario_inicio":  "11:00:00",
+        "horario_fin":  "16:00:00",
+        "lat": 41.6055,
+        "lon": 2.2870
+    },
+    {
+        "tienda_id":  "9100041442",
+        "turno":  1,
+        "nombre":  "BAR ROMERO",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "0:00:00",
+        "lat": 41.6110,
+        "lon": 2.2832
+    },
+    {
+        "tienda_id":  "9100041688",
+        "turno":  1,
+        "nombre":  "RESTAURANTE HONG KONG",
+        "horario_inicio":  "11:00:00",
+        "horario_fin":  "16:00:00",
+        "lat": 41.6076,
+        "lon": 2.2918
+    },
+    {
+        "tienda_id":  "9100041762",
+        "turno":  1,
+        "nombre":  "RSTE. EL JARDI",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "0:00:00",
+        "lat": 41.6048,
+        "lon": 2.2856
+    },
+    {
+        "tienda_id":  "9100042070",
+        "turno":  1,
+        "nombre":  "ROSTISERIA CAN DANIEL",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "0:00:00",
+        "lat": 41.6101,
+        "lon": 2.2902
+    },
+    {
+        "tienda_id":  "9100042414",
+        "turno":  1,
+        "nombre":  "CHACHI'S BAR",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "0:00:00",
+        "lat": 41.6064,
+        "lon": 2.2845
+    },
+    {
+        "tienda_id":  "9100042500",
+        "turno":  1,
+        "nombre":  "CAFE SANT ROC",
+        "horario_inicio":  "8:00:00",
+        "horario_fin":  "11:00:00",
+        "lat": 41.6040,
+        "lon": 2.2820
+    },
+    {
+        "tienda_id":  "9100042630",
+        "turno":  1,
+        "nombre":  "JAVIS 3",
+        "horario_inicio":  "12:00:00",
+        "horario_fin":  "12:30:00",
+        "lat": 41.6118,
+        "lon": 2.2952
+    },
+    {
+        "tienda_id":  "9100042846",
+        "turno":  1,
+        "nombre":  "GRANJA D'EN PEP",
+        "horario_inicio":  "8:00:00",
+        "horario_fin":  "13:30:00",
+        "lat": 41.6090,
+        "lon": 2.2875
+    },
+    {
+        "tienda_id":  "9100042930",
+        "turno":  1,
+        "nombre":  "RESTAURANTE XAP",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "0:00:00",
+        "lat": 41.6059,
+        "lon": 2.2935
+    },
+    {
+        "tienda_id":  "9100042964",
+        "turno":  1,
+        "nombre":  "HOTEL CIUTAT DE GRANOLLERS",
+        "horario_inicio":  "8:00:00",
+        "horario_fin":  "11:00:00",
+        "lat": 41.6083,
+        "lon": 2.2891
+    },
+    {
+        "tienda_id":  "9100042975",
+        "turno":  1,
+        "nombre":  "BAR CLEMEN'S",
+        "horario_inicio":  "7:00:00",
+        "horario_fin":  "11:30:00",
+        "lat": 41.6072,
+        "lon": 2.2858
+    },
+    {
+        "tienda_id":  "9100043035",
+        "turno":  1,
+        "nombre":  "aa vv palou nord can bassa",
+        "horario_inicio":  "7:30:00",
+        "horario_fin":  "13:00:00",
+        "lat": 41.6130,
+        "lon": 2.2965
+    },
+    {
+        "tienda_id":  "9100043107",
+        "turno":  1,
+        "nombre":  "RESTAURANTE LOS ANGELES",
+        "horario_inicio":  "7:00:00",
+        "horario_fin":  "11:00:00",
+        "lat": 41.6066,
+        "lon": 2.2907
+    },
+    {
+        "tienda_id":  "9100043490",
+        "turno":  1,
+        "nombre":  "BAR CENTRAL",
+        "horario_inicio":  "9:00:00",
+        "horario_fin":  "13:00:00",
+        "lat": 41.6085,
+        "lon": 2.2869
+    },
+    {
+        "tienda_id":  "9100043853",
+        "turno":  1,
+        "nombre":  "BINGO CASINO",
+        "horario_inicio":  "8:00:00",
+        "horario_fin":  "12:00:00",
+        "lat": 41.6078,
+        "lon": 2.2898
+    },
+    {
+        "tienda_id":  "9100044243",
+        "turno":  1,
+        "nombre":  "PUNTO",
+        "horario_inicio":  "10:00:00",
+        "horario_fin":  "14:00:00",
+        "lat": 41.6054,
+        "lon": 2.2878
+    },
+    {
+        "tienda_id":  "9100044479",
+        "turno":  1,
+        "nombre":  "RSTE. EL PASO",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "0:00:00",
+        "lat": 41.6098,
+        "lon": 2.2923
+    },
+    {
+        "tienda_id":  "9100054637",
+        "turno":  1,
+        "nombre":  "NOU CUSTOM BAR CAFETERIA (GRUPO CUS",
+        "horario_inicio":  "9:00:00",
+        "horario_fin":  "12:00:00",
+        "lat": 41.6115,
+        "lon": 2.2841
+    },
+    {
+        "tienda_id":  "9100054705",
+        "turno":  1,
+        "nombre":  "EL RACO DE LES BRASES",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "0:00:00",
+        "lat": 41.6070,
+        "lon": 2.2912
+    },
+    {
+        "tienda_id":  "9100054738",
+        "turno":  1,
+        "nombre":  "HOLA K TAL BAR",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "0:00:00",
+        "lat": 41.6042,
+        "lon": 2.2883
+    },
+    {
+        "tienda_id":  "9100054750",
+        "turno":  1,
+        "nombre":  "LOS CUESTA BAR",
+        "horario_inicio":  "7:00:00",
+        "horario_fin":  "8:30:00",
+        "lat": 41.6107,
+        "lon": 2.2857
+    },
+    {
+        "tienda_id":  "9100054935",
+        "turno":  2,
+        "nombre":  "PENYA BARCELONISTA DE MOLLET",
+        "horario_inicio":  "17:00:00",
+        "horario_fin":  "21:00:00",
+        "lat": 41.5372,
+        "lon": 2.2148
+    },
+    {
+        "tienda_id":  "9100055035",
+        "turno":  1,
+        "nombre":  "RTE. CA LA POLI",
+        "horario_inicio":  "8:30:00",
+        "horario_fin":  "13:00:00",
+        "lat": 41.5355,
+        "lon": 2.2118
+    },
+    {
+        "tienda_id":  "9100055101",
+        "turno":  2,
+        "nombre":  "U.D. MOLLETENSE",
+        "horario_inicio":  "17:00:00",
+        "horario_fin":  "18:00:00",
+        "lat": 41.5384,
+        "lon": 2.2162
+    },
+    {
+        "tienda_id":  "9100055108",
+        "turno":  1,
+        "nombre":  "LA TASCA BAR",
+        "horario_inicio":  "12:30:00",
+        "horario_fin":  "15:00:00",
+        "lat": 41.5361,
+        "lon": 2.2135
+    },
+    {
+        "tienda_id":  "9100055150",
+        "turno":  1,
+        "nombre":  "AUTORACING MOLLET, S.L.",
+        "horario_inicio":  "8:00:00",
+        "horario_fin":  "13:00:00",
+        "lat": 41.5340,
+        "lon": 2.2170
+    },
+    {
+        "tienda_id":  "9100055201",
+        "turno":  1,
+        "nombre":  "COSTA BAR",
+        "horario_inicio":  "8:30:00",
+        "horario_fin":  "17:00:00",
+        "lat": 41.5378,
+        "lon": 2.2112
+    },
+    {
+        "tienda_id":  "9100055221",
+        "turno":  1,
+        "nombre":  "CA LA MARI ROSTISERIA",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "0:00:00",
+        "lat": 41.5395,
+        "lon": 2.2140
+    },
+    {
+        "tienda_id":  "9100055331",
+        "turno":  1,
+        "nombre":  "SA I FRESC RESTAURANT",
+        "horario_inicio":  "10:00:00",
+        "horario_fin":  "13:00:00",
+        "lat": 41.6062,
+        "lon": 2.2930
+    },
+    {
+        "tienda_id":  "9100055508",
+        "turno":  1,
+        "nombre":  "XURRERIA",
+        "horario_inicio":  "7:00:00",
+        "horario_fin":  "8:30:00",
+        "lat": 41.6093,
+        "lon": 2.2862
+    },
+    {
+        "tienda_id":  "9100055620",
+        "turno":  1,
+        "nombre":  "MARFA BAR",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "0:00:00",
+        "lat": 41.6057,
+        "lon": 2.2888
+    },
+    {
+        "tienda_id":  "9100056059",
+        "turno":  1,
+        "nombre":  "PITAPES RESTAURANT GRANOLLES",
+        "horario_inicio":  "11:00:00",
+        "horario_fin":  "16:00:00",
+        "lat": 41.6081,
+        "lon": 2.2872
+    },
+    {
+        "tienda_id":  "9100056125",
+        "turno":  1,
+        "nombre":  "EVA RESTAURANTE",
+        "horario_inicio":  "8:00:00",
+        "horario_fin":  "13:00:00",
+        "lat": 41.6103,
+        "lon": 2.2915
+    },
+    {
+        "tienda_id":  "9100056293",
+        "turno":  1,
+        "nombre":  "PEKIN RESTAURANT",
+        "horario_inicio":  "13:00:00",
+        "horario_fin":  "16:00:00",
+        "lat": 41.6069,
+        "lon": 2.2893
+    },
+    {
+        "tienda_id":  "9100069265",
+        "turno":  1,
+        "nombre":  "KANSAS",
+        "horario_inicio":  "11:00:00",
+        "horario_fin":  "11:30:00",
+        "lat": 41.6087,
+        "lon": 2.2846
+    },
+    {
+        "tienda_id":  "9100075744",
+        "turno":  1,
+        "nombre":  "RESTAURANTE SANT SADURNI",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "0:00:00",
+        "lat": 41.6075,
+        "lon": 2.2957
+    },
+    {
+        "tienda_id":  "9100076545",
+        "turno":  1,
+        "nombre":  "CAFETERIA PANADERIA + QUE PA",
+        "horario_inicio":  "8:00:00",
+        "horario_fin":  "13:00:00",
+        "lat": 41.6050,
+        "lon": 2.2864
+    },
+    {
+        "tienda_id":  "9100076613",
+        "turno":  1,
+        "nombre":  "GRANJA GROC",
+        "horario_inicio":  "8:00:00",
+        "horario_fin":  "10:00:00",
+        "lat": 41.6112,
+        "lon": 2.2876
+    },
+    {
+        "tienda_id":  "9100087801",
+        "turno":  1,
+        "nombre":  "CASA CHUECOS",
+        "horario_inicio":  "11:30:00",
+        "horario_fin":  "14:00:00",
+        "lat": 41.6066,
+        "lon": 2.2903
+    },
+    {
+        "tienda_id":  "9100108910",
+        "turno":  1,
+        "nombre":  "PACK CATALUNYA BAR",
+        "horario_inicio":  "10:30:00",
+        "horario_fin":  "16:00:00",
+        "lat": 41.6095,
+        "lon": 2.2839
+    },
+    {
+        "tienda_id":  "9100108975",
+        "turno":  1,
+        "nombre":  "EL ITALIANO DE GRANOLLERS",
+        "horario_inicio":  "10:00:00",
+        "horario_fin":  "13:00:00",
+        "lat": 41.6078,
+        "lon": 2.2919
+    },
+    {
+        "tienda_id":  "9100111065",
+        "turno":  1,
+        "nombre":  "CAN PRAT RESTAURANT",
+        "horario_inicio":  "10:00:00",
+        "horario_fin":  "12:00:00",
+        "lat": 41.6060,
+        "lon": 2.2870
+    },
+    {
+        "tienda_id":  "9100120688",
+        "turno":  1,
+        "nombre":  "CAFE BAR LA FONT",
+        "horario_inicio":  "7:00:00",
+        "horario_fin":  "12:00:00",
+        "lat": 41.6120,
+        "lon": 2.2900
+    },
+    {
+        "tienda_id":  "9100121589",
+        "turno":  1,
+        "nombre":  "RTE CHINO TA HAO MEN",
+        "horario_inicio":  "11:30:00",
+        "horario_fin":  "13:00:00",
+        "lat": 41.6073,
+        "lon": 2.2882
+    },
+    {
+        "tienda_id":  "9100126939",
+        "turno":  1,
+        "nombre":  "RTE. TRES ROSES",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "0:00:00",
+        "lat": 41.6128,
+        "lon": 2.3330
+    },
+    {
+        "tienda_id":  "9100145545",
+        "turno":  1,
+        "nombre":  "FUSSION",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "0:00:00",
+        "lat": 41.6084,
+        "lon": 2.2908
+    },
+    {
+        "tienda_id":  "9100151827",
+        "turno":  1,
+        "nombre":  "CAN60 MENJAR I BEURE",
+        "horario_inicio":  "10:00:00",
+        "horario_fin":  "12:00:00",
+        "lat": 41.6049,
+        "lon": 2.2892
+    },
+    {
+        "tienda_id":  "9100153533",
+        "turno":  1,
+        "nombre":  "ICE CUSTOM",
+        "horario_inicio":  "7:30:00",
+        "horario_fin":  "9:00:00",
+        "lat": 41.6108,
+        "lon": 2.2945
+    },
+    {
+        "tienda_id":  "9100169285",
+        "turno":  1,
+        "nombre":  "TAPES",
+        "horario_inicio":  "10:30:00",
+        "horario_fin":  "11:00:00",
+        "lat": 41.6076,
+        "lon": 2.2868
+    },
+    {
+        "tienda_id":  "9100190781",
+        "turno":  1,
+        "nombre":  "EN BOCA RESTAURANT",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "0:00:00",
+        "lat": 41.6055,
+        "lon": 2.2911
+    },
+    {
+        "tienda_id":  "9100198106",
+        "turno":  1,
+        "nombre":  "BAR ISLA CRISTINA",
+        "horario_inicio":  "9:00:00",
+        "horario_fin":  "14:00:00",
+        "lat": 41.6092,
+        "lon": 2.2878
+    },
+    {
+        "tienda_id":  "9100199329",
+        "turno":  1,
+        "nombre":  "BAR PASE",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "0:00:00",
+        "lat": 41.6063,
+        "lon": 2.2896
+    },
+    {
+        "tienda_id":  "9100199450",
+        "turno":  1,
+        "nombre":  "NOU HOLIDAYS",
+        "horario_inicio":  "9:00:00",
+        "horario_fin":  "20:00:00",
+        "lat": 41.6088,
+        "lon": 2.2861
+    },
+    {
+        "tienda_id":  "9100218808",
+        "turno":  1,
+        "nombre":  "BRASERIA LA TEJA",
+        "horario_inicio":  "8:45:00",
+        "horario_fin":  "13:00:00",
+        "lat": 41.6101,
+        "lon": 2.2925
+    },
+    {
+        "tienda_id":  "9100230870",
+        "turno":  1,
+        "nombre":  "THE JOSE'S BAR PARETS",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "0:00:00",
+        "lat": 41.5678,
+        "lon": 2.2358
+    },
+    {
+        "tienda_id":  "9100233605",
+        "turno":  1,
+        "nombre":  "MARTU CITY",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "0:00:00",
+        "lat": 41.6070,
+        "lon": 2.2935
+    },
+    {
+        "tienda_id":  "9100253034",
+        "turno":  1,
+        "nombre":  "CAFETERIA ATREZZO",
+        "horario_inicio":  "11:30:00",
+        "horario_fin":  "13:00:00",
+        "lat": 41.6052,
+        "lon": 2.2875
+    },
+    {
+        "tienda_id":  "9100264438",
+        "turno":  1,
+        "nombre":  "CAFETERIA XURRERIA 20 JA",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "0:00:00",
+        "lat": 41.6115,
+        "lon": 2.2893
+    },
+    {
+        "tienda_id":  "9100264859",
+        "turno":  1,
+        "nombre":  "BAR LA MIRANDA",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "0:00:00",
+        "lat": 41.6080,
+        "lon": 2.2842
+    },
+    {
+        "tienda_id":  "9100281245",
+        "turno":  1,
+        "nombre":  "BONATAPA",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "0:00:00",
+        "lat": 41.6097,
+        "lon": 2.2912
+    },
+    {
+        "tienda_id":  "9100290959",
+        "turno":  1,
+        "nombre":  "RESTAURANTE \"NANA\"",
+        "horario_inicio":  "11:30:00",
+        "horario_fin":  "20:00:00",
+        "lat": 41.6068,
+        "lon": 2.2879
+    },
+    {
+        "tienda_id":  "9100291002",
+        "turno":  1,
+        "nombre":  "CELLER DEL FERRER",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "0:00:00",
+        "lat": 41.6145,
+        "lon": 2.2838
+    },
+    {
+        "tienda_id":  "9100296409",
+        "turno":  1,
+        "nombre":  "BAR CULIBLANCO - CAMPO FUTBOL ATLET",
+        "horario_inicio":  "9:00:00",
+        "horario_fin":  "11:30:00",
+        "lat": 41.6106,
+        "lon": 2.2832
+    },
+    {
+        "tienda_id":  "9100298616",
+        "turno":  1,
+        "nombre":  "BAR STARS",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "0:00:00",
+        "lat": 41.6058,
+        "lon": 2.2906
+    },
+    {
+        "tienda_id":  "9100300117",
+        "turno":  1,
+        "nombre":  "RESTAURANT ROCA VELL",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "0:00:00",
+        "lat": 41.6122,
+        "lon": 2.3340
+    },
+    {
+        "tienda_id":  "9100309566",
+        "turno":  1,
+        "nombre":  "restaurant gust d'asia",
+        "horario_inicio":  "11:30:00",
+        "horario_fin":  "13:00:00",
+        "lat": 41.6079,
+        "lon": 2.2920
+    },
+    {
+        "tienda_id":  "9100326765",
+        "turno":  1,
+        "nombre":  "PAQUI FORN DE PA",
+        "horario_inicio":  "7:00:00",
+        "horario_fin":  "14:00:00",
+        "lat": 41.6043,
+        "lon": 2.2865
+    },
+    {
+        "tienda_id":  "9100331748",
+        "turno":  1,
+        "nombre":  "CAFETERIA PASTELERIA CALDERON",
+        "horario_inicio":  "7:00:00",
+        "horario_fin":  "13:00:00",
+        "lat": 41.6096,
+        "lon": 2.2887
+    },
+    {
+        "tienda_id":  "9100334970",
+        "turno":  1,
+        "nombre":  "KALIU",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "0:00:00",
+        "lat": 41.6067,
+        "lon": 2.2853
+    },
+    {
+        "tienda_id":  "9100341135",
+        "turno":  1,
+        "nombre":  "ATARASII",
+        "horario_inicio":  "11:30:00",
+        "horario_fin":  "16:00:00",
+        "lat": 41.6082,
+        "lon": 2.2945
+    },
+    {
+        "tienda_id":  "9100342696",
+        "turno":  1,
+        "nombre":  "baranur",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "0:00:00",
+        "lat": 41.6073,
+        "lon": 2.2899
+    },
+    {
+        "tienda_id":  "9100350049",
+        "turno":  1,
+        "nombre":  "BAR LA PETRA II",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "0:00:00",
+        "lat": 41.6059,
+        "lon": 2.2916
+    },
+    {
+        "tienda_id":  "9100364948",
+        "turno":  1,
+        "nombre":  "MAPS",
+        "horario_inicio":  "10:30:00",
+        "horario_fin":  "20:00:00",
+        "lat": 41.6104,
+        "lon": 2.2860
+    },
+    {
+        "tienda_id":  "9100366736",
+        "turno":  1,
+        "nombre":  "BAR LAS PALMERAS",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "0:00:00",
+        "lat": 41.6074,
+        "lon": 2.2832
+    },
+    {
+        "tienda_id":  "9100366737",
+        "turno":  1,
+        "nombre":  "RESTAURANTE AVENIDA ( PARETS )",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "0:00:00",
+        "lat": 41.5665,
+        "lon": 2.2340
+    },
+    {
+        "tienda_id":  "9100373488",
+        "turno":  1,
+        "nombre":  "PIZZA VALLES",
+        "horario_inicio":  "9:00:00",
+        "horario_fin":  "9:15:00",
+        "lat": 41.6087,
+        "lon": 2.2904
+    },
+    {
+        "tienda_id":  "9100373489",
+        "turno":  1,
+        "nombre":  "CAMP DE TIR",
+        "horario_inicio":  "9:00:00",
+        "horario_fin":  "12:00:00",
+        "lat": 41.6140,
+        "lon": 2.2810
+    },
+    {
+        "tienda_id":  "9100373624",
+        "turno":  1,
+        "nombre":  "restaurant gust d'asia",
+        "horario_inicio":  "11:30:00",
+        "horario_fin":  "13:00:00",
+        "lat": 41.6081,
+        "lon": 2.2921
+    },
+    {
+        "tienda_id":  "9100381733",
+        "turno":  1,
+        "nombre":  "GELATO DI FABIO",
+        "horario_inicio":  "8:00:00",
+        "horario_fin":  "13:00:00",
+        "lat": 41.6071,
+        "lon": 2.2875
+    },
+    {
+        "tienda_id":  "9100381913",
+        "turno":  1,
+        "nombre":  "LA ROCA VILLAGE RTE PASARELA (GVC)",
+        "horario_inicio":  "10:00:00",
+        "horario_fin":  "13:00:00",
+        "lat": 41.6128,
+        "lon": 2.3328
+    },
+    {
+        "tienda_id":  "9100386692",
+        "turno":  2,
+        "nombre":  "EL JARDIN DEL EDEN",
+        "horario_inicio":  "16:30:00",
+        "horario_fin":  "19:00:00",
+        "lat": 41.6065,
+        "lon": 2.2893
+    },
+    {
+        "tienda_id":  "9100397815",
+        "turno":  1,
+        "nombre":  "CF. MOLLET",
+        "horario_inicio":  "6:45:00",
+        "horario_fin":  "7:15:00",
+        "lat": 41.5348,
+        "lon": 2.2125
+    },
+    {
+        "tienda_id":  "9100398390",
+        "turno":  1,
+        "nombre":  "RACO DE PARETS",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "0:00:00",
+        "lat": 41.5680,
+        "lon": 2.2345
+    },
+    {
+        "tienda_id":  "9100403364",
+        "turno":  1,
+        "nombre":  "GRACIELA PANADERIA-CAFETERIA",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "0:00:00",
+        "lat": 41.5658,
+        "lon": 2.2362
+    },
+    {
+        "tienda_id":  "9100403752",
+        "turno":  1,
+        "nombre":  "VIKEL'S PARETS",
+        "horario_inicio":  "8:00:00",
+        "horario_fin":  "14:00:00",
+        "lat": 41.5670,
+        "lon": 2.2372
+    },
+    {
+        "tienda_id":  "9100404927",
+        "turno":  1,
+        "nombre":  "BAR RESTAURANTE NACHA",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "0:00:00",
+        "lat": 41.6091,
+        "lon": 2.2868
+    },
+    {
+        "tienda_id":  "9100405022",
+        "turno":  1,
+        "nombre":  "NAVU GRANOLLERS",
+        "horario_inicio":  "10:00:00",
+        "horario_fin":  "13:00:00",
+        "lat": 41.6073,
+        "lon": 2.2910
+    },
+    {
+        "tienda_id":  "9100412948",
+        "turno":  1,
+        "nombre":  "cultural can rovira",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "0:00:00",
+        "lat": 41.6100,
+        "lon": 2.2935
+    },
+    {
+        "tienda_id":  "9100415580",
+        "turno":  1,
+        "nombre":  "BAR STREET FOODLE (JOAN PRIM)",
+        "horario_inicio":  "11:30:00",
+        "horario_fin":  "13:30:00",
+        "lat": 41.6085,
+        "lon": 2.2843
+    },
+    {
+        "tienda_id":  "9100419295",
+        "turno":  1,
+        "nombre":  "BAR NUNU",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "0:00:00",
+        "lat": 41.6056,
+        "lon": 2.2895
+    },
+    {
+        "tienda_id":  "9100420608",
+        "turno":  1,
+        "nombre":  "BAR LA SALA",
+        "horario_inicio":  "6:30:00",
+        "horario_fin":  "8:30:30",
+        "lat": 41.6112,
+        "lon": 2.2917
+    },
+    {
+        "tienda_id":  "9100424060",
+        "turno":  1,
+        "nombre":  "BAR GRANJA VINZIA",
+        "horario_inicio":  "7:30:00",
+        "horario_fin":  "12:30:00",
+        "lat": 41.6148,
+        "lon": 2.3018
+    },
+    {
+        "tienda_id":  "9100442788",
+        "turno":  1,
+        "nombre":  "COROMINES COFFEE & BAKERY",
+        "horario_inicio":  "8:00:00",
+        "horario_fin":  "13:00:00",
+        "lat": 41.6078,
+        "lon": 2.2877
+    },
+    {
+        "tienda_id":  "9100442923",
+        "turno":  1,
+        "nombre":  "DALHIA PASTISSERIA",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "0:00:00",
+        "lat": 41.6065,
+        "lon": 2.2901
+    },
+    {
+        "tienda_id":  "9100445846",
+        "turno":  1,
+        "nombre":  "CHEESE BUCKS",
+        "horario_inicio":  "12:30:00",
+        "horario_fin":  "15:00:00",
+        "lat": 41.6092,
+        "lon": 2.2860
+    },
+    {
+        "tienda_id":  "9100449523",
+        "turno":  1,
+        "nombre":  "KISEMA BAR CERVECERIA",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "0:00:00",
+        "lat": 41.6070,
+        "lon": 2.2924
+    },
+    {
+        "tienda_id":  "9100453074",
+        "turno":  1,
+        "nombre":  "CAN GALLINA",
+        "horario_inicio":  "10:00:00",
+        "horario_fin":  "12:00:00",
+        "lat": 41.6138,
+        "lon": 2.2975
+    },
+    {
+        "tienda_id":  "9100466534",
+        "turno":  1,
+        "nombre":  "ROSTISSERIA LLIÇÀ",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "0:00:00",
+        "lat": 41.5895,
+        "lon": 2.1812
+    },
+    {
+        "tienda_id":  "9100468142",
+        "turno":  1,
+        "nombre":  "Marlau Rostisseria",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "0:00:00",
+        "lat": 41.6063,
+        "lon": 2.2885
+    },
+    {
+        "tienda_id":  "9100479079",
+        "turno":  1,
+        "nombre":  "RESTAURANTE EL SPOT",
+        "horario_inicio":  "8:00:00",
+        "horario_fin":  "16:00:00",
+        "lat": 41.6098,
+        "lon": 2.2898
+    },
+    {
+        "tienda_id":  "9100480482",
+        "turno":  1,
+        "nombre":  "BAR MILANA BRASERIA",
+        "horario_inicio":  "9:00:00",
+        "horario_fin":  "18:00:00",
+        "lat": 41.6079,
+        "lon": 2.2868
+    },
+    {
+        "tienda_id":  "9100484329",
+        "turno":  1,
+        "nombre":  "RESTAURANTE MASIA PALOU",
+        "horario_inicio":  "7:30:00",
+        "horario_fin":  "12:00:00",
+        "lat": 41.6132,
+        "lon": 2.2968
+    },
+    {
+        "tienda_id":  "9100486030",
+        "turno":  1,
+        "nombre":  "CAMPO FUTBOL PARETS",
+        "horario_inicio":  "7:00:00",
+        "horario_fin":  "10:00:00",
+        "lat": 41.5685,
+        "lon": 2.2330
+    },
+    {
+        "tienda_id":  "9100489640",
+        "turno":  1,
+        "nombre":  "BAR CA LA CISCA",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "0:00:00",
+        "lat": 41.6058,
+        "lon": 2.2872
+    },
+    {
+        "tienda_id":  "9100492349",
+        "turno":  1,
+        "nombre":  "ROSTISSERIA LA ROTONDA",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "0:00:00",
+        "lat": 41.6089,
+        "lon": 2.2892
+    },
+    {
+        "tienda_id":  "9100492605",
+        "turno":  1,
+        "nombre":  "ALEX DONNER KEBAB",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "0:00:00",
+        "lat": 41.6073,
+        "lon": 2.2915
+    },
+    {
+        "tienda_id":  "9100493598",
+        "turno":  1,
+        "nombre":  "RESTAURANT LA SALUT",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "0:00:00",
+        "lat": 41.6052,
+        "lon": 2.2857
+    },
+    {
+        "tienda_id":  "9100494087",
+        "turno":  1,
+        "nombre":  "SEVEN DAYS RAMBLA NOVA",
+        "horario_inicio":  "9:00:00",
+        "horario_fin":  "21:00:00",
+        "lat": 41.6082,
+        "lon": 2.2885
+    },
+    {
+        "tienda_id":  "9100497829",
+        "turno":  1,
+        "nombre":  "BAR LOS ARCES",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "0:00:00",
+        "lat": 41.6103,
+        "lon": 2.2847
+    },
+    {
+        "tienda_id":  "9100503002",
+        "turno":  1,
+        "nombre":  "LA VERMOOD",
+        "horario_inicio":  "10:30:00",
+        "horario_fin":  "16:00:00",
+        "lat": 41.6069,
+        "lon": 2.2897
+    },
+    {
+        "tienda_id":  "9100503205",
+        "turno":  1,
+        "nombre":  "BAR FRAYMAN",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "0:00:00",
+        "lat": 41.6094,
+        "lon": 2.2912
+    },
+    {
+        "tienda_id":  "9100503664",
+        "turno":  1,
+        "nombre":  "BAR CAFETERIA LLIÇÀ D'AMUNT",
+        "horario_inicio":  "11:00:00",
+        "horario_fin":  "15:00:00",
+        "lat": 41.5888,
+        "lon": 2.1802
+    },
+    {
+        "tienda_id":  "9100507051",
+        "turno":  2,
+        "nombre":  "CLUB RUGBY SPARTANS GRANOLLERS",
+        "horario_inicio":  "17:00:00",
+        "horario_fin":  "21:00:00",
+        "lat": 41.6120,
+        "lon": 2.2820
+    },
+    {
+        "tienda_id":  "9100511992",
+        "turno":  1,
+        "nombre":  "LA TREMENDA",
+        "horario_inicio":  "10:00:00",
+        "horario_fin":  "14:00:00",
+        "lat": 41.6061,
+        "lon": 2.2898
+    },
+    {
+        "tienda_id":  "9100512193",
+        "turno":  1,
+        "nombre":  "SEVEN DAYS SUPER (ESTACIÓ)",
+        "horario_inicio":  "9:00:00",
+        "horario_fin":  "21:00:00",
+        "lat": 41.6078,
+        "lon": 2.2855
+    },
+    {
+        "tienda_id":  "9100513397",
+        "turno":  1,
+        "nombre":  "BAR LA VERMUTERIA",
+        "horario_inicio":  "11:00:00",
+        "horario_fin":  "16:00:00",
+        "lat": 41.6086,
+        "lon": 2.2932
+    },
+    {
+        "tienda_id":  "9100517443",
+        "turno":  1,
+        "nombre":  "CAFETERIA JALEY",
+        "horario_inicio":  "11:00:00",
+        "horario_fin":  "12:30:00",
+        "lat": 41.6070,
+        "lon": 2.2870
+    },
+    {
+        "tienda_id":  "9100519944",
+        "turno":  1,
+        "nombre":  "RESTAURANTE SUSHIGAWA",
+        "horario_inicio":  "12:00:00",
+        "horario_fin":  "16:00:00",
+        "lat": 41.6095,
+        "lon": 2.2886
+    },
+    {
+        "tienda_id":  "9100520929",
+        "turno":  1,
+        "nombre":  "BAR GUILLERMO",
+        "horario_inicio":  "13:00:00",
+        "horario_fin":  "13:30:00",
+        "lat": 41.6060,
+        "lon": 2.2912
+    },
+    {
+        "tienda_id":  "9100521678",
+        "turno":  1,
+        "nombre":  "PAPUA COLL DE LA MANYA",
+        "horario_inicio":  "6:00:00",
+        "horario_fin":  "11:00:00",
+        "lat": 41.6230,
+        "lon": 2.3180
+    },
+    {
+        "tienda_id":  "9100521964",
+        "turno":  1,
+        "nombre":  "A&H BEER ISTANBUL KEBAB",
+        "horario_inicio":  "12:00:00",
+        "horario_fin":  "20:00:00",
+        "lat": 41.6075,
+        "lon": 2.2908
+    },
+    {
+        "tienda_id":  "9100523980",
+        "turno":  1,
+        "nombre":  "CONFIDENCIAL",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "0:00:00",
+        "lat": 41.6084,
+        "lon": 2.2880
+    },
+    {
+        "tienda_id":  "9100526891",
+        "turno":  1,
+        "nombre":  "ALMANSA BAR",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "0:00:00",
+        "lat": 41.6067,
+        "lon": 2.2852
+    },
+    {
+        "tienda_id":  "9100528985",
+        "turno":  1,
+        "nombre":  "SALTING GRANOLLERS",
+        "horario_inicio":  "11:00:00",
+        "horario_fin":  "14:00:00",
+        "lat": 41.6092,
+        "lon": 2.2897
+    },
+    {
+        "tienda_id":  "9100530920",
+        "turno":  1,
+        "nombre":  "VILAMARIA GASTROBAR",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "0:00:00",
+        "lat": 41.6076,
+        "lon": 2.2878
+    },
+    {
+        "tienda_id":  "9100535566",
+        "turno":  1,
+        "nombre":  "las peñas",
+        "horario_inicio":  "11:30:00",
+        "horario_fin":  "18:00:00",
+        "lat": 41.6055,
+        "lon": 2.2868
+    },
+    {
+        "tienda_id":  "9100537107",
+        "turno":  1,
+        "nombre":  "GENSO BY IZAKAYA",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "0:00:00",
+        "lat": 41.6101,
+        "lon": 2.2921
+    },
+    {
+        "tienda_id":  "9100542069",
+        "turno":  1,
+        "nombre":  "BAR BISHOP",
+        "horario_inicio":  "12:00:00",
+        "horario_fin":  "12:30:00",
+        "lat": 41.6074,
+        "lon": 2.2905
+    },
+    {
+        "tienda_id":  "9100545339",
+        "turno":  1,
+        "nombre":  "BAR TAPAS EL ESCONDITE",
+        "horario_inicio":  "11:30:00",
+        "horario_fin":  "17:00:00",
+        "lat": 41.6087,
+        "lon": 2.2857
+    },
+    {
+        "tienda_id":  "9100545628",
+        "turno":  1,
+        "nombre":  "PITAPES BERENGUER",
+        "horario_inicio":  "11:30:00",
+        "horario_fin":  "13:00:00",
+        "lat": 41.6081,
+        "lon": 2.2912
+    },
+    {
+        "tienda_id":  "9100546081",
+        "turno":  1,
+        "nombre":  "ESPAI GASTROBAR",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "0:00:00",
+        "lat": 41.6064,
+        "lon": 2.2883
+    },
+    {
+        "tienda_id":  "9100547290",
+        "turno":  1,
+        "nombre":  "BAR SERRA LLIÇA",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "0:00:00",
+        "lat": 41.5902,
+        "lon": 2.1815
+    },
+    {
+        "tienda_id":  "9100551431",
+        "turno":  1,
+        "nombre":  "BAR CENTRE VALLES",
+        "horario_inicio":  "8:00:00",
+        "horario_fin":  "12:30:00",
+        "lat": 41.6090,
+        "lon": 2.2870
+    },
+    {
+        "tienda_id":  "9100553092",
+        "turno":  1,
+        "nombre":  "GARDEN PIZZA (GRANOLLERS)",
+        "horario_inicio":  "10:00:00",
+        "horario_fin":  "13:00:00",
+        "lat": 41.6078,
+        "lon": 2.2895
+    },
+    {
+        "tienda_id":  "9100558674",
+        "turno":  1,
+        "nombre":  "BAR RESTAURANT ALMANSA",
+        "horario_inicio":  "9:30:00",
+        "horario_fin":  "22:00:00",
+        "lat": 41.6068,
+        "lon": 2.2907
+    },
+    {
+        "tienda_id":  "9100559085",
+        "turno":  2,
+        "nombre":  "CAMP FUTBOL MARTORELLES (BAR)",
+        "horario_inicio":  "17:00:00",
+        "horario_fin":  "21:00:00",
+        "lat": 41.5558,
+        "lon": 2.2870
+    },
+    {
+        "tienda_id":  "9100559291",
+        "turno":  1,
+        "nombre":  "INDOORWALL GRANOLLERS",
+        "horario_inicio":  "11:00:00",
+        "horario_fin":  "21:00:00",
+        "lat": 41.6115,
+        "lon": 2.2958
+    },
+    {
+        "tienda_id":  "9100559590",
+        "turno":  1,
+        "nombre":  "CA LA SABINA",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "0:00:00",
+        "lat": 41.6059,
+        "lon": 2.2885
+    },
+    {
+        "tienda_id":  "9100560544",
+        "turno":  1,
+        "nombre":  "CAFETERIA LUISIANA",
+        "horario_inicio":  "7:00:00",
+        "horario_fin":  "13:00:00",
+        "lat": 41.6098,
+        "lon": 2.2876
+    },
+    {
+        "tienda_id":  "9100563161",
+        "turno":  1,
+        "nombre":  "CAFE BAR 83",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "0:00:00",
+        "lat": 41.6072,
+        "lon": 2.2893
+    },
+    {
+        "tienda_id":  "9100563722",
+        "turno":  1,
+        "nombre":  "BAR LA CUCA",
+        "horario_inicio":  "12:00:00",
+        "horario_fin":  "12:30:00",
+        "lat": 41.6083,
+        "lon": 2.2862
+    },
+    {
+        "tienda_id":  "9100565225",
+        "turno":  1,
+        "nombre":  "PISCINAS LES CREMADES",
+        "horario_inicio":  "7:30:00",
+        "horario_fin":  "10:00:00",
+        "lat": 41.6140,
+        "lon": 2.2892
+    },
+    {
+        "tienda_id":  "9100565630",
+        "turno":  1,
+        "nombre":  "BAR SUPABOYS",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "0:00:00",
+        "lat": 41.6057,
+        "lon": 2.2902
+    },
+    {
+        "tienda_id":  "9100566100",
+        "turno":  1,
+        "nombre":  "OH LA LA",
+        "horario_inicio":  "8:00:00",
+        "horario_fin":  "16:30:38",
+        "lat": 41.6091,
+        "lon": 2.2878
+    },
+    {
+        "tienda_id":  "9100568067",
+        "turno":  1,
+        "nombre":  "SUSHI HE GRANOLLERS",
+        "horario_inicio":  "11:30:00",
+        "horario_fin":  "16:00:00",
+        "lat": 41.6077,
+        "lon": 2.2919
+    },
+    {
+        "tienda_id":  "9100569006",
+        "turno":  1,
+        "nombre":  "PASTISSERIA JOAN",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "0:00:00",
+        "lat": 41.6063,
+        "lon": 2.2869
+    },
+    {
+        "tienda_id":  "9100570635",
+        "turno":  1,
+        "nombre":  "ROYAL HARYANVI INDIAN RESTAURANTE",
+        "horario_inicio":  "12:00:00",
+        "horario_fin":  "22:00:00",
+        "lat": 41.6096,
+        "lon": 2.2905
+    },
+    {
+        "tienda_id":  "9100574514",
+        "turno":  1,
+        "nombre":  "COREFO (BAR)",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "0:00:00",
+        "lat": 41.6070,
+        "lon": 2.2882
+    },
+    {
+        "tienda_id":  "9100579782",
+        "turno":  1,
+        "nombre":  "BAR  EL NOU TUNEL",
+        "horario_inicio":  "0:00:01",
+        "horario_fin":  "0:00:02",
+        "lat": 41.6055,
+        "lon": 2.2925
+    },
+    {
+        "tienda_id":  "9100580344",
+        "turno":  1,
+        "nombre":  "PACK CATALUNYA BAR",
+        "horario_inicio":  "10:30:00",
+        "horario_fin":  "16:00:00",
+        "lat": 41.6095,
+        "lon": 2.2840
+    },
+    {
+        "tienda_id":  "9100587829",
+        "turno":  1,
+        "nombre":  "BAR ZHOU",
+        "horario_inicio":  "9:30:00",
+        "horario_fin":  "13:00:00",
+        "lat": 41.6080,
+        "lon": 2.2872
+    },
+    {
+        "tienda_id":  "9100591127",
+        "turno":  1,
+        "nombre":  "MING BAR RESTAURANTE",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "0:00:00",
+        "lat": 41.6065,
+        "lon": 2.2895
+    },
+    {
+        "tienda_id":  "9100601980",
+        "turno":  1,
+        "nombre":  "MODERN FOOD",
+        "horario_inicio":  "10:30:00",
+        "horario_fin":  "16:00:00",
+        "lat": 41.6103,
+        "lon": 2.2913
+    },
+    {
+        "tienda_id":  "9100615213",
+        "turno":  1,
+        "nombre":  "CLUB ESPORTIU LLIÇA D'AMUNT",
+        "horario_inicio":  "7:00:00",
+        "horario_fin":  "8:15:00",
+        "lat": 41.5898,
+        "lon": 2.1820
+    },
+    {
+        "tienda_id":  "9100620847",
+        "turno":  1,
+        "nombre":  "CAN GALLINA GASTROBAR",
+        "horario_inicio":  "10:00:00",
+        "horario_fin":  "12:00:00",
+        "lat": 41.6138,
+        "lon": 2.2978
+    },
+    {
+        "tienda_id":  "9100621389",
+        "turno":  1,
+        "nombre":  "BAR LA CANTINA",
+        "horario_inicio":  "7:00:00",
+        "horario_fin":  "10:00:00",
+        "lat": 41.6075,
+        "lon": 2.2865
+    },
+    {
+        "tienda_id":  "9100629126",
+        "turno":  1,
+        "nombre":  "DONNER POMPEU FABRA",
+        "horario_inicio":  "13:00:00",
+        "horario_fin":  "20:00:00",
+        "lat": 41.6067,
+        "lon": 2.2893
+    },
+    {
+        "tienda_id":  "9100629788",
+        "turno":  1,
+        "nombre":  "BAR ALEBRIJES",
+        "horario_inicio":  "13:15:00",
+        "horario_fin":  "16:00:00",
+        "lat": 41.6082,
+        "lon": 2.2930
+    },
+    {
+        "tienda_id":  "9100640315",
+        "turno":  1,
+        "nombre":  "CHAMPANILLO CARDEDEU",
+        "horario_inicio":  "6:00:00",
+        "horario_fin":  "18:00:00",
+        "lat": 41.6422,
+        "lon": 2.3585
+    },
+    {
+        "tienda_id":  "9100642384",
+        "turno":  1,
+        "nombre":  "KANSAS",
+        "horario_inicio":  "9:00:00",
+        "horario_fin":  "13:00:00",
+        "lat": 41.6089,
+        "lon": 2.2848
+    },
+    {
+        "tienda_id":  "9100643487",
+        "turno":  1,
+        "nombre":  "BAR JALEY (PARETS)",
+        "horario_inicio":  "7:00:00",
+        "horario_fin":  "13:00:00",
+        "lat": 41.5675,
+        "lon": 2.2348
+    },
+    {
+        "tienda_id":  "9100646865",
+        "turno":  1,
+        "nombre":  "IBERICUS TERRASSA",
+        "horario_inicio":  "8:00:00",
+        "horario_fin":  "13:00:00",
+        "lat": 41.6072,
+        "lon": 2.2942
+    },
+    {
+        "tienda_id":  "9100646871",
+        "turno":  1,
+        "nombre":  "IBERICUS CENTRAL",
+        "horario_inicio":  "8:00:00",
+        "horario_fin":  "13:00:00",
+        "lat": 41.6085,
+        "lon": 2.2890
+    },
+    {
+        "tienda_id":  "9100655372",
+        "turno":  1,
+        "nombre":  "PUNT DE TROBADA",
+        "horario_inicio":  "11:30:00",
+        "horario_fin":  "13:00:00",
+        "lat": 41.6078,
+        "lon": 2.2906
+    },
+    {
+        "tienda_id":  "9100664901",
+        "turno":  1,
+        "nombre":  "CANTINA IES VIC ST TOMAS",
+        "horario_inicio":  "9:00:00",
+        "horario_fin":  "10:30:00",
+        "lat": 41.6060,
+        "lon": 2.2862
+    },
+    {
+        "tienda_id":  "9100667988",
+        "turno":  1,
+        "nombre":  "Bar Linares",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "18:00:00",
+        "lat": 41.6094,
+        "lon": 2.2856
+    },
+    {
+        "tienda_id":  "9100668032",
+        "turno":  1,
+        "nombre":  "BAR EPORA 2",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "18:00:00",
+        "lat": 41.6071,
+        "lon": 2.2918
+    },
+    {
+        "tienda_id":  "9100668155",
+        "turno":  1,
+        "nombre":  "BAR CATALUNYA 9",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "18:00:00",
+        "lat": 41.6088,
+        "lon": 2.2873
+    },
+    {
+        "tienda_id":  "9100668322",
+        "turno":  1,
+        "nombre":  "La Pruna & Friends",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "18:00:00",
+        "lat": 41.6064,
+        "lon": 2.2895
+    },
+    {
+        "tienda_id":  "9100668551",
+        "turno":  1,
+        "nombre":  "C D MONTORNES DEL VALLES",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "18:00:00",
+        "lat": 41.5544,
+        "lon": 2.2697
+    },
+    {
+        "tienda_id":  "9100669500",
+        "turno":  1,
+        "nombre":  "Bar Restaurant Tres Roses",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "18:00:00",
+        "lat": 41.6075,
+        "lon": 2.2860
+    },
+    {
+        "tienda_id":  "9100669529",
+        "turno":  1,
+        "nombre":  "Cafè Tast Bar",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "18:00:00",
+        "lat": 41.6092,
+        "lon": 2.2883
+    },
+    {
+        "tienda_id":  "9100669904",
+        "turno":  1,
+        "nombre":  "El Racó d'en Joan",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "18:00:00",
+        "lat": 41.6066,
+        "lon": 2.2912
+    },
+    {
+        "tienda_id":  "9100670399",
+        "turno":  1,
+        "nombre":  "755_SUBLIME",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "18:00:00",
+        "lat": 41.6062,
+        "lon": 2.2910
+    },
+    {
+        "tienda_id":  "9100670427",
+        "turno":  1,
+        "nombre":  "La Tasca",
+        "horario_inicio":  "12:30:00",
+        "horario_fin":  "14:30:00",
+        "lat": 41.5370,
+        "lon": 2.2140
+    },
+    {
+        "tienda_id":  "9100670561",
+        "turno":  1,
+        "nombre":  "CLUB FUTBOL MOLLET",
+        "horario_inicio":  "11:00:00",
+        "horario_fin":  "13:00:00",
+        "lat": 41.5360,
+        "lon": 2.2145
+    },
+    {
+        "tienda_id":  "9100671265",
+        "turno":  1,
+        "nombre":  "RESTAURANT GUST D'ASIA",
+        "horario_inicio":  "6:00:00",
+        "horario_fin":  "13:30:00",
+        "lat": 41.6079,
+        "lon": 2.2920
+    },
+    {
+        "tienda_id":  "9100671524",
+        "turno":  1,
+        "nombre":  "L´APLEC",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "18:00:00",
+        "lat": 41.6108,
+        "lon": 2.2860
+    },
+    {
+        "tienda_id":  "9100679516",
+        "turno":  1,
+        "nombre":  "Asso. Gent Gran Llissa de Munt",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "15:00:00",
+        "lat": 41.5905,
+        "lon": 2.1808
+    },
+    {
+        "tienda_id":  "9100680026",
+        "turno":  1,
+        "nombre":  "EL GLAM MOMENTS",
+        "horario_inicio":  "11:15:00",
+        "horario_fin":  "12:30:00",
+        "lat": 41.6083,
+        "lon": 2.2875
+    },
+    {
+        "tienda_id":  "9100681118",
+        "turno":  1,
+        "nombre":  "SERVIMAS SPORT",
+        "horario_inicio":  "8:00:00",
+        "horario_fin":  "13:00:00",
+        "lat": 41.6097,
+        "lon": 2.2858
+    },
+    {
+        "tienda_id":  "9100682415",
+        "turno":  1,
+        "nombre":  "TSURUTA RAMEN",
+        "horario_inicio":  "12:00:00",
+        "horario_fin":  "16:00:00",
+        "lat": 41.6073,
+        "lon": 2.2903
+    },
+    {
+        "tienda_id":  "9100685148",
+        "turno":  1,
+        "nombre":  "IMPORT EXPORT ALI BABA",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "18:00:00",
+        "lat": 41.6060,
+        "lon": 2.2878
+    },
+    {
+        "tienda_id":  "9100685322",
+        "turno":  1,
+        "nombre":  "DATOTE AL BAGH",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "18:00:00",
+        "lat": 41.6091,
+        "lon": 2.2892
+    },
+    {
+        "tienda_id":  "9100685459",
+        "turno":  1,
+        "nombre":  "L´EMPORDÀ CATERING & EVENTS",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "18:00:00",
+        "lat": 41.6076,
+        "lon": 2.2865
+    },
+    {
+        "tienda_id":  "9100685743",
+        "turno":  1,
+        "nombre":  "SEVEN DAYS VINZIA",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "18:00:00",
+        "lat": 41.6150,
+        "lon": 2.3020
+    },
+    {
+        "tienda_id":  "9100685852",
+        "turno":  1,
+        "nombre":  "VINOUS",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "18:00:00",
+        "lat": 41.6085,
+        "lon": 2.2875
+    },
+    {
+        "tienda_id":  "9100686343",
+        "turno":  1,
+        "nombre":  "Pool",
+        "horario_inicio":  "9:00:00",
+        "horario_fin":  "9:30:00",
+        "lat": 41.6110,
+        "lon": 2.2930
+    },
+    {
+        "tienda_id":  "9100686594",
+        "turno":  1,
+        "nombre":  "IBERICUS TERRASSA",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "18:00:00",
+        "lat": 41.6072,
+        "lon": 2.2942
+    },
+    {
+        "tienda_id":  "9100686742",
+        "turno":  1,
+        "nombre":  "BAR CRISTASOL  (Kebab Esquina)",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "18:00:00",
+        "lat": 41.6057,
+        "lon": 2.2885
+    },
+    {
+        "tienda_id":  "9100687896",
+        "turno":  1,
+        "nombre":  "IBERICUS CENTRAL",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "18:00:00",
+        "lat": 41.6085,
+        "lon": 2.2890
+    },
+    {
+        "tienda_id":  "9100688401",
+        "turno":  1,
+        "nombre":  "BAR VERTICAL",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "18:00:00",
+        "lat": 41.6065,
+        "lon": 2.2870
+    },
+    {
+        "tienda_id":  "9100688634",
+        "turno":  1,
+        "nombre":  "Brown Fox Services",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "18:00:00",
+        "lat": 41.6100,
+        "lon": 2.2905
+    },
+    {
+        "tienda_id":  "9100688668",
+        "turno":  1,
+        "nombre":  "Kisema",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "18:00:00",
+        "lat": 41.6070,
+        "lon": 2.2894
+    },
+    {
+        "tienda_id":  "9100688671",
+        "turno":  1,
+        "nombre":  "CHICO BAR",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "18:00:00",
+        "lat": 41.6078,
+        "lon": 2.2862
+    },
+    {
+        "tienda_id":  "9100691361",
+        "turno":  1,
+        "nombre":  "JUMPING SEA",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "24:00:00",
+        "lat": 41.6063,
+        "lon": 2.2908
+    },
+    {
+        "tienda_id":  "9100692245",
+        "turno":  1,
+        "nombre":  "Bar 20 PA K",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "18:00:00",
+        "lat": 41.6090,
+        "lon": 2.2855
+    },
+    {
+        "tienda_id":  "9100694778",
+        "turno":  1,
+        "nombre":  "CHAMPANILLO CARDEDEU",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "18:00:00",
+        "lat": 41.6418,
+        "lon": 2.3580
+    },
+    {
+        "tienda_id":  "9100694798",
+        "turno":  1,
+        "nombre":  "BAR CUBO VENTALLO",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "18:00:00",
+        "lat": 41.6050,
+        "lon": 2.2965
+    },
+    {
+        "tienda_id":  "9100695039",
+        "turno":  1,
+        "nombre":  "ENERGY BAR  & RESTAURANTE",
+        "horario_inicio":  "8:45:00",
+        "horario_fin":  "18:00:00",
+        "lat": 41.6087,
+        "lon": 2.2880
+    },
+    {
+        "tienda_id":  "9100695182",
+        "turno":  1,
+        "nombre":  "XURRERIA CAFETERIA GARBER",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "18:00:00",
+        "lat": 41.6072,
+        "lon": 2.2898
+    },
+    {
+        "tienda_id":  "9100695278",
+        "turno":  1,
+        "nombre":  "EL REFUGI D´EN CUCH",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "18:00:00",
+        "lat": 41.6600,
+        "lon": 2.3500
+    },
+    {
+        "tienda_id":  "9100695810",
+        "turno":  1,
+        "nombre":  "NORMAD SANT QUIRZE",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "18:00:00",
+        "lat": 41.5306,
+        "lon": 2.0875
+    },
+    {
+        "tienda_id":  "9100695813",
+        "turno":  1,
+        "nombre":  "Circuit de Catalunya",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "18:00:00",
+        "lat": 41.5706,
+        "lon": 2.2611
+    },
+    {
+        "tienda_id":  "9100698323",
+        "turno":  1,
+        "nombre":  "SEGUNDO PLATO",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "18:00:00",
+        "lat": 41.6069,
+        "lon": 2.2897
+    },
+    {
+        "tienda_id":  "9100698329",
+        "turno":  1,
+        "nombre":  "MESON 20 P KA",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "18:00:00",
+        "lat": 41.6093,
+        "lon": 2.2870
+    },
+    {
+        "tienda_id":  "9100698420",
+        "turno":  1,
+        "nombre":  "VIKELS",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "18:00:00",
+        "lat": 41.5668,
+        "lon": 2.2355
+    },
+    {
+        "tienda_id":  "9100698575",
+        "turno":  1,
+        "nombre":  "Fundació Esclerosi Múltiple",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "18:00:00",
+        "lat": 41.6080,
+        "lon": 2.2888
+    },
+    {
+        "tienda_id":  "9100698744",
+        "turno":  1,
+        "nombre":  "BAR PRUNERES",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "18:00:00",
+        "lat": 41.6105,
+        "lon": 2.2842
+    },
+    {
+        "tienda_id":  "9100698748",
+        "turno":  1,
+        "nombre":  "Bar la lluna",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "18:00:00",
+        "lat": 41.6058,
+        "lon": 2.2903
+    },
+    {
+        "tienda_id":  "9100698912",
+        "turno":  1,
+        "nombre":  "EL SAZON DE ROSARIO",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "18:00:00",
+        "lat": 41.6089,
+        "lon": 2.2862
+    },
+    {
+        "tienda_id":  "9100699271",
+        "turno":  1,
+        "nombre":  "RESTAURANTE MELARA",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "18:00:00",
+        "lat": 41.6073,
+        "lon": 2.2919
+    },
+    {
+        "tienda_id":  "9100699710",
+        "turno":  1,
+        "nombre":  "CAN BIN RESTAURANTE",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "18:00:00",
+        "lat": 41.6098,
+        "lon": 2.2878
+    },
+    {
+        "tienda_id":  "9100699983",
+        "turno":  1,
+        "nombre":  "bar cafeteria yaki",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "18:00:00",
+        "lat": 41.6063,
+        "lon": 2.2892
+    },
+    {
+        "tienda_id":  "9100700179",
+        "turno":  1,
+        "nombre":  "BAR CAFETERIA ATLAS",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "18:00:00",
+        "lat": 41.6088,
+        "lon": 2.2854
+    },
+    {
+        "tienda_id":  "9100700301",
+        "turno":  1,
+        "nombre":  "TROBADA",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "18:00:00",
+        "lat": 41.6075,
+        "lon": 2.2885
+    },
+    {
+        "tienda_id":  "9100700812",
+        "turno":  1,
+        "nombre":  "SUPER NABILA PARETS",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "18:00:00",
+        "lat": 41.5672,
+        "lon": 2.2360
+    },
+    {
+        "tienda_id":  "9100700874",
+        "turno":  1,
+        "nombre":  "DÉJÀ VU",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "18:00:00",
+        "lat": 41.6083,
+        "lon": 2.2895
+    },
+    {
+        "tienda_id":  "9100701008",
+        "turno":  1,
+        "nombre":  "OMNIUM CULTURAL",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "18:00:00",
+        "lat": 41.6065,
+        "lon": 2.2871
+    },
+    {
+        "tienda_id":  "9100701103",
+        "turno":  1,
+        "nombre":  "UDON GRANOLLERS",
+        "horario_inicio":  "9:00:00",
+        "horario_fin":  "12:00:00",
+        "lat": 41.6071,
+        "lon": 2.2940
+    },
+    {
+        "tienda_id":  "9100701166",
+        "turno":  1,
+        "nombre":  "NOVA PALMERA",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "18:00:00",
+        "lat": 41.6097,
+        "lon": 2.2910
+    },
+    {
+        "tienda_id":  "9100701217",
+        "turno":  1,
+        "nombre":  "BACROM",
+        "horario_inicio":  "6:00:00",
+        "horario_fin":  "18:00:00",
+        "lat": 41.6060,
+        "lon": 2.2880
+    },
+    {
+        "tienda_id":  "9100701291",
+        "turno":  1,
+        "nombre":  "BAR BRICOLAJE DEPOT",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "18:00:00",
+        "lat": 41.6155,
+        "lon": 2.2830
+    },
+    {
+        "tienda_id":  "9100701839",
+        "turno":  1,
+        "nombre":  "BAR LAS DELICIAS",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "18:00:00",
+        "lat": 41.6086,
+        "lon": 2.2895
+    },
+    {
+        "tienda_id":  "9100701840",
+        "turno":  1,
+        "nombre":  "HIPER VALLÈS",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "18:00:00",
+        "lat": 41.6105,
+        "lon": 2.2975
+    },
+    {
+        "tienda_id":  "9100702482",
+        "turno":  1,
+        "nombre":  "TAPES GRANOLLERS PICA VINS",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "18:00:00",
+        "lat": 41.6079,
+        "lon": 2.2882
+    },
+    {
+        "tienda_id":  "9100702903",
+        "turno":  1,
+        "nombre":  "CINQUINO",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "18:00:00",
+        "lat": 41.6068,
+        "lon": 2.2907
+    },
+    {
+        "tienda_id":  "9100702913",
+        "turno":  1,
+        "nombre":  "BAR MARIA",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "18:00:00",
+        "lat": 41.6093,
+        "lon": 2.2872
+    },
+    {
+        "tienda_id":  "9100702970",
+        "turno":  1,
+        "nombre":  "KAPHIY BRUNCH",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "18:00:00",
+        "lat": 41.6076,
+        "lon": 2.2898
+    },
+    {
+        "tienda_id":  "9100733214",
+        "turno":  1,
+        "nombre":  "BAR VAGON 66",
+        "horario_inicio":  "0:00:00",
+        "horario_fin":  "0:00:00",
+        "lat": 41.6057,
+        "lon": 2.2875
+    },
+    {
+        "tienda_id":  "9100735762",
+        "turno":  1,
+        "nombre":  "Granollers Indian Restaurante",
+        "horario_inicio":  "12:30:00",
+        "horario_fin":  "16:00:00",
+        "lat": 41.6083,
+        "lon": 2.2902
+    },
+    {
+        "tienda_id":  "9100774895",
+        "turno":  1,
+        "nombre":  "CATERING SPAIN",
+        "horario_inicio":  "9:30:00",
+        "horario_fin":  "14:00:00",
+        "lat": 41.6100,
+        "lon": 2.2918
+    }
+]

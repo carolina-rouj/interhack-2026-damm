@@ -1,34 +1,4 @@
-import math
 from dataclasses import dataclass, field
-
-from backend.models.client import Client
-from backend.models.zone import Depot
-
-
-def haversine_km(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
-    R = 6371.0
-    phi1, phi2 = math.radians(lat1), math.radians(lat2)
-    dphi = math.radians(lat2 - lat1)
-    dlambda = math.radians(lon2 - lon1)
-    a = math.sin(dphi / 2) ** 2 + math.cos(phi1) * math.cos(phi2) * math.sin(dlambda / 2) ** 2
-    return R * 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
-
-
-def avg_speed_kmh(current_time_min: int) -> float:
-    h = current_time_min / 60
-    if 7 <= h < 9:
-        return 15.0   # morning rush
-    if 9 <= h < 13:
-        return 25.0   # normal
-    if 13 <= h < 15:
-        return 20.0   # lunch
-    return 30.0
-
-
-def travel_time_min(lat1, lon1, lat2, lon2, current_time_min: int) -> float:
-    dist = haversine_km(lat1, lon1, lat2, lon2)
-    speed = avg_speed_kmh(current_time_min)
-    return (dist / speed) * 60
 
 
 @dataclass
@@ -72,103 +42,116 @@ class RouteResult:
         }
 
 
-def _route_distance(stops: list, depot: Depot) -> float:
-    if not stops:
+# Matrices are (n+1)×(n+1): index 0 = depot, indices 1..n = clients.
+# dist_matrix[i][j]  → km between node i and node j
+# time_matrix[i][j]  → minutes between node i and node j (from Google Maps)
+
+
+def _route_distance(order: list, dist_matrix: list) -> float:
+    """Total distance depot → order[0] → … → order[-1] → depot."""
+    if not order:
         return 0.0
-    total = haversine_km(depot.lat, depot.lon, stops[0].client.lat, stops[0].client.lon)
-    for i in range(len(stops) - 1):
-        a, b = stops[i].client, stops[i + 1].client
-        total += haversine_km(a.lat, a.lon, b.lat, b.lon)
-    total += haversine_km(stops[-1].client.lat, stops[-1].client.lon, depot.lat, depot.lon)
+    total = dist_matrix[0][order[0]]
+    for i in range(len(order) - 1):
+        total += dist_matrix[order[i]][order[i + 1]]
+    total += dist_matrix[order[-1]][0]
     return total
 
 
-def _simulate_times(client_order: list, depot: Depot, start_min: int = 480) -> list:
-    """Re-simulate arrival/wait/departure times for a given client ordering."""
+def _simulate_times(
+    order: list,
+    clients: list,
+    time_matrix: list,
+    start_min: int = 480,
+) -> list:
     stops = []
-    cur_lat, cur_lon = depot.lat, depot.lon
+    cur_node = 0
     cur_time = start_min
 
-    for client in client_order:
-        tt = travel_time_min(cur_lat, cur_lon, client.lat, client.lon, cur_time)
-        arrival = int(cur_time + tt)
+    for idx in order:
+        client = clients[idx - 1]
+        arrival = int(cur_time + time_matrix[cur_node][idx])
         if arrival > client.time_window.close_min:
-            wait = 0
-            status = "TIME_WINDOW_VIOLATED"
+            wait, status = 0, "TIME_WINDOW_VIOLATED"
         else:
-            wait = max(0, client.time_window.open_min - arrival)
-            status = "OK"
+            wait, status = max(0, client.time_window.open_min - arrival), "OK"
         departure = arrival + wait + client.unload_time_min
         stops.append(RouteStop(client, arrival, wait, departure, status))
-        cur_lat, cur_lon = client.lat, client.lon
+        cur_node = idx
         cur_time = departure
 
     return stops
 
 
-def _time_windows_feasible(client_order: list, depot: Depot, start_min: int = 480) -> bool:
-    stops = _simulate_times(client_order, depot, start_min)
-    return all(s.status == "OK" for s in stops)
+def _feasible(order: list, clients: list, time_matrix: list, start_min: int) -> bool:
+    return all(
+        s.status == "OK"
+        for s in _simulate_times(order, clients, time_matrix, start_min)
+    )
 
 
-def nearest_neighbor(clients: list, depot: Depot, start_min: int = 480) -> list:
-    unvisited = list(clients)
-    ordered = []
-    cur_lat, cur_lon = depot.lat, depot.lon
+def nearest_neighbor(
+    clients: list,
+    dist_matrix: list,
+    time_matrix: list,
+    start_min: int = 480,
+) -> list:
+    unvisited = set(range(1, len(clients) + 1))
+    order = []
+    cur_node = 0
     cur_time = start_min
 
     while unvisited:
-        best = None
-        best_score = float("inf")
+        best_idx, best_score = None, float("inf")
 
-        for client in unvisited:
-            tt = travel_time_min(cur_lat, cur_lon, client.lat, client.lon, cur_time)
-            arrival = cur_time + tt
+        for idx in unvisited:
+            client = clients[idx - 1]
+            arrival = cur_time + time_matrix[cur_node][idx]
             if arrival > client.time_window.close_min:
                 continue
             wait = max(0, client.time_window.open_min - arrival)
-            dist = haversine_km(cur_lat, cur_lon, client.lat, client.lon)
-            priority_weight = {1: 0.5, 2: 1.0, 3: 1.5}[client.priority]
-            score = dist * priority_weight
+            score = dist_matrix[cur_node][idx] * {1: 0.5, 2: 1.0, 3: 1.5}[client.priority]
             if score < best_score:
-                best_score = score
-                best = client
+                best_score, best_idx = score, idx
 
-        if best is None:
-            # No feasible client in time window — pick nearest by priority then distance
-            best = min(
+        if best_idx is None:
+            best_idx = min(
                 unvisited,
-                key=lambda c: (c.priority, haversine_km(cur_lat, cur_lon, c.lat, c.lon)),
+                key=lambda i: (clients[i - 1].priority, dist_matrix[cur_node][i]),
             )
 
-        ordered.append(best)
-        unvisited.remove(best)
-        tt = travel_time_min(cur_lat, cur_lon, best.lat, best.lon, cur_time)
-        arrival = cur_time + tt
-        wait = max(0, best.time_window.open_min - arrival)
-        cur_time = arrival + wait + best.unload_time_min
-        cur_lat, cur_lon = best.lat, best.lon
+        order.append(best_idx)
+        unvisited.remove(best_idx)
+        client = clients[best_idx - 1]
+        arrival = cur_time + time_matrix[cur_node][best_idx]
+        wait = max(0, client.time_window.open_min - arrival)
+        cur_time = arrival + wait + client.unload_time_min
+        cur_node = best_idx
 
-    return ordered
+    return order
 
 
-def two_opt(client_order: list, depot: Depot, start_min: int = 480) -> list:
-    best = list(client_order)
-    best_dist = _route_distance(_simulate_times(best, depot, start_min), depot)
+def two_opt(
+    order: list,
+    clients: list,
+    dist_matrix: list,
+    time_matrix: list,
+    start_min: int = 480,
+) -> list:
+    best = list(order)
+    best_dist = _route_distance(best, dist_matrix)
     improved = True
 
     while improved:
         improved = False
         for i in range(1, len(best) - 1):
             for j in range(i + 1, len(best)):
-                candidate = best[:i] + best[i : j + 1][::-1] + best[j + 1 :]
-                if not _time_windows_feasible(candidate, depot, start_min):
+                candidate = best[:i] + best[i:j + 1][::-1] + best[j + 1:]
+                if not _feasible(candidate, clients, time_matrix, start_min):
                     continue
-                dist = _route_distance(_simulate_times(candidate, depot, start_min), depot)
+                dist = _route_distance(candidate, dist_matrix)
                 if dist < best_dist - 1e-6:
-                    best = candidate
-                    best_dist = dist
-                    improved = True
+                    best, best_dist, improved = candidate, dist, True
 
     return best
 
@@ -190,25 +173,32 @@ def _explain_stop(stop: RouteStop, position: int) -> str:
     return f"Parada {position}: {stop.client.name} — {', '.join(reasons) or 'posición óptima por distancia'}"
 
 
-def optimize_route(route_id: str, clients: list, depot: Depot, start_min: int = 480) -> RouteResult:
+def optimize_route(
+    route_id: str,
+    clients: list,
+    dist_matrix: list,
+    time_matrix: list,
+    start_min: int = 480,
+) -> RouteResult:
+    """
+    dist_matrix and time_matrix must be (n+1)×(n+1) with index 0 = depot.
+    dist_matrix[i][j] in km, time_matrix[i][j] in minutes (from Google Maps).
+    """
     if not clients:
         return RouteResult(route_id=route_id)
 
-    ordered = nearest_neighbor(clients, depot, start_min)
-    ordered = two_opt(ordered, depot, start_min)
+    order = nearest_neighbor(clients, dist_matrix, time_matrix, start_min)
+    order = two_opt(order, clients, dist_matrix, time_matrix, start_min)
 
-    stops = _simulate_times(ordered, depot, start_min)
-    dist = _route_distance(stops, depot)
+    stops = _simulate_times(order, clients, time_matrix, start_min)
+    dist = _route_distance(order, dist_matrix)
     total_time = stops[-1].departure_min - start_min if stops else 0
-    co2 = dist * 0.27
-
-    explanations = [_explain_stop(s, i + 1) for i, s in enumerate(stops)]
 
     return RouteResult(
         route_id=route_id,
         stops=stops,
         total_distance_km=dist,
         total_time_min=total_time,
-        co2_kg=co2,
-        explanations=explanations,
+        co2_kg=round(dist * 0.27, 2),
+        explanations=[_explain_stop(s, i + 1) for i, s in enumerate(stops)],
     )

@@ -1,17 +1,14 @@
-const BASE = '/api'
+const BASE = '';
 
-export async function generateScenario(seed = 42, nClients = 16) {
-  const res = await fetch(`${BASE}/scenario/generate?seed=${seed}&n_clients=${nClients}`)
-  if (!res.ok) throw new Error(await res.text())
-  return res.json()
-}
+export const listZones = () =>
+  fetch(`${BASE}/api/zona/list`).then(r => r.json());
 
-export async function optimizeScenario(scenarioId, startTime = '08:00') {
-  const res = await fetch(`${BASE}/optimize`, {
+export const solve = (zonaId, cajasPorPalet) =>
+  fetch(`${BASE}/api/solve`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ scenario_id: scenarioId, start_time: startTime }),
-  })
-  if (!res.ok) throw new Error(await res.text())
-  return res.json()
-}
+    body: JSON.stringify({ zona_id: zonaId, cajas_por_palet: cajasPorPalet }),
+  }).then(r => {
+    if (!r.ok) throw new Error(`Server error ${r.status}`);
+    return r.json();
+  });

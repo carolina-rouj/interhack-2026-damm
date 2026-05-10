@@ -1,0 +1,47 @@
+{
+  "expo": {
+    "name": "DAMM Smart Truck",
+    "slug": "damm-smart-truck",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/adaptative-icon.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": false,
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#1a1a2e"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "Permite acceder a tu ubicación para la navegación GPS."
+      }
+    },
+    "android": {
+      "package": "com.damm.smarttruck",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#1a1a2e"
+      },
+      "edgeToEdgeEnabled": true,
+      "config": {
+        "googleMaps": {
+          "apiKey": "YOUR_GOOGLE_MAPS_API_KEY"
+        }
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-asset",
+      ["expo-location", {
+        "locationWhenInUsePermission": "Permite acceder a tu ubicación para la navegación GPS."
+      }]
+    ],
+    "extra": {
+      "googleMapsApiKey": "AIzaSyA3MBZ23W--WXMDD9pntNrQh1ctSV_J7Ak"
+    }
+  }
+}
