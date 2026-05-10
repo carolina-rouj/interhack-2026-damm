@@ -123,32 +123,88 @@ def health():
     return {"status": "ok"}
 
 
-# ── terminal probe ────────────────────────────────────────────────────────────
-# Run with:  python3 backend/main.py
+class SolveRequest(BaseModel):
+    zona_id: str
+    cajas_por_palet: int = 60
+    distancia_max: float | None = None
+    usar_google: bool = False
+    output_dir: str = "output/routes"
+
+
+@app.post("/api/solve")
+def solve(req: SolveRequest):
+    """
+    Run the full pipeline (load → zone → route → palletize) and write
+    one JSON file per route to *output_dir*.  Returns the formatted routes.
+    """
+    from backend.pipeline import export_routes_json
+
+    results = export_routes_json(
+        req.zona_id,
+        output_dir=req.output_dir,
+        usar_google=req.usar_google,
+        cajas_por_palet=req.cajas_por_palet,
+        distancia_max=req.distancia_max,
+    )
+    return {
+        "zona_id": req.zona_id,
+        "num_rutas": len(results),
+        "routes": [
+            {"file": str(r["path"]), "route": r["route"]}
+            for r in results
+        ],
+    }
+
+
+# ── terminal entry point ──────────────────────────────────────────────────────
+# Run with:  python3 backend/main.py [zona_id] [--output DIR] [--google]
 
 if __name__ == "__main__":
-    from backend.models.zona import TipoMatriz
+    from backend.pipeline import export_routes_json
 
-    ZONA_ID = "granollers-center-01"
-    data = load_zona(ZONA_ID)
-    zona = data["zona"]
+    import argparse
 
-    print(f"\nZona : {zona.nombre}  ({zona.num_tiendas} tiendas, {zona.demanda_total_cajas} cajas)")
-    print("Cargando matriz de distancias…")
-    tipo = zona.cargar_mejor_matriz()
+    parser = argparse.ArgumentParser(
+        description="Damm Smart Truck — solve a zone and export route JSONs"
+    )
+    parser.add_argument(
+        "zona_id",
+        nargs="?",
+        default="granollers-center-01",
+        help="Zone ID (default: granollers-center-01)",
+    )
+    parser.add_argument(
+        "--output", default="output/routes", metavar="DIR",
+        help="Output directory for route JSON files (default: output/routes)",
+    )
+    parser.add_argument(
+        "--google", action="store_true",
+        help="Use Google Maps Distance Matrix (requires API key)",
+    )
+    args = parser.parse_args()
 
-    unit = "coste 1-10 (Google Maps)" if tipo == TipoMatriz.GOOGLE else "grados Euclídeos (fallback)"
-    print(f"  → {tipo.value}  |  unidades: {unit}\n")
+    print(f"Zone   : {args.zona_id}")
+    print(f"Output : {args.output}")
+    print(f"Google : {'yes' if args.google else 'no (Euclidean fallback)'}")
+    print()
 
-    PALET = 60
-    paradas = zona.agrupar_tiendas(cajas_por_palet=PALET)
+    results = export_routes_json(
+        args.zona_id,
+        output_dir=args.output,
+        usar_google=args.google,
+    )
 
-    sep = "─" * 58
-    print(f"Resultado: {len(paradas)} parada(s)\n{sep}")
-    for p in paradas:
-        total = sum(t.num_cajas_total for t in p.tiendas)
-        print(f"\nParada {p.orden + 1}  [{p.parada_id}]  {total}/{PALET} cajas")
-        for t in p.tiendas:
-            tag = "  ← medoid" if t.tienda_id == p.representante_id else ""
-            print(f"    • {t.nombre:<30} {t.num_cajas_total:3d} cajas{tag}")
-    print(f"\n{sep}\n")
+    print(f"{len(results)} route(s) written:")
+    sep = "─" * 56
+    print(sep)
+    for r in results:
+        route = r["route"]
+        path = r["path"]
+        num_stops = len(route["paradas"])
+        print(
+            f"  {path.name}"
+            f"  |  {route['tipo_camion']}"
+            f"  |  {route['num_palets']} palets"
+            f"  |  {num_stops} paradas"
+        )
+    print(sep)

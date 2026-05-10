@@ -285,7 +285,8 @@ class Zona:
                 script_path=script_path, node_cmd=node_cmd, timeout=timeout
             )
             return TipoMatriz.GOOGLE
-        except Exception:
+        except Exception as exc:
+            print(f"[zona] Google Maps matrix failed ({exc}); falling back to Euclidean.")
             self.generar_matriz(TipoMatriz.EUCLIDEA)
             return TipoMatriz.EUCLIDEA
 
@@ -340,21 +341,25 @@ class Zona:
             seed = min(unvisited)
             unvisited.remove(seed)
 
-            seed_demand = self.tiendas[seed].num_cajas_total
+            seed_store = self.tiendas[seed]
+            seed_demand = seed_store.num_cajas_total
 
             # Forced single stop: store alone exceeds pallet capacity
             if seed_demand > cajas_por_palet:
                 paradas.append(Parada(
                     parada_id=f"{parada_id_prefix}-{counter}",
                     orden=counter,
-                    tiendas=[self.tiendas[seed]],
-                    representante_id=self.tiendas[seed].tienda_id,
+                    tiendas=[seed_store],
+                    representante_id=seed_store.tienda_id,
                 ))
                 counter += 1
                 continue
 
             cluster: list[int] = [seed]
             cluster_demand = seed_demand
+            # Track intersection of all cluster members' time windows
+            cluster_win_open = seed_store.horario_inicio_min
+            cluster_win_close = seed_store.horario_fin_min
 
             # Sort by (distance from seed, index) for determinism
             others = sorted(unvisited, key=lambda j: (m[seed][j], j))
@@ -362,12 +367,19 @@ class Zona:
             for j in others:
                 if distancia_max is not None and m[seed][j] > distancia_max:
                     break  # all subsequent are farther — stop growing
-                if cluster_demand + self.tiendas[j].num_cajas_total <= cajas_por_palet:
-                    cluster.append(j)
-                    cluster_demand += self.tiendas[j].num_cajas_total
-                    unvisited.discard(j)
-                else:
+                if cluster_demand + self.tiendas[j].num_cajas_total > cajas_por_palet:
                     break  # pallet full — stop growing
+
+                tj = self.tiendas[j]
+                new_open = max(cluster_win_open, tj.horario_inicio_min)
+                new_close = min(cluster_win_close, tj.horario_fin_min)
+                if new_open > new_close:
+                    continue  # windows don't overlap — skip but keep looking
+
+                cluster.append(j)
+                cluster_demand += tj.num_cajas_total
+                cluster_win_open, cluster_win_close = new_open, new_close
+                unvisited.discard(j)
 
             # Medoid: member that minimises sum of distances to other members
             if len(cluster) == 1:

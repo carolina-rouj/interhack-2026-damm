@@ -217,3 +217,84 @@ def test_empty_zone_returns_empty_list():
     zona = Zona(zona_id="z", nombre="empty")
     zona.generar_matriz(TipoMatriz.EUCLIDEA)
     assert zona.agrupar_tiendas() == []
+
+
+# ── Schedule-overlap tests ────────────────────────────────────────────────────
+
+def _tienda_win(tid: str, x: float, y: float, boxes: int,
+                inicio_min: int, fin_min: int) -> Tienda:
+    t = Tienda(tienda_id=tid, nombre=tid, x=x, y=y,
+               horario_inicio_min=inicio_min, horario_fin_min=fin_min)
+    if boxes > 0:
+        t.añadir_pedido(Pedido(
+            pedido_id=f"p-{tid}",
+            tienda_id=tid,
+            lineas=[OrderLine(product=_product(), quantity_boxes=boxes)],
+        ))
+    return t
+
+
+def test_non_overlapping_hours_not_clustered():
+    """Close shops with non-overlapping time windows must NOT be clustered."""
+    t_morning   = _tienda_win("A", 0.0, 0.0, 20, 540, 660)   # 09:00–11:00
+    t_afternoon = _tienda_win("B", 0.1, 0.0, 20, 840, 960)   # 14:00–16:00
+
+    zona = _zone(t_morning, t_afternoon)
+    paradas = zona.agrupar_tiendas(cajas_por_palet=60)
+
+    assert len(paradas) == 2
+    for p in paradas:
+        assert p.num_tiendas == 1, "Non-overlapping shops must each be their own stop"
+
+
+def test_overlapping_hours_can_cluster():
+    """Shops with overlapping windows and fitting demand should cluster."""
+    t_a = _tienda_win("A", 0.0, 0.0, 20, 540, 720)  # 09:00–12:00
+    t_b = _tienda_win("B", 0.1, 0.0, 20, 600, 780)  # 10:00–13:00  ∩ = [600,720]
+
+    zona = _zone(t_a, t_b)
+    paradas = zona.agrupar_tiendas(cajas_por_palet=60)
+
+    assert len(paradas) == 1
+    assert paradas[0].num_tiendas == 2
+
+
+def test_open_all_day_clusters_with_any_window():
+    """A shop open all day (0–1439) never blocks clustering on time alone."""
+    t_always = _tienda_win("A", 0.0, 0.0, 20, 0, 1439)
+    t_narrow  = _tienda_win("B", 0.1, 0.0, 20, 900, 960)  # 15:00–16:00
+
+    zona = _zone(t_always, t_narrow)
+    paradas = zona.agrupar_tiendas(cajas_por_palet=60)
+
+    assert len(paradas) == 1
+    assert {t.tienda_id for t in paradas[0].tiendas} == {"A", "B"}
+
+
+def test_three_shops_one_mismatched_window():
+    """A and B overlap; C's window doesn't overlap with A∩B — C forms its own stop."""
+    t_a = _tienda_win("A", 0.0,  0.0, 15, 540, 660)   # 09:00–11:00
+    t_b = _tienda_win("B", 0.05, 0.0, 15, 600, 720)   # 10:00–12:00  ∩AB = [600,660]
+    t_c = _tienda_win("C", 0.1,  0.0, 15, 780, 900)   # 13:00–15:00  no overlap with AB
+
+    zona = _zone(t_a, t_b, t_c)
+    paradas = zona.agrupar_tiendas(cajas_por_palet=60)
+
+    assert len(paradas) == 2
+    ids_per_stop = [{t.tienda_id for t in p.tiendas} for p in paradas]
+    assert {"A", "B"} in ids_per_stop
+    assert {"C"} in ids_per_stop
+
+
+def test_parse_schedule_open_all_day():
+    """'0:00:00'–'0:00:00' must yield (0, 1439)."""
+    open_min, close_min = Tienda.parse_schedule("0:00:00", "0:00:00")
+    assert open_min == 0
+    assert close_min == 1439
+
+
+def test_parse_schedule_normal_window():
+    """'10:30:00'–'11:00:00' must yield (630, 660)."""
+    open_min, close_min = Tienda.parse_schedule("10:30:00", "11:00:00")
+    assert open_min == 630
+    assert close_min == 660
