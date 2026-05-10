@@ -1,0 +1,23 @@
+{
+  "zona_id": "zona-oest-barcelona",
+  "num_rutas": 1,
+  "trucks": {
+    "furgoneta": 1
+  },
+  "total_palets": 1,
+  "coste_total": 1057.96,
+  "total_cajas_entregadas": 38,
+  "total_cajas_recogidas": 0,
+  "por_sku": {
+    "ED33": {
+      "nombre": "Estrella Damm 33cl x24",
+      "tipo_envase": "caja",
+      "total_cajas": 24
+    },
+    "BAR20": {
+      "nombre": "Barril Damm 20L",
+      "tipo_envase": "barril",
+      "total_cajas": 14
+    }
+  }
+}

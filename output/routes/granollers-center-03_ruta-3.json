@@ -1,8 +1,8 @@
 {
-  "ruta_id": "ruta-0",
+  "ruta_id": "ruta-3",
   "zona_id": "granollers-center-03",
-  "tipo_camion": "furgoneta",
-  "num_palets": 3,
+  "tipo_camion": "mediano",
+  "num_palets": 9,
   "paradas": [
     {
       "orden": 0,
@@ -14,24 +14,24 @@
       "clientes": [
         {
           "nombre": "PUNTO",
-          "total_cajas": 9,
+          "total_cajas": 48,
           "productos": [
             {
               "nombre": "Estrella Damm 33cl x24",
               "sku": "ED33",
-              "cantidad_cajas": 3,
+              "cantidad_cajas": 16,
               "tipo_envase": "caja"
             },
             {
               "nombre": "Estrella Damm 50cl x12",
               "sku": "ED50",
-              "cantidad_cajas": 3,
+              "cantidad_cajas": 16,
               "tipo_envase": "caja"
             },
             {
               "nombre": "Barril Damm 20L",
               "sku": "BAR20",
-              "cantidad_cajas": 3,
+              "cantidad_cajas": 16,
               "tipo_envase": "barril"
             }
           ]
@@ -40,7 +40,115 @@
     },
     {
       "orden": 1,
-      "llegada_min": 660,
+      "llegada_min": 616,
+      "coordenadas": {
+        "lat": 41.6057,
+        "lon": 2.2875
+      },
+      "clientes": [
+        {
+          "nombre": "BAR VAGON 66",
+          "total_cajas": 48,
+          "productos": [
+            {
+              "nombre": "Barril Damm 20L",
+              "sku": "BAR20",
+              "cantidad_cajas": 16,
+              "tipo_envase": "barril"
+            },
+            {
+              "nombre": "Estrella Damm 50cl x12",
+              "sku": "ED50",
+              "cantidad_cajas": 16,
+              "tipo_envase": "caja"
+            },
+            {
+              "nombre": "Estrella Damm 33cl x24",
+              "sku": "ED33",
+              "cantidad_cajas": 16,
+              "tipo_envase": "caja"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "orden": 2,
+      "llegada_min": 632,
+      "coordenadas": {
+        "lat": 41.6071,
+        "lon": 2.2875
+      },
+      "clientes": [
+        {
+          "nombre": "GELATO DI FABIO",
+          "total_cajas": 28,
+          "productos": [
+            {
+              "nombre": "Estrella Damm 50cl x12",
+              "sku": "ED50",
+              "cantidad_cajas": 14,
+              "tipo_envase": "caja"
+            },
+            {
+              "nombre": "Estrella Damm 33cl x24",
+              "sku": "ED33",
+              "cantidad_cajas": 14,
+              "tipo_envase": "caja"
+            }
+          ]
+        },
+        {
+          "nombre": "VINOUS",
+          "total_cajas": 28,
+          "productos": [
+            {
+              "nombre": "Estrella Damm 33cl x24",
+              "sku": "ED33",
+              "cantidad_cajas": 14,
+              "tipo_envase": "caja"
+            },
+            {
+              "nombre": "Barril Damm 20L",
+              "sku": "BAR20",
+              "cantidad_cajas": 14,
+              "tipo_envase": "barril"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "orden": 3,
+      "llegada_min": 648,
+      "coordenadas": {
+        "lat": 41.6091,
+        "lon": 2.2878
+      },
+      "clientes": [
+        {
+          "nombre": "OH LA LA",
+          "total_cajas": 28,
+          "productos": [
+            {
+              "nombre": "Barril Damm 20L",
+              "sku": "BAR20",
+              "cantidad_cajas": 14,
+              "tipo_envase": "barril"
+            },
+            {
+              "nombre": "Estrella Damm 50cl x12",
+              "sku": "ED50",
+              "cantidad_cajas": 14,
+              "tipo_envase": "caja"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "orden": 4,
+      "llegada_min": 664,
       "coordenadas": {
         "lat": 41.6081,
         "lon": 2.2872
@@ -48,90 +156,12 @@
       "clientes": [
         {
           "nombre": "PITAPES RESTAURANT GRANOLLES",
-          "total_cajas": 20,
+          "total_cajas": 160,
           "productos": [
             {
               "nombre": "Free Damm 33cl x24",
               "sku": "FR33",
-              "cantidad_cajas": 20,
-              "tipo_envase": "caja"
-            }
-          ]
-        },
-        {
-          "nombre": "VINOUS",
-          "total_cajas": 8,
-          "productos": [
-            {
-              "nombre": "Estrella Damm 33cl x24",
-              "sku": "ED33",
-              "cantidad_cajas": 4,
-              "tipo_envase": "caja"
-            },
-            {
-              "nombre": "Barril Damm 20L",
-              "sku": "BAR20",
-              "cantidad_cajas": 4,
-              "tipo_envase": "barril"
-            }
-          ]
-        },
-        {
-          "nombre": "GELATO DI FABIO",
-          "total_cajas": 8,
-          "productos": [
-            {
-              "nombre": "Estrella Damm 50cl x12",
-              "sku": "ED50",
-              "cantidad_cajas": 4,
-              "tipo_envase": "caja"
-            },
-            {
-              "nombre": "Estrella Damm 33cl x24",
-              "sku": "ED33",
-              "cantidad_cajas": 4,
-              "tipo_envase": "caja"
-            }
-          ]
-        },
-        {
-          "nombre": "OH LA LA",
-          "total_cajas": 8,
-          "productos": [
-            {
-              "nombre": "Barril Damm 20L",
-              "sku": "BAR20",
-              "cantidad_cajas": 4,
-              "tipo_envase": "barril"
-            },
-            {
-              "nombre": "Estrella Damm 50cl x12",
-              "sku": "ED50",
-              "cantidad_cajas": 4,
-              "tipo_envase": "caja"
-            }
-          ]
-        },
-        {
-          "nombre": "BAR VAGON 66",
-          "total_cajas": 9,
-          "productos": [
-            {
-              "nombre": "Barril Damm 20L",
-              "sku": "BAR20",
-              "cantidad_cajas": 3,
-              "tipo_envase": "barril"
-            },
-            {
-              "nombre": "Estrella Damm 50cl x12",
-              "sku": "ED50",
-              "cantidad_cajas": 3,
-              "tipo_envase": "caja"
-            },
-            {
-              "nombre": "Estrella Damm 33cl x24",
-              "sku": "ED33",
-              "cantidad_cajas": 3,
+              "cantidad_cajas": 160,
               "tipo_envase": "caja"
             }
           ]
