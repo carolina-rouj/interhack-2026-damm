@@ -1,0 +1,42 @@
+{
+  "ruta_id": "ruta-1",
+  "zona_id": "granollers-center-08",
+  "tipo_camion": "grande",
+  "num_palets": 1,
+  "paradas": [
+    {
+      "orden": 0,
+      "llegada_min": 480,
+      "coordenadas": {
+        "lat": 41.611,
+        "lon": 2.293
+      },
+      "clientes": [
+        {
+          "nombre": "Pool",
+          "total_cajas": 30,
+          "productos": [
+            {
+              "nombre": "Barril Damm 20L",
+              "sku": "BAR20",
+              "cantidad_cajas": 12,
+              "tipo_envase": "barril"
+            },
+            {
+              "nombre": "Estrella Damm 50cl x12",
+              "sku": "ED50",
+              "cantidad_cajas": 6,
+              "tipo_envase": "caja"
+            },
+            {
+              "nombre": "Estrella Damm 33cl x24",
+              "sku": "ED33",
+              "cantidad_cajas": 12,
+              "tipo_envase": "caja"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

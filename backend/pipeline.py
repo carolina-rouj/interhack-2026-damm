@@ -2,6 +2,7 @@
 Delivery pipeline — loading → zoning → routing + palletizing → JSON output.
 
 Writes one JSON file per route; each file is consumed by the delivery-man app.
+Also writes a *_summary.json* with aggregated metrics for the whole zone run.
 
 Usage (CLI):
     python -m backend.pipeline [zona_id] [--output DIR] [--google]
@@ -9,7 +10,6 @@ Usage (CLI):
 from __future__ import annotations
 
 import json
-import sys
 from pathlib import Path
 from typing import Optional
 
@@ -36,7 +36,7 @@ def _tipo_envase(sku: str, skus: dict) -> str:
     return "caja"
 
 
-# ── format ────────────────────────────────────────────────────────────────────
+# ── route formatter ───────────────────────────────────────────────────────────
 
 
 def _format_route(route_result: dict, skus: dict) -> dict:
@@ -134,6 +134,86 @@ def _format_route(route_result: dict, skus: dict) -> dict:
     }
 
 
+# ── metrics ───────────────────────────────────────────────────────────────────
+
+
+def _compute_metrics(
+    zona_id: str,
+    route_results: list[dict],
+    formatted_routes: list[dict],
+    skus: dict,
+) -> dict:
+    """Aggregate metrics across all routes for one zone solve."""
+    trucks: dict[str, int] = {}
+    total_palets = 0
+    total_cost = 0.0
+    total_cajas_entregadas = 0
+    total_cajas_recogidas = 0
+    por_sku: dict[str, dict] = {}
+
+    for raw, fmt in zip(route_results, formatted_routes):
+        ruta = raw["ruta"]
+
+        # trucks
+        tipo = fmt["tipo_camion"]
+        trucks[tipo] = trucks.get(tipo, 0) + 1
+
+        # pallets
+        total_palets += fmt["num_palets"]
+
+        # cost
+        total_cost += ruta.get("coste_total") or 0.0
+
+        # returnables from raw parada data
+        for parada in ruta["paradas"]:
+            total_cajas_recogidas += parada.get("cajas_recogidas", 0)
+            total_cajas_entregadas += parada.get("cajas_entregadas", 0)
+
+        # delivered by SKU from formatted route
+        for parada in fmt["paradas"]:
+            for cliente in parada["clientes"]:
+                for producto in cliente["productos"]:
+                    sku = producto["sku"]
+                    if sku not in por_sku:
+                        por_sku[sku] = {
+                            "nombre": producto["nombre"],
+                            "tipo_envase": producto["tipo_envase"],
+                            "total_cajas": 0,
+                        }
+                    por_sku[sku]["total_cajas"] += producto["cantidad_cajas"]
+
+    return {
+        "zona_id": zona_id,
+        "num_rutas": len(formatted_routes),
+        "trucks": trucks,
+        "total_palets": total_palets,
+        "coste_total": round(total_cost, 2),
+        "total_cajas_entregadas": total_cajas_entregadas,
+        "total_cajas_recogidas": total_cajas_recogidas,
+        "por_sku": por_sku,
+    }
+
+
+def _print_metrics(metrics: dict) -> None:
+    """Print a formatted metrics summary to stdout."""
+    sep = "─" * 52
+    print(f"\n{sep}")
+    print(f"  METRICS — {metrics['zona_id']}")
+    print(sep)
+    print(f"  Trucks  : {metrics['num_rutas']}  {metrics['trucks']}")
+    print(f"  Pallets : {metrics['total_palets']}")
+    print(f"  Cost    : {metrics['coste_total']:.2f}")
+    print(f"  Boxes delivered  : {metrics['total_cajas_entregadas']}")
+    print(f"  Returnables coll.: {metrics['total_cajas_recogidas']}")
+    print(f"\n  Breakdown by product:")
+    for sku, info in sorted(metrics["por_sku"].items()):
+        tag = "🛢" if info["tipo_envase"] == "barril" else "📦"
+        print(
+            f"    {tag}  {sku:<8} {info['nombre']:<30}  {info['total_cajas']:>4} cajas"
+        )
+    print(sep)
+
+
 # ── public API ────────────────────────────────────────────────────────────────
 
 
@@ -144,11 +224,17 @@ def export_routes_json(
     usar_google: bool = False,
     cajas_por_palet: int = 60,
     distancia_max: Optional[float] = None,
-) -> list[dict]:
+) -> dict:
     """
-    Run the full pipeline for *zona_id* and write one JSON file per route.
+    Run the full pipeline for *zona_id*, write one JSON per route plus a
+    summary JSON with metrics.
 
-    Returns a list of dicts, each with {"path": Path, "route": dict}.
+    Returns:
+        {
+            "routes": [{"path": Path, "route": dict}, ...],
+            "metrics": dict,
+            "summary_path": Path,
+        }
     """
     from backend.solvers.orchestrator import run_pipeline
 
@@ -164,16 +250,25 @@ def export_routes_json(
 
     skus = result["skus"]
 
+    # Format and write one JSON per route
     written: list[dict] = []
+    formatted_routes: list[dict] = []
     for route_result in result["routes"]:
         route_json = _format_route(route_result, skus)
+        formatted_routes.append(route_json)
         ruta_id = route_json["ruta_id"]
         path = output_dir / f"{zona_id}_{ruta_id}.json"
         with open(path, "w", encoding="utf-8") as f:
             json.dump(route_json, f, ensure_ascii=False, indent=2)
         written.append({"path": path, "route": route_json})
 
-    return written
+    # Compute and write summary metrics
+    metrics = _compute_metrics(zona_id, result["routes"], formatted_routes, skus)
+    summary_path = output_dir / f"{zona_id}_summary.json"
+    with open(summary_path, "w", encoding="utf-8") as f:
+        json.dump(metrics, f, ensure_ascii=False, indent=2)
+
+    return {"routes": written, "metrics": metrics, "summary_path": summary_path}
 
 
 # ── CLI ───────────────────────────────────────────────────────────────────────
@@ -207,22 +302,23 @@ if __name__ == "__main__":
     print(f"Zone    : {args.zona_id}")
     print(f"Output  : {args.output}")
     print(f"Google  : {'yes' if args.google else 'no (Euclidean fallback)'}")
-    print()
 
-    results = export_routes_json(
+    result = export_routes_json(
         args.zona_id,
         output_dir=args.output,
         usar_google=args.google,
     )
 
-    print(f"{len(results)} route(s) written:")
-    for r in results:
+    routes = result["routes"]
+    print(f"\n{len(routes)} route file(s) written:")
+    for r in routes:
         route = r["route"]
-        path = r["path"]
-        num_stops = len(route["paradas"])
         print(
-            f"  {path.name}"
+            f"  {r['path'].name}"
             f"  |  {route['tipo_camion']}"
             f"  |  {route['num_palets']} palets"
-            f"  |  {num_stops} paradas"
+            f"  |  {len(route['paradas'])} paradas"
         )
+    print(f"  {result['summary_path'].name}  (metrics summary)")
+
+    _print_metrics(result["metrics"])
