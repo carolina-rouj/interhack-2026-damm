@@ -7,7 +7,7 @@ import MapView, { Marker, Polyline, PROVIDER_GOOGLE } from 'react-native-maps'
 import * as Location from 'expo-location'
 import Constants from 'expo-constants'
 import { Check, Navigation } from 'lucide-react-native'
-import { COLORS, PRIORITY_COLORS, MOCK_STOPS, MOCK_DEPOT } from '../constants'
+import { COLORS, PRIORITY_COLORS, MOCK_DEPOT } from '../constants'
 import { fetchRouteLegs } from '../services/directionsService'
 
 const MAPS_API_KEY = Constants.expoConfig?.extra?.googleMapsApiKey
@@ -117,7 +117,7 @@ export default function RouteScreen({ scenario, result, deliveredIds, toggleDeli
   const mapRef = useRef(null)
   const locationSub = useRef(null)
 
-  const stops = result?.route?.stops?.length > 0 ? result.route.stops : MOCK_STOPS
+  const stops = result?.route?.stops || []
   const depot = scenario?.zone?.depot ?? MOCK_DEPOT
   const orders = scenario?.orders || {}
 
@@ -132,12 +132,12 @@ export default function RouteScreen({ scenario, result, deliveredIds, toggleDeli
   }, [result])
 
   useEffect(() => {
-    setRouteLegs([])
+    if (!stops.length) { setRouteLegs([]); return }
     setLoadingLegs(true)
     fetchRouteLegs(depot, stops, MAPS_API_KEY)
       .then(setRouteLegs)
       .finally(() => setLoadingLegs(false))
-  }, [depot, stops])
+  }, [result, scenario])
 
   useEffect(() => {
     if (navState === 'navigating' && driverLocation) {

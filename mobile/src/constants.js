@@ -31,11 +31,3 @@ export const TRUCK_CONFIGS = {
 }
 
 export const MOCK_DEPOT = { lat: 41.4065, lon: 2.1878, name: 'Fábrica Damm' }
-
-export const MOCK_STOPS = [
-  { client: { client_id: 'm1', name: 'Bar El Xampanyet',    lat: 41.3847, lon: 2.1834, priority: 1, time_window: { open_min: 480, close_min: 600 } }, arrival_time: '09:15', status: 'OK',                  wait_min: 0 },
-  { client: { client_id: 'm2', name: 'Restaurant La Pepita', lat: 41.3901, lon: 2.1701, priority: 2, time_window: { open_min: 540, close_min: 660 } }, arrival_time: '09:45', status: 'OK',                  wait_min: 5 },
-  { client: { client_id: 'm3', name: 'Cafetería Central',    lat: 41.4010, lon: 2.1750, priority: 3, time_window: { open_min: 600, close_min: 720 } }, arrival_time: '10:20', status: 'OK',                  wait_min: 0 },
-  { client: { client_id: 'm4', name: 'Hotel Arts Bar',       lat: 41.3870, lon: 2.1970, priority: 1, time_window: { open_min: 480, close_min: 570 } }, arrival_time: '10:50', status: 'TIME_WINDOW_VIOLATED', wait_min: 0 },
-  { client: { client_id: 'm5', name: 'Terraza Barceloneta',  lat: 41.3790, lon: 2.1900, priority: 2, time_window: { open_min: 660, close_min: 780 } }, arrival_time: '11:30', status: 'OK',                  wait_min: 0 },
-]

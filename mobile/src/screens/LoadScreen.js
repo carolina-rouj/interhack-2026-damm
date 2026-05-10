@@ -1,44 +1,9 @@
 import React, { useState, useRef } from 'react'
 import { View, Text, StyleSheet, Animated, TouchableOpacity, Dimensions, ScrollView } from 'react-native'
 import TruckGrid3D from '../components/TruckGrid3D'
-import { COLORS, MOCK_STOPS, TRUCK_CONFIGS, PALETTE } from '../constants'
+import { COLORS, TRUCK_CONFIGS, PALETTE } from '../constants'
 
 const SCREEN_HEIGHT = Dimensions.get('window').height;
-
-const generateFullTruckMock = (stops, truckType = '6pal') => {
-  const cfg = TRUCK_CONFIGS[truckType] || TRUCK_CONFIGS['6pal'];
-  const items = [];
-  const sliceSize = (cfg.zHalf * 2) / stops.length;
-  const zMin = -cfg.zHalf;
-
-  stops.forEach((stop, i) => {
-    const zStart = zMin + i * sliceSize;
-    const zEnd = zStart + sliceSize - 0.1;
-    for (let x = -cfg.xRange; x <= cfg.xRange; x += 0.4) {
-      for (let y = -0.7; y <= 0.4; y += 0.3) {
-        for (let z = zStart; z <= zEnd; z += 0.4) {
-          const isBarrel = Math.random() > 0.75;
-          items.push({
-            id: `pkg_${stop.client.client_id}_${x.toFixed(1)}_${y.toFixed(1)}_${z.toFixed(1)}`,
-            client_id: stop.client.client_id,
-            tipo: isBarrel ? 'barril' : 'caja',
-            x: x + (Math.random() * 0.02),
-            y: y + (isBarrel ? 0.1 : 0),
-            z: z + (Math.random() * 0.02),
-          });
-        }
-      }
-    }
-  });
-
-  return {
-    route: { stops },
-    load_plan: { items, truck_type: truckType },
-    returnables_plan: { per_client: { m1: 6, m3: 12, m5: 4 } },
-  };
-};
-
-const MOCK_RESULT = generateFullTruckMock(MOCK_STOPS, '6pal');
 
 function PickingRow({ stop, globalIndex, isDelivered, counts, returnables }) {
   const cajas = counts?.cajas || 0
@@ -73,11 +38,19 @@ function PickingRow({ stop, globalIndex, isDelivered, counts, returnables }) {
 }
 
 export default function LoadScreen({ result, deliveredIds }) {
-  const displayResult = result || MOCK_RESULT;
-  const stops = displayResult.route.stops || [];
+  if (!result) {
+    return (
+      <View style={[styles.screen, { justifyContent: 'center', alignItems: 'center' }]}>
+        <Text style={{ color: '#94a3b8', fontSize: 15, fontWeight: '600' }}>
+          Resuelve una ruta para ver la carga
+        </Text>
+      </View>
+    )
+  }
+  const stops = result.route.stops || [];
   const ids = deliveredIds || new Set()
-  const loadPlan = displayResult.load_plan
-  const retornablesPerClient = displayResult.returnables_plan?.per_client || {}
+  const loadPlan = result.load_plan
+  const retornablesPerClient = result.returnables_plan?.per_client || {}
 
   const itemCounts = {}
   ;(loadPlan?.items || []).forEach(item => {
