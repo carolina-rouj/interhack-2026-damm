@@ -12,7 +12,12 @@ export async function optimizeScenario(scenarioId, startTime = '08:00') {
   const res = await fetch(`${BASE_URL}/api/optimize`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ scenario_id: scenarioId, start_time: startTime }),
+    body: JSON.stringify({
+      zona_id: zonaId,
+      cajas_por_palet: cajasPorPalet,
+      distancia_max: distanciaMax,
+      usar_google: usarGoogle,
+    }),
   })
   if (!res.ok) throw new Error(await res.text())
   return res.json()

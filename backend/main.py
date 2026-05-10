@@ -7,12 +7,12 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
-from backend.data.synthetic_generator import generate_scenario
-from backend.solvers.route_optimizer import optimize_route
-from backend.solvers.load_optimizer import optimize_load
-from backend.solvers.inverse_logistics import plan_returnables
+from backend.data.loader import load_zona, DATA_DIR
+from backend.models.zona import TipoMatriz
 
-app = FastAPI(title="Damm Smart Truck API", version="1.0.0")
+import json
+
+app = FastAPI(title="Damm Smart Truck API", version="2.0.0")
 
 app.add_middleware(
     CORSMiddleware,
@@ -21,109 +21,232 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# In-memory scenario store (enough for hackathon demo)
-_scenarios: dict = {}
+# In-memory zone cache (enough for hackathon demo)
+_zonas: dict = {}
 
 
-@app.get("/api/scenario/generate")
-def generate(seed: int = 42, n_clients: int = 16):
-    """Generate a fresh synthetic delivery scenario."""
-    data = generate_scenario(seed=seed, n_clients=n_clients)
-    scenario_id = f"scenario-{seed}-{n_clients}"
-    _scenarios[scenario_id] = data
+def _get_zona(zona_id: str):
+    if zona_id not in _zonas:
+        try:
+            _zonas[zona_id] = load_zona(zona_id)
+        except KeyError:
+            raise HTTPException(404, f"Zona {zona_id!r} not found. Check /api/zona/list.")
+    return _zonas[zona_id]
+
+
+@app.get("/api/zona/list")
+def list_zonas():
+    """List all available zone IDs from the checked-in data."""
+    with open(DATA_DIR / "zona.json", encoding="utf-8-sig") as f:
+        zones = json.load(f)
+    return {"zonas": [z["zona_id"] for z in zones]}
+
+
+@app.get("/api/zona/{zona_id}")
+def get_zona(zona_id: str):
+    """Load a real zone by ID and return its stores and demand summary."""
+    data = _get_zona(zona_id)
+    zona = data["zona"]
     return {
-        "scenario_id": scenario_id,
-        "zone": data["zone"].to_dict(),
-        "clients": [c.to_dict() for c in data["clients"]],
-        "orders": {cid: o.to_dict() for cid, o in data["orders"].items()},
-        "products": [p.to_dict() for p in data["products"]],
+        "zona_id": zona.zona_id,
+        "nombre": zona.nombre,
+        "num_tiendas": zona.num_tiendas,
+        "demanda_total_cajas": zona.demanda_total_cajas,
+        "demanda_total_peso_kg": zona.demanda_total_peso,
+        "tiendas": [t.to_dict() for t in zona.tiendas],
     }
 
 
-@app.get("/api/scenario/{scenario_id}")
-def get_scenario(scenario_id: str):
-    if scenario_id not in _scenarios:
-        raise HTTPException(404, "Scenario not found. Generate one first via /api/scenario/generate")
-    data = _scenarios[scenario_id]
-    return {
-        "scenario_id": scenario_id,
-        "zone": data["zone"].to_dict(),
-        "clients": [c.to_dict() for c in data["clients"]],
-        "orders": {cid: o.to_dict() for cid, o in data["orders"].items()},
-        "products": [p.to_dict() for p in data["products"]],
-    }
+class ClusterRequest(BaseModel):
+    zona_id: str
+    cajas_por_palet: int = 60
+    distancia_max: float | None = None
+    usar_google: bool = False
 
 
-class OptimizeRequest(BaseModel):
-    scenario_id: str
-    start_time: str = "08:00"   # HH:MM
+@app.post("/api/cluster")
+def cluster(req: ClusterRequest):
+    """
+    Group the stores in a zone into delivery stops (one pallet per stop).
 
+    Set usar_google=true to use real driving distances via Google Maps
+    (requires GOOGLE_MAPS_API_KEY in backend/distance/.env).
+    Falls back to Euclidean distance automatically.
+    distancia_max is in cost units (1–10) when usar_google=true, degrees otherwise.
+    """
+    data = _get_zona(req.zona_id)
+    zona = data["zona"]
+    zona._matriz = None  # Rebuild matrix on every call so params take effect
 
-@app.post("/api/optimize")
-def optimize(req: OptimizeRequest):
-    """Run route + load optimization on a stored scenario."""
-    if req.scenario_id not in _scenarios:
-        raise HTTPException(404, "Scenario not found. Generate one first via /api/scenario/generate")
+    if req.usar_google:
+        tipo = zona.cargar_mejor_matriz()
+    else:
+        zona.generar_matriz(TipoMatriz.EUCLIDEA)
+        tipo = TipoMatriz.EUCLIDEA
 
-    data = _scenarios[req.scenario_id]
-    clients = data["clients"]
-    orders = data["orders"]
-    depot = data["zone"].depot
-
-    h, m = req.start_time.split(":")
-    start_min = int(h) * 60 + int(m)
-
-    # 1. Route optimization
-    route_result = optimize_route(
-        route_id=req.scenario_id,
-        clients=clients,
-        depot=depot,
-        start_min=start_min,
+    paradas = zona.agrupar_tiendas(
+        cajas_por_palet=req.cajas_por_palet,
+        distancia_max=req.distancia_max,
     )
-
-    # 2. Inverse logistics planning
-    returnables_plan = plan_returnables(clients)
-
-    # 3. Load optimization (uses delivery order from route)
-    delivery_sequence = [
-        (stop.client.client_id, stop.client.name)
-        for stop in route_result.stops
-    ]
-    load_plan = optimize_load(
-        route_id=req.scenario_id,
-        delivery_sequence=delivery_sequence,
-        orders=orders,
-        returnables_plan=returnables_plan,
-    )
-
-    # 4. Metrics summary
-    n_violations = sum(1 for s in route_result.stops if s.status == "TIME_WINDOW_VIOLATED")
-    n_priority1 = sum(1 for c in clients if c.priority == 1)
-    n_priority1_served = sum(
-        1 for s in route_result.stops if s.client.priority == 1 and s.status == "OK"
-    )
-
-    metrics = {
-        "total_distance_km": route_result.total_distance_km,
-        "total_time_min": route_result.total_time_min,
-        "co2_kg": route_result.co2_kg,
-        "truck_utilization_pct": load_plan.utilization_pct,
-        "stops_total": len(route_result.stops),
-        "time_window_violations": n_violations,
-        "priority1_served": f"{n_priority1_served}/{n_priority1}",
-        "returnables_pallets_reserved": returnables_plan.pallets_reserved,
-        "returnables_boxes_expected": returnables_plan.total_expected_boxes,
-        "load_warnings": len(load_plan.warnings),
-    }
 
     return {
-        "route": route_result.to_dict(),
-        "load_plan": load_plan.to_dict(),
-        "returnables_plan": returnables_plan.to_dict(),
-        "metrics": metrics,
+        "zona_id": req.zona_id,
+        "matriz_tipo": tipo.value,
+        "cajas_por_palet": req.cajas_por_palet,
+        "num_paradas": len(paradas),
+        "paradas": [
+            {
+                "parada_id": p.parada_id,
+                "orden": p.orden,
+                "representante_id": p.representante_id,
+                "cajas_total": sum(t.num_cajas_total for t in p.tiendas),
+                "num_tiendas": p.num_tiendas,
+                "tiendas": [
+                    {
+                        "tienda_id": t.tienda_id,
+                        "nombre": t.nombre,
+                        "lat": t.x,
+                        "lon": t.y,
+                        "cajas": t.num_cajas_total,
+                        "es_representante": t.tienda_id == p.representante_id,
+                    }
+                    for t in p.tiendas
+                ],
+            }
+            for p in paradas
+        ],
     }
 
 
 @app.get("/health")
 def health():
     return {"status": "ok"}
+
+
+class SolveRequest(BaseModel):
+    zona_id: str
+    cajas_por_palet: int = 60
+    distancia_max: float | None = None
+    usar_google: bool = False
+    output_dir: str = "output/routes"
+
+
+@app.post("/api/solve")
+def solve(req: SolveRequest):
+    """
+    Run the full pipeline (load → zone → route → palletize) and write
+    one JSON file per route to *output_dir*.  Returns the formatted routes.
+    """
+    from backend.pipeline import export_routes_json
+
+    result = export_routes_json(
+        req.zona_id,
+        output_dir=req.output_dir,
+        usar_google=req.usar_google,
+        cajas_por_palet=req.cajas_por_palet,
+        distancia_max=req.distancia_max,
+    )
+    return {
+        "zona_id": req.zona_id,
+        "num_rutas": len(result["routes"]),
+        "metrics": result["metrics"],
+        "routes": [
+            {"file": str(r["path"]), "route": r["route"]}
+            for r in result["routes"]
+        ],
+    }
+
+
+# ── interactive terminal entry point ─────────────────────────────────────────
+# Run with:  python3 backend/main.py [--output DIR] [--google]
+
+def _interactive_loop(output_dir: str, usar_google: bool) -> None:
+    from backend.pipeline import export_routes_json, _print_metrics
+
+    # Load zone list once
+    with open(DATA_DIR / "zona.json", encoding="utf-8-sig") as f:
+        zones = json.load(f)
+    zone_ids = [z["zona_id"] for z in zones]
+
+    sep = "═" * 54
+
+    print(f"\n{sep}")
+    print("   Damm Smart Truck — Interactive Route Solver")
+    print(f"{sep}")
+    print(f"   Output : {output_dir}")
+    print(f"   Google : {'yes' if usar_google else 'no (Euclidean fallback)'}")
+    print(sep)
+
+    while True:
+        print("\nAvailable zones:")
+        for i, zid in enumerate(zone_ids, 1):
+            print(f"  [{i}] {zid}")
+        print()
+
+        try:
+            raw = input("Enter zone number or ID (q to quit): ").strip()
+        except (EOFError, KeyboardInterrupt):
+            print("\nBye.")
+            break
+
+        if raw.lower() in ("q", "quit", "exit", ""):
+            print("Bye.")
+            break
+
+        # Accept number or direct ID
+        zona_id: str | None = None
+        if raw.isdigit():
+            idx = int(raw) - 1
+            if 0 <= idx < len(zone_ids):
+                zona_id = zone_ids[idx]
+            else:
+                print(f"  No zone with number {raw}. Try again.")
+                continue
+        elif raw in zone_ids:
+            zona_id = raw
+        else:
+            print(f"  Unknown zone {raw!r}. Try again.")
+            continue
+
+        print(f"\nSolving {zona_id} ...")
+        try:
+            result = export_routes_json(
+                zona_id,
+                output_dir=output_dir,
+                usar_google=usar_google,
+            )
+        except Exception as exc:
+            print(f"  ERROR: {exc}")
+            continue
+
+        routes = result["routes"]
+        print(f"\n{len(routes)} route file(s) written:")
+        for r in routes:
+            route = r["route"]
+            print(
+                f"  {r['path'].name}"
+                f"  |  {route['tipo_camion']}"
+                f"  |  {route['num_palets']} palets"
+                f"  |  {len(route['paradas'])} paradas"
+            )
+        print(f"  {result['summary_path'].name}  (metrics summary)")
+        _print_metrics(result["metrics"])
+
+
+if __name__ == "__main__":
+    import argparse
+
+    parser = argparse.ArgumentParser(
+        description="Damm Smart Truck — interactive route solver"
+    )
+    parser.add_argument(
+        "--output", default="output/routes", metavar="DIR",
+        help="Output directory for route JSON files (default: output/routes)",
+    )
+    parser.add_argument(
+        "--google", action="store_true",
+        help="Use Google Maps Distance Matrix (requires API key)",
+    )
+    args = parser.parse_args()
+
+    _interactive_loop(output_dir=args.output, usar_google=args.google)

@@ -1,0 +1,114 @@
+{
+  "ruta_id": "ruta-0",
+  "zona_id": "granollers-center-01",
+  "tipo_camion": "furgoneta",
+  "num_palets": 1,
+  "paradas": [
+    {
+      "orden": 0,
+      "llegada_min": 584,
+      "coordenadas": {
+        "lat": 41.6155,
+        "lon": 2.283
+      },
+      "clientes": [
+        {
+          "nombre": "BAR BRICOLAJE DEPOT",
+          "total_cajas": 6,
+          "productos": [
+            {
+              "nombre": "Estrella Damm 33cl x24",
+              "sku": "ED33",
+              "cantidad_cajas": 6,
+              "tipo_envase": "caja"
+            }
+          ]
+        },
+        {
+          "nombre": "BAR CULIBLANCO - CAMPO FUTBOL ATLET",
+          "total_cajas": 10,
+          "productos": [
+            {
+              "nombre": "Estrella Damm 33cl x24",
+              "sku": "ED33",
+              "cantidad_cajas": 6,
+              "tipo_envase": "caja"
+            },
+            {
+              "nombre": "Estrella Damm 50cl x12",
+              "sku": "ED50",
+              "cantidad_cajas": 4,
+              "tipo_envase": "caja"
+            }
+          ]
+        },
+        {
+          "nombre": "BAR ROMERO",
+          "total_cajas": 12,
+          "productos": [
+            {
+              "nombre": "Barril Damm 20L",
+              "sku": "BAR20",
+              "cantidad_cajas": 12,
+              "tipo_envase": "barril"
+            }
+          ]
+        },
+        {
+          "nombre": "CASA FONDA EUROPA",
+          "total_cajas": 9,
+          "productos": [
+            {
+              "nombre": "Estrella Damm 50cl x12",
+              "sku": "ED50",
+              "cantidad_cajas": 3,
+              "tipo_envase": "caja"
+            },
+            {
+              "nombre": "Estrella Damm 33cl x24",
+              "sku": "ED33",
+              "cantidad_cajas": 3,
+              "tipo_envase": "caja"
+            },
+            {
+              "nombre": "Barril Damm 20L",
+              "sku": "BAR20",
+              "cantidad_cajas": 3,
+              "tipo_envase": "barril"
+            }
+          ]
+        },
+        {
+          "nombre": "Bar Linares",
+          "total_cajas": 8,
+          "productos": [
+            {
+              "nombre": "Barril Damm 20L",
+              "sku": "BAR20",
+              "cantidad_cajas": 4,
+              "tipo_envase": "barril"
+            },
+            {
+              "nombre": "Estrella Damm 50cl x12",
+              "sku": "ED50",
+              "cantidad_cajas": 4,
+              "tipo_envase": "caja"
+            }
+          ]
+        },
+        {
+          "nombre": "RESTAURANT LA SALUT",
+          "total_cajas": 10,
+          "productos": [
+            {
+              "nombre": "Free Damm 33cl x24",
+              "sku": "FR33",
+              "cantidad_cajas": 10,
+              "tipo_envase": "caja"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

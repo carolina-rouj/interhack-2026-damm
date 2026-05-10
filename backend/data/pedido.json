@@ -1,0 +1,812 @@
+[
+  {
+    "pedido_id": "PED-0001",
+    "tienda_id": "9100621389",
+    "lineas": [
+      {
+        "sku": "BAR20",
+        "quantity_boxes": 4
+      },
+      {
+        "sku": "ED50",
+        "quantity_boxes": 4
+      }
+    ],
+    "num_envases_recogida": 0,
+    "num_cajas": 8,
+    "peso_total": 106.4
+  },
+  {
+    "pedido_id": "PED-0002",
+    "tienda_id": "9100054750",
+    "lineas": [
+      {
+        "sku": "ED50",
+        "quantity_boxes": 6
+      }
+    ],
+    "num_envases_recogida": 4,
+    "num_cajas": 6,
+    "peso_total": 39.6
+  },
+  {
+    "pedido_id": "PED-0003",
+    "tienda_id": "9100040724",
+    "lineas": [
+      {
+        "sku": "ED50",
+        "quantity_boxes": 3
+      },
+      {
+        "sku": "ED33",
+        "quantity_boxes": 3
+      },
+      {
+        "sku": "BAR20",
+        "quantity_boxes": 3
+      }
+    ],
+    "num_envases_recogida": 0,
+    "num_cajas": 9,
+    "peso_total": 107.16
+  },
+  {
+    "pedido_id": "PED-0004",
+    "tienda_id": "9100682415",
+    "lineas": [
+      {
+        "sku": "ED33",
+        "quantity_boxes": 6
+      }
+    ],
+    "num_envases_recogida": 7,
+    "num_cajas": 6,
+    "peso_total": 54.72
+  },
+  {
+    "pedido_id": "PED-0005",
+    "tienda_id": "9100296409",
+    "lineas": [
+      {
+        "sku": "ED33",
+        "quantity_boxes": 6
+      },
+      {
+        "sku": "ED50",
+        "quantity_boxes": 4
+      }
+    ],
+    "num_envases_recogida": 4,
+    "num_cajas": 10,
+    "peso_total": 81.12
+  },
+  {
+    "pedido_id": "PED-0006",
+    "tienda_id": "9100230870",
+    "lineas": [
+      {
+        "sku": "BAR20",
+        "quantity_boxes": 4
+      },
+      {
+        "sku": "ED33",
+        "quantity_boxes": 4
+      },
+      {
+        "sku": "ED50",
+        "quantity_boxes": 4
+      }
+    ],
+    "num_envases_recogida": 7,
+    "num_cajas": 12,
+    "peso_total": 142.88
+  },
+  {
+    "pedido_id": "PED-0007",
+    "tienda_id": "9100190781",
+    "lineas": [
+      {
+        "sku": "VD33",
+        "quantity_boxes": 4
+      },
+      {
+        "sku": "BAR20",
+        "quantity_boxes": 4
+      }
+    ],
+    "num_envases_recogida": 0,
+    "num_cajas": 8,
+    "peso_total": 117.6
+  },
+  {
+    "pedido_id": "PED-0008",
+    "tienda_id": "9100055221",
+    "lineas": [
+      {
+        "sku": "ED33",
+        "quantity_boxes": 6
+      }
+    ],
+    "num_envases_recogida": 0,
+    "num_cajas": 6,
+    "peso_total": 54.72
+  },
+  {
+    "pedido_id": "PED-0009",
+    "tienda_id": "9100681118",
+    "lineas": [
+      {
+        "sku": "ED33",
+        "quantity_boxes": 4
+      },
+      {
+        "sku": "BAR20",
+        "quantity_boxes": 4
+      }
+    ],
+    "num_envases_recogida": 7,
+    "num_cajas": 8,
+    "peso_total": 116.48
+  },
+  {
+    "pedido_id": "PED-0010",
+    "tienda_id": "9100054705",
+    "lineas": [
+      {
+        "sku": "ED50",
+        "quantity_boxes": 3
+      },
+      {
+        "sku": "ED33",
+        "quantity_boxes": 3
+      },
+      {
+        "sku": "BAR20",
+        "quantity_boxes": 3
+      }
+    ],
+    "num_envases_recogida": 0,
+    "num_cajas": 9,
+    "peso_total": 107.16
+  },
+  {
+    "pedido_id": "PED-0011",
+    "tienda_id": "9100667988",
+    "lineas": [
+      {
+        "sku": "BAR20",
+        "quantity_boxes": 4
+      },
+      {
+        "sku": "ED50",
+        "quantity_boxes": 4
+      }
+    ],
+    "num_envases_recogida": 3,
+    "num_cajas": 8,
+    "peso_total": 106.4
+  },
+  {
+    "pedido_id": "PED-0012",
+    "tienda_id": "9100702970",
+    "lineas": [
+      {
+        "sku": "ED50",
+        "quantity_boxes": 2
+      },
+      {
+        "sku": "ED33",
+        "quantity_boxes": 2
+      },
+      {
+        "sku": "BAR20",
+        "quantity_boxes": 2
+      }
+    ],
+    "num_envases_recogida": 0,
+    "num_cajas": 6,
+    "peso_total": 71.44
+  },
+  {
+    "pedido_id": "PED-0013",
+    "tienda_id": "9100547290",
+    "lineas": [
+      {
+        "sku": "BAR20",
+        "quantity_boxes": 4
+      },
+      {
+        "sku": "ED33",
+        "quantity_boxes": 4
+      }
+    ],
+    "num_envases_recogida": 7,
+    "num_cajas": 8,
+    "peso_total": 116.48
+  },
+  {
+    "pedido_id": "PED-0014",
+    "tienda_id": "9100043853",
+    "lineas": [
+      {
+        "sku": "BAR20",
+        "quantity_boxes": 4
+      },
+      {
+        "sku": "ED33",
+        "quantity_boxes": 6
+      }
+    ],
+    "num_envases_recogida": 0,
+    "num_cajas": 10,
+    "peso_total": 134.72
+  },
+  {
+    "pedido_id": "PED-0015",
+    "tienda_id": "9100566100",
+    "lineas": [
+      {
+        "sku": "BAR20",
+        "quantity_boxes": 4
+      },
+      {
+        "sku": "ED50",
+        "quantity_boxes": 4
+      }
+    ],
+    "num_envases_recogida": 2,
+    "num_cajas": 8,
+    "peso_total": 106.4
+  },
+  {
+    "pedido_id": "PED-0016",
+    "tienda_id": "9100480482",
+    "lineas": [
+      {
+        "sku": "BAR20",
+        "quantity_boxes": 18
+      }
+    ],
+    "num_envases_recogida": 0,
+    "num_cajas": 18,
+    "peso_total": 360.0
+  },
+  {
+    "pedido_id": "PED-0017",
+    "tienda_id": "9100041442",
+    "lineas": [
+      {
+        "sku": "BAR20",
+        "quantity_boxes": 12
+      }
+    ],
+    "num_envases_recogida": 0,
+    "num_cajas": 12,
+    "peso_total": 240.0
+  },
+  {
+    "pedido_id": "PED-0018",
+    "tienda_id": "9100041053",
+    "lineas": [
+      {
+        "sku": "BAR20",
+        "quantity_boxes": 4
+      },
+      {
+        "sku": "ED33",
+        "quantity_boxes": 4
+      }
+    ],
+    "num_envases_recogida": 2,
+    "num_cajas": 8,
+    "peso_total": 116.48
+  },
+  {
+    "pedido_id": "PED-0019",
+    "tienda_id": "9100044243",
+    "lineas": [
+      {
+        "sku": "ED33",
+        "quantity_boxes": 3
+      },
+      {
+        "sku": "ED50",
+        "quantity_boxes": 3
+      },
+      {
+        "sku": "BAR20",
+        "quantity_boxes": 3
+      }
+    ],
+    "num_envases_recogida": 0,
+    "num_cajas": 9,
+    "peso_total": 107.16
+  },
+  {
+    "pedido_id": "PED-0020",
+    "tienda_id": "9100153533",
+    "lineas": [
+      {
+        "sku": "ED33",
+        "quantity_boxes": 6
+      }
+    ],
+    "num_envases_recogida": 9,
+    "num_cajas": 6,
+    "peso_total": 54.72
+  },
+  {
+    "pedido_id": "PED-0021",
+    "tienda_id": "9100199329",
+    "lineas": [
+      {
+        "sku": "BAR20",
+        "quantity_boxes": 6
+      }
+    ],
+    "num_envases_recogida": 0,
+    "num_cajas": 6,
+    "peso_total": 120.0
+  },
+  {
+    "pedido_id": "PED-0022",
+    "tienda_id": "9100523980",
+    "lineas": [
+      {
+        "sku": "ED33",
+        "quantity_boxes": 2
+      },
+      {
+        "sku": "BAR20",
+        "quantity_boxes": 2
+      },
+      {
+        "sku": "ED50",
+        "quantity_boxes": 2
+      }
+    ],
+    "num_envases_recogida": 9,
+    "num_cajas": 6,
+    "peso_total": 71.44
+  },
+  {
+    "pedido_id": "PED-0023",
+    "tienda_id": "9100570635",
+    "lineas": [
+      {
+        "sku": "VD33",
+        "quantity_boxes": 20
+      }
+    ],
+    "num_envases_recogida": 0,
+    "num_cajas": 20,
+    "peso_total": 188.0
+  },
+  {
+    "pedido_id": "PED-0024",
+    "tienda_id": "9100733214",
+    "lineas": [
+      {
+        "sku": "BAR20",
+        "quantity_boxes": 3
+      },
+      {
+        "sku": "ED50",
+        "quantity_boxes": 3
+      },
+      {
+        "sku": "ED33",
+        "quantity_boxes": 3
+      }
+    ],
+    "num_envases_recogida": 3,
+    "num_cajas": 9,
+    "peso_total": 107.16
+  },
+  {
+    "pedido_id": "PED-0025",
+    "tienda_id": "9100559085",
+    "lineas": [
+      {
+        "sku": "ED33",
+        "quantity_boxes": 4
+      },
+      {
+        "sku": "BAR20",
+        "quantity_boxes": 4
+      }
+    ],
+    "num_envases_recogida": 1,
+    "num_cajas": 8,
+    "peso_total": 116.48
+  },
+  {
+    "pedido_id": "PED-0026",
+    "tienda_id": "9100120688",
+    "lineas": [
+      {
+        "sku": "ED33",
+        "quantity_boxes": 3
+      },
+      {
+        "sku": "BAR20",
+        "quantity_boxes": 3
+      },
+      {
+        "sku": "ED50",
+        "quantity_boxes": 3
+      }
+    ],
+    "num_envases_recogida": 3,
+    "num_cajas": 9,
+    "peso_total": 107.16
+  },
+  {
+    "pedido_id": "PED-0027",
+    "tienda_id": "9100670561",
+    "lineas": [
+      {
+        "sku": "ED50",
+        "quantity_boxes": 2
+      },
+      {
+        "sku": "ED33",
+        "quantity_boxes": 2
+      },
+      {
+        "sku": "BAR20",
+        "quantity_boxes": 2
+      }
+    ],
+    "num_envases_recogida": 7,
+    "num_cajas": 6,
+    "peso_total": 71.44
+  },
+  {
+    "pedido_id": "PED-0028",
+    "tienda_id": "9100640315",
+    "lineas": [
+      {
+        "sku": "ED33",
+        "quantity_boxes": 8
+      }
+    ],
+    "num_envases_recogida": 6,
+    "num_cajas": 8,
+    "peso_total": 72.96
+  },
+  {
+    "pedido_id": "PED-0029",
+    "tienda_id": "9100669529",
+    "lineas": [
+      {
+        "sku": "ED50",
+        "quantity_boxes": 4
+      },
+      {
+        "sku": "BAR20",
+        "quantity_boxes": 4
+      }
+    ],
+    "num_envases_recogida": 0,
+    "num_cajas": 8,
+    "peso_total": 106.4
+  },
+  {
+    "pedido_id": "PED-0030",
+    "tienda_id": "9100701103",
+    "lineas": [
+      {
+        "sku": "ED33",
+        "quantity_boxes": 6
+      }
+    ],
+    "num_envases_recogida": 0,
+    "num_cajas": 6,
+    "peso_total": 54.72
+  },
+  {
+    "pedido_id": "PED-0031",
+    "tienda_id": "9100479079",
+    "lineas": [
+      {
+        "sku": "VD33",
+        "quantity_boxes": 15
+      }
+    ],
+    "num_envases_recogida": 17,
+    "num_cajas": 15,
+    "peso_total": 141.0
+  },
+  {
+    "pedido_id": "PED-0032",
+    "tienda_id": "9100169285",
+    "lineas": [
+      {
+        "sku": "FR33",
+        "quantity_boxes": 18
+      }
+    ],
+    "num_envases_recogida": 14,
+    "num_cajas": 18,
+    "peso_total": 155.52
+  },
+  {
+    "pedido_id": "PED-0033",
+    "tienda_id": "9100493598",
+    "lineas": [
+      {
+        "sku": "FR33",
+        "quantity_boxes": 10
+      }
+    ],
+    "num_envases_recogida": 0,
+    "num_cajas": 10,
+    "peso_total": 86.4
+  },
+  {
+    "pedido_id": "PED-0034",
+    "tienda_id": "9100565630",
+    "lineas": [
+      {
+        "sku": "ED33",
+        "quantity_boxes": 6
+      }
+    ],
+    "num_envases_recogida": 0,
+    "num_cajas": 6,
+    "peso_total": 54.72
+  },
+  {
+    "pedido_id": "PED-0035",
+    "tienda_id": "9100298616",
+    "lineas": [
+      {
+        "sku": "ED33",
+        "quantity_boxes": 8
+      }
+    ],
+    "num_envases_recogida": 0,
+    "num_cajas": 8,
+    "peso_total": 72.96
+  },
+  {
+    "pedido_id": "PED-0036",
+    "tienda_id": "122348",
+    "lineas": [
+      {
+        "sku": "ED50",
+        "quantity_boxes": 4
+      }
+    ],
+    "num_envases_recogida": 0,
+    "num_cajas": 4,
+    "peso_total": 26.4
+  },
+  {
+    "pedido_id": "PED-0037",
+    "tienda_id": "9100685852",
+    "lineas": [
+      {
+        "sku": "ED33",
+        "quantity_boxes": 4
+      },
+      {
+        "sku": "BAR20",
+        "quantity_boxes": 4
+      }
+    ],
+    "num_envases_recogida": 6,
+    "num_cajas": 8,
+    "peso_total": 116.48
+  },
+  {
+    "pedido_id": "PED-0038",
+    "tienda_id": "9100056125",
+    "lineas": [
+      {
+        "sku": "BAR20",
+        "quantity_boxes": 5
+      },
+      {
+        "sku": "VD33",
+        "quantity_boxes": 5
+      }
+    ],
+    "num_envases_recogida": 9,
+    "num_cajas": 10,
+    "peso_total": 147.0
+  },
+  {
+    "pedido_id": "PED-0039",
+    "tienda_id": "9100669500",
+    "lineas": [
+      {
+        "sku": "ED33",
+        "quantity_boxes": 8
+      }
+    ],
+    "num_envases_recogida": 0,
+    "num_cajas": 8,
+    "peso_total": 72.96
+  },
+  {
+    "pedido_id": "PED-0040",
+    "tienda_id": "9100700812",
+    "lineas": [
+      {
+        "sku": "BAR20",
+        "quantity_boxes": 6
+      }
+    ],
+    "num_envases_recogida": 0,
+    "num_cajas": 6,
+    "peso_total": 120.0
+  },
+  {
+    "pedido_id": "PED-0041",
+    "tienda_id": "9100381913",
+    "lineas": [
+      {
+        "sku": "ED33",
+        "quantity_boxes": 10
+      }
+    ],
+    "num_envases_recogida": 0,
+    "num_cajas": 10,
+    "peso_total": 91.2
+  },
+  {
+    "pedido_id": "PED-0042",
+    "tienda_id": "9100694778",
+    "lineas": [
+      {
+        "sku": "ED33",
+        "quantity_boxes": 6
+      }
+    ],
+    "num_envases_recogida": 0,
+    "num_cajas": 6,
+    "peso_total": 54.72
+  },
+  {
+    "pedido_id": "PED-0043",
+    "tienda_id": "9100056059",
+    "lineas": [
+      {
+        "sku": "FR33",
+        "quantity_boxes": 20
+      }
+    ],
+    "num_envases_recogida": 18,
+    "num_cajas": 20,
+    "peso_total": 172.8
+  },
+  {
+    "pedido_id": "PED-0044",
+    "tienda_id": "9100699710",
+    "lineas": [
+      {
+        "sku": "ED33",
+        "quantity_boxes": 3
+      },
+      {
+        "sku": "BAR20",
+        "quantity_boxes": 3
+      },
+      {
+        "sku": "FR33",
+        "quantity_boxes": 3
+      }
+    ],
+    "num_envases_recogida": 8,
+    "num_cajas": 9,
+    "peso_total": 113.28
+  },
+  {
+    "pedido_id": "PED-0045",
+    "tienda_id": "9100686343",
+    "lineas": [
+      {
+        "sku": "BAR20",
+        "quantity_boxes": 2
+      },
+      {
+        "sku": "ED50",
+        "quantity_boxes": 2
+      },
+      {
+        "sku": "ED33",
+        "quantity_boxes": 2
+      }
+    ],
+    "num_envases_recogida": 10,
+    "num_cajas": 6,
+    "peso_total": 71.44
+  },
+  {
+    "pedido_id": "PED-0046",
+    "tienda_id": "9100381733",
+    "lineas": [
+      {
+        "sku": "ED50",
+        "quantity_boxes": 4
+      },
+      {
+        "sku": "ED33",
+        "quantity_boxes": 4
+      }
+    ],
+    "num_envases_recogida": 0,
+    "num_cajas": 8,
+    "peso_total": 62.88
+  },
+  {
+    "pedido_id": "PED-0047",
+    "tienda_id": "9100701291",
+    "lineas": [
+      {
+        "sku": "ED33",
+        "quantity_boxes": 6
+      }
+    ],
+    "num_envases_recogida": 0,
+    "num_cajas": 6,
+    "peso_total": 54.72
+  },
+  {
+    "pedido_id": "PED-0048",
+    "tienda_id": "9100699983",
+    "lineas": [
+      {
+        "sku": "ED33",
+        "quantity_boxes": 6
+      },
+      {
+        "sku": "ED50",
+        "quantity_boxes": 4
+      }
+    ],
+    "num_envases_recogida": 0,
+    "num_cajas": 10,
+    "peso_total": 81.12
+  },
+  {
+    "pedido_id": "PED-0049",
+    "tienda_id": "9100419295",
+    "lineas": [
+      {
+        "sku": "ED33",
+        "quantity_boxes": 4
+      },
+      {
+        "sku": "ED50",
+        "quantity_boxes": 4
+      }
+    ],
+    "num_envases_recogida": 0,
+    "num_cajas": 8,
+    "peso_total": 62.88
+  },
+  {
+    "pedido_id": "PED-0050",
+    "tienda_id": "9100044479",
+    "lineas": [
+      {
+        "sku": "ED33",
+        "quantity_boxes": 3
+      },
+      {
+        "sku": "ED50",
+        "quantity_boxes": 3
+      },
+      {
+        "sku": "BAR20",
+        "quantity_boxes": 3
+      }
+    ],
+    "num_envases_recogida": 1,
+    "num_cajas": 9,
+    "peso_total": 107.16
+  }
+]

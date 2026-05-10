@@ -1,0 +1,58 @@
+{
+  "ruta_id": "ruta-0",
+  "zona_id": "zona-combinada-02",
+  "tipo_camion": "furgoneta",
+  "num_palets": 2,
+  "paradas": [
+    {
+      "orden": 0,
+      "llegada_min": 565,
+      "coordenadas": {
+        "lat": 41.5902,
+        "lon": 2.1815
+      },
+      "clientes": [
+        {
+          "nombre": "BAR SERRA LLIÇA",
+          "total_cajas": 60,
+          "productos": [
+            {
+              "nombre": "Barril Damm 20L",
+              "sku": "BAR20",
+              "cantidad_cajas": 24,
+              "tipo_envase": "barril"
+            },
+            {
+              "nombre": "Estrella Damm 33cl x24",
+              "sku": "ED33",
+              "cantidad_cajas": 36,
+              "tipo_envase": "caja"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "orden": 1,
+      "llegada_min": 631,
+      "coordenadas": {
+        "lat": 41.6128,
+        "lon": 2.3328
+      },
+      "clientes": [
+        {
+          "nombre": "LA ROCA VILLAGE RTE PASARELA (GVC)",
+          "total_cajas": 54,
+          "productos": [
+            {
+              "nombre": "Estrella Damm 33cl x24",
+              "sku": "ED33",
+              "cantidad_cajas": 54,
+              "tipo_envase": "caja"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

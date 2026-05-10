@@ -1,0 +1,842 @@
+﻿[
+    {
+        "zona_id": "granollers-center-01",
+        "nombre": "Granollers center 01",
+        "rango": {
+            "lat_min": 41.604,
+            "lat_max": 41.6155,
+            "lon_min": 2.283,
+            "lon_max": 2.2985
+        },
+        "tiendas": [
+            {
+                "tienda_id": "9100701291"
+            },
+            {
+                "tienda_id": "9100366736"
+            },
+            {
+                "tienda_id": "9100296409"
+            },
+            {
+                "tienda_id": "9100041442"
+            },
+            {
+                "tienda_id": "9100291002"
+            },
+            {
+                "tienda_id": "9100108910"
+            },
+            {
+                "tienda_id": "9100580344"
+            },
+            {
+                "tienda_id": "9100054637"
+            },
+            {
+                "tienda_id": "9100264859"
+            },
+            {
+                "tienda_id": "9100698744"
+            },
+            {
+                "tienda_id": "9100415580"
+            },
+            {
+                "tienda_id": "9100042414"
+            },
+            {
+                "tienda_id": "9100069265"
+            },
+            {
+                "tienda_id": "9100497829"
+            },
+            {
+                "tienda_id": "9100642384"
+            },
+            {
+                "tienda_id": "9100526891"
+            },
+            {
+                "tienda_id": "9100334970"
+            },
+            {
+                "tienda_id": "9100040724"
+            },
+            {
+                "tienda_id": "9100700179"
+            },
+            {
+                "tienda_id": "9100512193"
+            },
+            {
+                "tienda_id": "9100692245"
+            },
+            {
+                "tienda_id": "9100041762"
+            },
+            {
+                "tienda_id": "9100667988"
+            },
+            {
+                "tienda_id": "9100493598"
+            },
+            {
+                "tienda_id": "9100545339"
+            }
+        ]
+    },
+    {
+        "zona_id": "granollers-center-02",
+        "nombre": "Granollers center 02",
+        "rango": {
+            "lat_min": 41.604,
+            "lat_max": 41.6155,
+            "lon_min": 2.283,
+            "lon_max": 2.2985
+        },
+        "tiendas": [
+            {
+                "tienda_id": "9100054750"
+            },
+            {
+                "tienda_id": "9100042975"
+            },
+            {
+                "tienda_id": "9100681118"
+            },
+            {
+                "tienda_id": "9100669500"
+            },
+            {
+                "tienda_id": "9100445846"
+            },
+            {
+                "tienda_id": "9100364948"
+            },
+            {
+                "tienda_id": "9100671524"
+            },
+            {
+                "tienda_id": "9100199450"
+            },
+            {
+                "tienda_id": "9100664901"
+            },
+            {
+                "tienda_id": "9100688671"
+            },
+            {
+                "tienda_id": "9100563722"
+            },
+            {
+                "tienda_id": "9100698912"
+            },
+            {
+                "tienda_id": "9100055508"
+            },
+            {
+                "tienda_id": "9100076545"
+            },
+            {
+                "tienda_id": "9100326765"
+            },
+            {
+                "tienda_id": "9100621389"
+            },
+            {
+                "tienda_id": "9100685459"
+            },
+            {
+                "tienda_id": "128915"
+            },
+            {
+                "tienda_id": "9100535566"
+            },
+            {
+                "tienda_id": "9100169285"
+            },
+            {
+                "tienda_id": "9100480482"
+            },
+            {
+                "tienda_id": "9100404927"
+            },
+            {
+                "tienda_id": "9100569006"
+            },
+            {
+                "tienda_id": "9100043490"
+            },
+            {
+                "tienda_id": "9100041053"
+            }
+        ]
+    },
+    {
+        "zona_id": "granollers-center-03",
+        "nombre": "Granollers center 03",
+        "rango": {
+            "lat_min": 41.604,
+            "lat_max": 41.6155,
+            "lon_min": 2.283,
+            "lon_max": 2.2985
+        },
+        "tiendas": [
+            {
+                "tienda_id": "9100111065"
+            },
+            {
+                "tienda_id": "9100688401"
+            },
+            {
+                "tienda_id": "9100517443"
+            },
+            {
+                "tienda_id": "9100551431"
+            },
+            {
+                "tienda_id": "9100698329"
+            },
+            {
+                "tienda_id": "123142"
+            },
+            {
+                "tienda_id": "9100701008"
+            },
+            {
+                "tienda_id": "9100489640"
+            },
+            {
+                "tienda_id": "9100587829"
+            },
+            {
+                "tienda_id": "9100056059"
+            },
+            {
+                "tienda_id": "9100702913"
+            },
+            {
+                "tienda_id": "9100668155"
+            },
+            {
+                "tienda_id": "9100253034"
+            },
+            {
+                "tienda_id": "9100733214"
+            },
+            {
+                "tienda_id": "9100381733"
+            },
+            {
+                "tienda_id": "9100680026"
+            },
+            {
+                "tienda_id": "9100685852"
+            },
+            {
+                "tienda_id": "9100042846"
+            },
+            {
+                "tienda_id": "9100560544"
+            },
+            {
+                "tienda_id": "9100076613"
+            },
+            {
+                "tienda_id": "9100442788"
+            },
+            {
+                "tienda_id": "9100044243"
+            },
+            {
+                "tienda_id": "9100685148"
+            },
+            {
+                "tienda_id": "9100530920"
+            },
+            {
+                "tienda_id": "9100566100"
+            }
+        ]
+    },
+    {
+        "zona_id": "granollers-center-04",
+        "nombre": "Granollers center 04",
+        "rango": {
+            "lat_min": 41.604,
+            "lat_max": 41.6155,
+            "lon_min": 2.283,
+            "lon_max": 2.2985
+        },
+        "tiendas": [
+            {
+                "tienda_id": "9100198106"
+            },
+            {
+                "tienda_id": "9100699710"
+            },
+            {
+                "tienda_id": "9100290959"
+            },
+            {
+                "tienda_id": "9100701217"
+            },
+            {
+                "tienda_id": "9100523980"
+            },
+            {
+                "tienda_id": "9100695039"
+            },
+            {
+                "tienda_id": "9100574514"
+            },
+            {
+                "tienda_id": "9100121589"
+            },
+            {
+                "tienda_id": "104047"
+            },
+            {
+                "tienda_id": "9100702482"
+            },
+            {
+                "tienda_id": "9100054738"
+            },
+            {
+                "tienda_id": "9100546081"
+            },
+            {
+                "tienda_id": "9100669529"
+            },
+            {
+                "tienda_id": "9100686742"
+            },
+            {
+                "tienda_id": "9100559590"
+            },
+            {
+                "tienda_id": "9100468142"
+            },
+            {
+                "tienda_id": "9100700301"
+            },
+            {
+                "tienda_id": "9100494087"
+            },
+            {
+                "tienda_id": "9100519944"
+            },
+            {
+                "tienda_id": "9100331748"
+            },
+            {
+                "tienda_id": "9100055620"
+            },
+            {
+                "tienda_id": "9100698575"
+            },
+            {
+                "tienda_id": "9100646871"
+            },
+            {
+                "tienda_id": "9100687896"
+            },
+            {
+                "tienda_id": "9100042964"
+            }
+        ]
+    },
+    {
+        "zona_id": "granollers-center-05",
+        "nombre": "Granollers center 05",
+        "rango": {
+            "lat_min": 41.604,
+            "lat_max": 41.6155,
+            "lon_min": 2.283,
+            "lon_max": 2.2985
+        },
+        "tiendas": [
+            {
+                "tienda_id": "9100151827"
+            },
+            {
+                "tienda_id": "9100699983"
+            },
+            {
+                "tienda_id": "9100492349"
+            },
+            {
+                "tienda_id": "9100685322"
+            },
+            {
+                "tienda_id": "9100565225"
+            },
+            {
+                "tienda_id": "9100386692"
+            },
+            {
+                "tienda_id": "9100629126"
+            },
+            {
+                "tienda_id": "9100056293"
+            },
+            {
+                "tienda_id": "9100563161"
+            },
+            {
+                "tienda_id": "9100264438"
+            },
+            {
+                "tienda_id": "9100688668"
+            },
+            {
+                "tienda_id": "9100419295"
+            },
+            {
+                "tienda_id": "9100668322"
+            },
+            {
+                "tienda_id": "9100591127"
+            },
+            {
+                "tienda_id": "9100553092"
+            },
+            {
+                "tienda_id": "122348"
+            },
+            {
+                "tienda_id": "9100700874"
+            },
+            {
+                "tienda_id": "9100701839"
+            },
+            {
+                "tienda_id": "9100199329"
+            },
+            {
+                "tienda_id": "9100503002"
+            },
+            {
+                "tienda_id": "9100698323"
+            },
+            {
+                "tienda_id": "9100528985"
+            },
+            {
+                "tienda_id": "9100511992"
+            },
+            {
+                "tienda_id": "9100695182"
+            }
+        ]
+    },
+    {
+        "zona_id": "granollers-center-06",
+        "nombre": "Granollers center 06",
+        "rango": {
+            "lat_min": 41.604,
+            "lat_max": 41.6155,
+            "lon_min": 2.283,
+            "lon_max": 2.2985
+        },
+        "tiendas": [
+            {
+                "tienda_id": "9100702970"
+            },
+            {
+                "tienda_id": "9100043853"
+            },
+            {
+                "tienda_id": "9100479079"
+            },
+            {
+                "tienda_id": "9100342696"
+            },
+            {
+                "tienda_id": "9100120688"
+            },
+            {
+                "tienda_id": "9100442923"
+            },
+            {
+                "tienda_id": "9100565630"
+            },
+            {
+                "tienda_id": "9100735762"
+            },
+            {
+                "tienda_id": "9100042070"
+            },
+            {
+                "tienda_id": "9100698748"
+            },
+            {
+                "tienda_id": "9100087801"
+            },
+            {
+                "tienda_id": "9100682415"
+            },
+            {
+                "tienda_id": "9100373488"
+            },
+            {
+                "tienda_id": "9100542069"
+            },
+            {
+                "tienda_id": "9100570635"
+            },
+            {
+                "tienda_id": "9100688634"
+            },
+            {
+                "tienda_id": "9100298616"
+            },
+            {
+                "tienda_id": "9100655372"
+            },
+            {
+                "tienda_id": "9100043107"
+            },
+            {
+                "tienda_id": "9100558674"
+            },
+            {
+                "tienda_id": "9100702903"
+            },
+            {
+                "tienda_id": "9100691361"
+            },
+            {
+                "tienda_id": "9100521964"
+            },
+            {
+                "tienda_id": "9100145545"
+            }
+        ]
+    },
+    {
+        "zona_id": "granollers-center-07",
+        "nombre": "Granollers center 07",
+        "rango": {
+            "lat_min": 41.604,
+            "lat_max": 41.6155,
+            "lon_min": 2.283,
+            "lon_max": 2.2985
+        },
+        "tiendas": [
+            {
+                "tienda_id": "128061"
+            },
+            {
+                "tienda_id": "9100670399"
+            },
+            {
+                "tienda_id": "9100405022"
+            },
+            {
+                "tienda_id": "9100701166"
+            },
+            {
+                "tienda_id": "9100190781"
+            },
+            {
+                "tienda_id": "9100520929"
+            },
+            {
+                "tienda_id": "9100669904"
+            },
+            {
+                "tienda_id": "9100054705"
+            },
+            {
+                "tienda_id": "9100545628"
+            },
+            {
+                "tienda_id": "9100503205"
+            },
+            {
+                "tienda_id": "9100281245"
+            },
+            {
+                "tienda_id": "9100601980"
+            },
+            {
+                "tienda_id": "9100492605"
+            },
+            {
+                "tienda_id": "9100056125"
+            },
+            {
+                "tienda_id": "9100350049"
+            },
+            {
+                "tienda_id": "9100420608"
+            },
+            {
+                "tienda_id": "9100668032"
+            },
+            {
+                "tienda_id": "9100041688"
+            },
+            {
+                "tienda_id": "9100774895"
+            },
+            {
+                "tienda_id": "9100699271"
+            },
+            {
+                "tienda_id": "9100568067"
+            },
+            {
+                "tienda_id": "9100108975"
+            },
+            {
+                "tienda_id": "9100309566"
+            },
+            {
+                "tienda_id": "9100671265"
+            }
+        ]
+    },
+    {
+        "zona_id": "granollers-center-08",
+        "nombre": "Granollers center 08",
+        "rango": {
+            "lat_min": 41.604,
+            "lat_max": 41.6155,
+            "lon_min": 2.283,
+            "lon_max": 2.2985
+        },
+        "tiendas": [
+            {
+                "tienda_id": "9100373624"
+            },
+            {
+                "tienda_id": "9100537107"
+            },
+            {
+                "tienda_id": "9100044479"
+            },
+            {
+                "tienda_id": "9100449523"
+            },
+            {
+                "tienda_id": "9100579782"
+            },
+            {
+                "tienda_id": "9100218808"
+            },
+            {
+                "tienda_id": "9100055331"
+            },
+            {
+                "tienda_id": "9100629788"
+            },
+            {
+                "tienda_id": "9100686343"
+            },
+            {
+                "tienda_id": "9100513397"
+            },
+            {
+                "tienda_id": "9100042930"
+            },
+            {
+                "tienda_id": "9100233605"
+            },
+            {
+                "tienda_id": "9100412948"
+            },
+            {
+                "tienda_id": "136720"
+            },
+            {
+                "tienda_id": "9100701103"
+            },
+            {
+                "tienda_id": "9100646865"
+            },
+            {
+                "tienda_id": "9100686594"
+            },
+            {
+                "tienda_id": "9100341135"
+            },
+            {
+                "tienda_id": "9100153533"
+            },
+            {
+                "tienda_id": "9100042630"
+            },
+            {
+                "tienda_id": "9100075744"
+            },
+            {
+                "tienda_id": "9100559291"
+            },
+            {
+                "tienda_id": "9100694798"
+            },
+            {
+                "tienda_id": "9100701840"
+            }
+        ]
+    },
+    {
+        "zona_id": "zona-combinada-01",
+        "nombre": "Zona combinada 01",
+        "rango": {
+            "lat_min": 41.534,
+            "lat_max": 41.6425,
+            "lon_min": 2.211,
+            "lon_max": 2.3595
+        },
+        "tiendas": [
+            {
+                "tienda_id": "9100640315"
+            },
+            {
+                "tienda_id": "9100694778"
+            },
+            {
+                "tienda_id": "9100054935"
+            },
+            {
+                "tienda_id": "9100055035"
+            },
+            {
+                "tienda_id": "9100055101"
+            },
+            {
+                "tienda_id": "9100055108"
+            },
+            {
+                "tienda_id": "9100055150"
+            },
+            {
+                "tienda_id": "9100055201"
+            },
+            {
+                "tienda_id": "9100055221"
+            },
+            {
+                "tienda_id": "9100397815"
+            },
+            {
+                "tienda_id": "9100670427"
+            },
+            {
+                "tienda_id": "9100670561"
+            },
+            {
+                "tienda_id": "9100230870"
+            },
+            {
+                "tienda_id": "9100366737"
+            },
+            {
+                "tienda_id": "9100398390"
+            },
+            {
+                "tienda_id": "9100403364"
+            },
+            {
+                "tienda_id": "9100403752"
+            },
+            {
+                "tienda_id": "9100486030"
+            },
+            {
+                "tienda_id": "9100643487"
+            },
+            {
+                "tienda_id": "9100698420"
+            },
+            {
+                "tienda_id": "9100700812"
+            },
+            {
+                "tienda_id": "9100559085"
+            }
+        ]
+    },
+    {
+        "zona_id": "zona-combinada-02",
+        "nombre": "Zona combinada 02",
+        "rango": {
+            "lat_min": 41.5306,
+            "lat_max": 41.66,
+            "lon_min": 2.0875,
+            "lon_max": 2.35
+        },
+        "tiendas": [
+            {
+                "tienda_id": "9100043035"
+            },
+            {
+                "tienda_id": "9100424060"
+            },
+            {
+                "tienda_id": "9100453074"
+            },
+            {
+                "tienda_id": "9100484329"
+            },
+            {
+                "tienda_id": "9100620847"
+            },
+            {
+                "tienda_id": "9100685743"
+            },
+            {
+                "tienda_id": "9100126939"
+            },
+            {
+                "tienda_id": "9100300117"
+            },
+            {
+                "tienda_id": "9100381913"
+            },
+            {
+                "tienda_id": "9100466534"
+            },
+            {
+                "tienda_id": "9100503664"
+            },
+            {
+                "tienda_id": "9100547290"
+            },
+            {
+                "tienda_id": "9100615213"
+            },
+            {
+                "tienda_id": "9100679516"
+            },
+            {
+                "tienda_id": "9100042500"
+            },
+            {
+                "tienda_id": "9100373489"
+            },
+            {
+                "tienda_id": "9100507051"
+            },
+            {
+                "tienda_id": "9100521678"
+            },
+            {
+                "tienda_id": "9100668551"
+            },
+            {
+                "tienda_id": "9100695278"
+            },
+            {
+                "tienda_id": "9100695810"
+            },
+            {
+                "tienda_id": "9100695813"
+            }
+        ]
+    }
+]

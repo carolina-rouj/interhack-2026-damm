@@ -1,0 +1,30 @@
+{
+  "ruta_id": "ruta-2",
+  "zona_id": "granollers-center-08",
+  "tipo_camion": "grande",
+  "num_palets": 1,
+  "paradas": [
+    {
+      "orden": 0,
+      "llegada_min": 480,
+      "coordenadas": {
+        "lat": 41.6108,
+        "lon": 2.2945
+      },
+      "clientes": [
+        {
+          "nombre": "ICE CUSTOM",
+          "total_cajas": 42,
+          "productos": [
+            {
+              "nombre": "Estrella Damm 33cl x24",
+              "sku": "ED33",
+              "cantidad_cajas": 42,
+              "tipo_envase": "caja"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
