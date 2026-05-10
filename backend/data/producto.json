@@ -5,7 +5,7 @@
     "is_returnable": false,
     "weight_kg_per_box": 9.12,
     "tipo": "cerveza",
-    "tamano": 7.92
+    "tamano": 1.0
   },
   {
     "sku": "ED50",
@@ -13,7 +13,7 @@
     "is_returnable": false,
     "weight_kg_per_box": 6.6,
     "tipo": "cerveza",
-    "tamano": 6.0
+    "tamano": 0.76
   },
   {
     "sku": "VD33",
@@ -21,7 +21,15 @@
     "is_returnable": false,
     "weight_kg_per_box": 9.4,
     "tipo": "cerveza",
-    "tamano": 7.92
+    "tamano": 1.0
+  },
+  {
+    "sku": "VD50",
+    "name": "Voll-Damm 50cl x12",
+    "is_returnable": false,
+    "weight_kg_per_box": 7.8,
+    "tipo": "cerveza",
+    "tamano": 0.76
   },
   {
     "sku": "BAR20",
@@ -29,7 +37,15 @@
     "is_returnable": true,
     "weight_kg_per_box": 20.0,
     "tipo": "barril",
-    "tamano": 20.0
+    "tamano": 2.53
+  },
+  {
+    "sku": "BAR30",
+    "name": "Barril Damm 30L",
+    "is_returnable": true,
+    "weight_kg_per_box": 30.0,
+    "tipo": "barril",
+    "tamano": 3.79
   },
   {
     "sku": "FR33",
@@ -37,7 +53,15 @@
     "is_returnable": false,
     "weight_kg_per_box": 8.64,
     "tipo": "cerveza_sinal",
-    "tamano": 7.92
+    "tamano": 1.0
+  },
+  {
+    "sku": "FR50",
+    "name": "Free Damm 50cl x12",
+    "is_returnable": false,
+    "weight_kg_per_box": 6.6,
+    "tipo": "cerveza_sinal",
+    "tamano": 0.76
   },
   {
     "sku": "LD33",
@@ -45,6 +69,22 @@
     "is_returnable": false,
     "weight_kg_per_box": 9.0,
     "tipo": "refresco",
-    "tamano": 7.92
+    "tamano": 1.0
+  },
+  {
+    "sku": "LD50",
+    "name": "Lemon Damm 50cl x12",
+    "is_returnable": false,
+    "weight_kg_per_box": 7.2,
+    "tipo": "refresco",
+    "tamano": 0.76
+  },
+  {
+    "sku": "EXP33",
+    "name": "Estrella Damm 0,0 33cl x24",
+    "is_returnable": false,
+    "weight_kg_per_box": 8.64,
+    "tipo": "cerveza_sinal",
+    "tamano": 1.0
   }
 ]
