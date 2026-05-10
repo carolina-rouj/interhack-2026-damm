@@ -26,7 +26,9 @@ function PickingRow({ stop, globalIndex, isDelivered, counts, returnables }) {
       </View>
       {isDelivered ? (
         <View style={pStyles.badgeDone}>
-          <Text style={pStyles.badgeDoneText}>{returnables > 0 ? `↩ ${returnables}` : '✓'}</Text>
+          <Text style={pStyles.badgeDoneText}>
+            {returnables > 0 ? `↩ ${returnables} retorn.` : '✓ Entregado'}
+          </Text>
         </View>
       ) : (
         <View style={pStyles.badgePending}>
