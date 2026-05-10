@@ -112,4 +112,5 @@ def run_pipeline(
         "num_paradas_clustering": len(paradas),
         "num_rutas": len(rutas),
         "routes": route_results,
+        "skus": data["skus"],
     }
