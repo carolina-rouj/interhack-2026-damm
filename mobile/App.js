@@ -4,8 +4,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { Text } from 'react-native'
 import { StatusBar } from 'expo-status-bar'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
-import { getZones, solveRoute } from './src/api'
-import { transformSolveResponse } from './src/utils/transform'
+import { transformRouteJson } from './src/utils/transform'
+import routeData from './src/data/route.json'
 import RouteScreen from './src/screens/RouteScreen'
 import LoadScreen from './src/screens/LoadScreen'
 import { COLORS } from './src/constants'
@@ -13,21 +13,15 @@ import { Package, Map } from 'lucide-react-native'
 
 const Tab = createBottomTabNavigator()
 
-const DEFAULT_ZONA = 'granollers-center-01'
-
 export default function App() {
-  const [zonaId, setZonaId] = useState(DEFAULT_ZONA)
-  const [zones, setZones] = useState([])
   const [scenario, setScenario] = useState(null)
   const [result, setResult] = useState(null)
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(null)
   const [deliveredIds, setDeliveredIds] = useState(new Set())
 
   useEffect(() => {
-    getZones()
-      .then(data => setZones(data.zonas || []))
-      .catch(() => {})
+    const transformed = transformRouteJson(routeData)
+    setScenario(transformed.scenario)
+    setResult(transformed.result)
   }, [])
 
   useEffect(() => { setDeliveredIds(new Set()) }, [result])
@@ -40,26 +34,8 @@ export default function App() {
     })
   }
 
-  async function handleSolve() {
-    setLoading(true)
-    setError(null)
-    setResult(null)
-    setScenario(null)
-    try {
-      const data = await solveRoute(zonaId)
-      const transformed = transformSolveResponse(data)
-      setScenario(transformed.scenario)
-      setResult(transformed.result)
-    } catch (e) {
-      setError(e.message)
-    } finally {
-      setLoading(false)
-    }
-  }
-
   const sharedProps = {
-    zonaId, setZonaId, zones,
-    scenario, result, loading, error, handleSolve,
+    scenario, result,
     deliveredIds, toggleDelivered,
   }
 

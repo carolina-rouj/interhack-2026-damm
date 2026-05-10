@@ -50,11 +50,20 @@ function buildLoadPlan(stops, truckType) {
   return { items, truck_type: truckType }
 }
 
+export function transformRouteJson(route) {
+  return _transform(route, null)
+}
+
 export function transformSolveResponse(solveResponse) {
   const route = solveResponse.routes?.[0]?.route
   if (!route) throw new Error('No routes in solve response')
+  return _transform(route, solveResponse.metrics?.distancia_total_km ?? null)
+}
+
+function _transform(route, distanciaKm) {
 
   const truckType = TRUCK_TYPE_MAP[route.tipo_camion] || '6pal'
+
 
   const stops = route.paradas.map(parada => {
     const clientId = `parada-${parada.orden}`
@@ -114,7 +123,7 @@ export function transformSolveResponse(solveResponse) {
   const result = {
     route: {
       stops,
-      total_distance_km: solveResponse.metrics?.distancia_total_km ?? null,
+      total_distance_km: distanciaKm,
     },
     load_plan: buildLoadPlan(stops, truckType),
     returnables_plan: { per_client: returnablesPerClient },

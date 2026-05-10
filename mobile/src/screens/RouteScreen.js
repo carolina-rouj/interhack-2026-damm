@@ -105,7 +105,7 @@ function DeliveryStopRow({ stop, index, isDelivered, isCurrent, boxes, onToggle 
   )
 }
 
-export default function RouteScreen({ scenario, result, deliveredIds, toggleDelivered, handleSolve, loading, error }) {
+export default function RouteScreen({ scenario, result, deliveredIds, toggleDelivered }) {
   const { width } = useWindowDimensions()
   const [containerHeight, setContainerHeight] = useState(0)
   const [routeLegs, setRouteLegs] = useState([])
@@ -132,12 +132,12 @@ export default function RouteScreen({ scenario, result, deliveredIds, toggleDeli
   }, [result])
 
   useEffect(() => {
-    setRouteLegs([])
+    if (!stops.length) { setRouteLegs([]); return }
     setLoadingLegs(true)
     fetchRouteLegs(depot, stops, MAPS_API_KEY)
       .then(setRouteLegs)
       .finally(() => setLoadingLegs(false))
-  }, [depot, stops])
+  }, [result, scenario])
 
   useEffect(() => {
     if (navState === 'navigating' && driverLocation) {
@@ -397,28 +397,12 @@ export default function RouteScreen({ scenario, result, deliveredIds, toggleDeli
             </View>
 
             <View style={styles.mapBottom}>
-              {error ? (
-                <View style={styles.errorBanner}>
-                  <Text style={styles.errorText} numberOfLines={2}>{error}</Text>
-                </View>
-              ) : null}
-              <TouchableOpacity
-                style={[styles.solveBtn, (loading || loadingLegs) && styles.initiateBtnDisabled]}
-                onPress={handleSolve}
-                activeOpacity={0.85}
-                disabled={loading || loadingLegs}
-              >
-                {loading
-                  ? <ActivityIndicator size="small" color="#fff" />
-                  : <Text style={styles.solveBtnText}>Calcular ruta óptima</Text>
-                }
-              </TouchableOpacity>
               <DeliveryProgressBar delivered={deliveredCount} total={totalStops} />
               <TouchableOpacity
-                style={[styles.initiateBtn, (loadingLegs || !result) && styles.initiateBtnDisabled]}
+                style={[styles.initiateBtn, loadingLegs && styles.initiateBtnDisabled]}
                 onPress={handleInitiate}
                 activeOpacity={0.85}
-                disabled={loadingLegs || !result}
+                disabled={loadingLegs}
               >
                 <Navigation size={18} color="#fff" />
                 <Text style={styles.initiateBtnText}>Iniciar Ruta</Text>
@@ -486,28 +470,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#f0f4f8',
     paddingBottom: 8,
   },
-
-  errorBanner: {
-    marginHorizontal: 14,
-    marginTop: 8,
-    backgroundColor: '#fee2e2',
-    borderRadius: 12,
-    paddingHorizontal: 14,
-    paddingVertical: 8,
-  },
-  errorText: { fontSize: 12, color: '#b91c1c', fontWeight: '500' },
-
-  solveBtn: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginHorizontal: 14,
-    marginTop: 10,
-    paddingVertical: 14,
-    borderRadius: 16,
-    backgroundColor: COLORS.dark,
-    elevation: 4,
-  },
-  solveBtnText: { fontSize: 15, fontWeight: '700', color: '#fff', letterSpacing: 0.3 },
 
   initiateBtn: {
     flexDirection: 'row',
