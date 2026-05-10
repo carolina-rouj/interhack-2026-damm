@@ -36,6 +36,7 @@ def run_pipeline(
     start_min: int = 480,
     service_time_min: int = 15,
     solver_time_limit_sec: int = 30,
+    data_dir=None,
 ) -> dict:
     """
     Run the full delivery optimisation pipeline for one zone.
@@ -53,7 +54,7 @@ def run_pipeline(
     )
 
     # ── 1. Load ───────────────────────────────────────────────────────────
-    data = load_zona(zona_id)
+    data = load_zona(zona_id, data_dir=data_dir)
     zona = data["zona"]
 
     # ── 2. Matrix ─────────────────────────────────────────────────────────

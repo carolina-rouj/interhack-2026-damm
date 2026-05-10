@@ -160,6 +160,15 @@ def solve(req: SolveRequest):
 # ── interactive terminal entry point ─────────────────────────────────────────
 # Run with:  python3 backend/main.py [--output DIR] [--google]
 
+def _ensure_hard_data() -> None:
+    """Generate hard input data if it does not exist yet."""
+    from backend.data.generate_pedidos_hard import generate_hard, HARD_DIR
+    hard_pedido = HARD_DIR / "pedido.json"
+    if not hard_pedido.exists():
+        print("  Generating hard input data (first time) ...")
+        generate_hard()
+
+
 def _interactive_loop(output_dir: str, usar_google: bool) -> None:
     from backend.pipeline import export_routes_json, _print_metrics
 
@@ -208,12 +217,33 @@ def _interactive_loop(output_dir: str, usar_google: bool) -> None:
             print(f"  Unknown zone {raw!r}. Try again.")
             continue
 
-        print(f"\nSolving {zona_id} ...")
+        # ── Difficulty selection ───────────────────────────────────────────
+        print()
+        print("  Difficulty:")
+        print("    [1] Normal  — standard orders, open delivery windows")
+        print("    [2] Hard    — 2x orders, more returnables, tight 4-h windows")
+        try:
+            diff_raw = input("  Choose difficulty (1/2, default 1): ").strip()
+        except (EOFError, KeyboardInterrupt):
+            print("\nBye.")
+            break
+
+        if diff_raw == "2":
+            _ensure_hard_data()
+            from backend.data.generate_pedidos_hard import HARD_DIR
+            data_dir = HARD_DIR
+            diff_label = "HARD"
+        else:
+            data_dir = None
+            diff_label = "Normal"
+
+        print(f"\nSolving {zona_id} [{diff_label}] ...")
         try:
             result = export_routes_json(
                 zona_id,
                 output_dir=output_dir,
                 usar_google=usar_google,
+                data_dir=data_dir,
             )
         except Exception as exc:
             print(f"  ERROR: {exc}")

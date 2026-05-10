@@ -1,33 +1,40 @@
 {
   "zona_id": "granollers-center-01",
-  "num_rutas": 1,
+  "num_rutas": 6,
   "trucks": {
-    "furgoneta": 1
+    "furgoneta": 1,
+    "mediano": 2,
+    "grande": 3
   },
-  "total_palets": 1,
-  "coste_total": 1054.51,
-  "total_cajas_entregadas": 55,
+  "total_palets": 55,
+  "coste_total": 85881.72,
+  "total_cajas_entregadas": 2334,
   "total_cajas_recogidas": 0,
   "por_sku": {
     "ED33": {
       "nombre": "Estrella Damm 33cl x24",
       "tipo_envase": "caja",
-      "total_cajas": 15
+      "total_cajas": 660
     },
     "ED50": {
       "nombre": "Estrella Damm 50cl x12",
       "tipo_envase": "caja",
-      "total_cajas": 11
+      "total_cajas": 630
     },
     "BAR20": {
       "nombre": "Barril Damm 20L",
       "tipo_envase": "barril",
-      "total_cajas": 19
+      "total_cajas": 768
+    },
+    "VD33": {
+      "nombre": "Voll-Damm 33cl x24",
+      "tipo_envase": "caja",
+      "total_cajas": 120
     },
     "FR33": {
       "nombre": "Free Damm 33cl x24",
       "tipo_envase": "caja",
-      "total_cajas": 10
+      "total_cajas": 156
     }
   }
 }

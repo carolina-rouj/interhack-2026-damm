@@ -1,31 +1,31 @@
 {
-  "ruta_id": "ruta-0",
+  "ruta_id": "ruta-3",
   "zona_id": "granollers-center-01",
-  "tipo_camion": "furgoneta",
-  "num_palets": 5,
+  "tipo_camion": "mediano",
+  "num_palets": 8,
   "paradas": [
     {
       "orden": 0,
       "llegada_min": 644,
       "coordenadas": {
-        "lat": 41.6048,
-        "lon": 2.2856
+        "lat": 41.6085,
+        "lon": 2.2843
       },
       "clientes": [
         {
-          "nombre": "RSTE. EL JARDI",
-          "total_cajas": 84,
+          "nombre": "BAR STREET FOODLE (JOAN PRIM)",
+          "total_cajas": 132,
           "productos": [
             {
               "nombre": "Estrella Damm 33cl x24",
               "sku": "ED33",
-              "cantidad_cajas": 30,
+              "cantidad_cajas": 54,
               "tipo_envase": "caja"
             },
             {
               "nombre": "Estrella Damm 50cl x12",
               "sku": "ED50",
-              "cantidad_cajas": 54,
+              "cantidad_cajas": 78,
               "tipo_envase": "caja"
             }
           ]
@@ -36,25 +36,25 @@
       "orden": 1,
       "llegada_min": 780,
       "coordenadas": {
-        "lat": 41.6067,
-        "lon": 2.2853
+        "lat": 41.6095,
+        "lon": 2.2839
       },
       "clientes": [
         {
-          "nombre": "KALIU",
-          "total_cajas": 54,
+          "nombre": "PACK CATALUNYA BAR",
+          "total_cajas": 102,
           "productos": [
-            {
-              "nombre": "Estrella Damm 50cl x12",
-              "sku": "ED50",
-              "cantidad_cajas": 18,
-              "tipo_envase": "caja"
-            },
             {
               "nombre": "Estrella Damm 33cl x24",
               "sku": "ED33",
               "cantidad_cajas": 36,
               "tipo_envase": "caja"
+            },
+            {
+              "nombre": "Barril Damm 20L",
+              "sku": "BAR20",
+              "cantidad_cajas": 66,
+              "tipo_envase": "barril"
             }
           ]
         }
@@ -62,27 +62,27 @@
     },
     {
       "orden": 2,
-      "llegada_min": 796,
+      "llegada_min": 900,
       "coordenadas": {
-        "lat": 41.6064,
-        "lon": 2.2845
+        "lat": 41.6089,
+        "lon": 2.2848
       },
       "clientes": [
         {
-          "nombre": "CHACHI'S BAR",
-          "total_cajas": 42,
+          "nombre": "KANSAS",
+          "total_cajas": 126,
           "productos": [
             {
               "nombre": "Estrella Damm 50cl x12",
               "sku": "ED50",
-              "cantidad_cajas": 18,
+              "cantidad_cajas": 54,
               "tipo_envase": "caja"
             },
             {
-              "nombre": "Estrella Damm 33cl x24",
-              "sku": "ED33",
-              "cantidad_cajas": 24,
-              "tipo_envase": "caja"
+              "nombre": "Barril Damm 20L",
+              "sku": "BAR20",
+              "cantidad_cajas": 72,
+              "tipo_envase": "barril"
             }
           ]
         }

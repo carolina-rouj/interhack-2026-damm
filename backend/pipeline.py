@@ -224,6 +224,7 @@ def export_routes_json(
     usar_google: bool = False,
     cajas_por_palet: int = 60,
     distancia_max: Optional[float] = None,
+    data_dir=None,
 ) -> dict:
     """
     Run the full pipeline for *zona_id*, write one JSON per route plus a
@@ -246,6 +247,7 @@ def export_routes_json(
         usar_google=usar_google,
         cajas_por_palet=cajas_por_palet,
         distancia_max=distancia_max,
+        data_dir=data_dir,
     )
 
     skus = result["skus"]

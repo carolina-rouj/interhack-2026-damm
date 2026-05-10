@@ -1,0 +1,194 @@
+{
+  "ruta_id": "ruta-7",
+  "zona_id": "granollers-center-01",
+  "tipo_camion": "grande",
+  "num_palets": 11,
+  "paradas": [
+    {
+      "orden": 0,
+      "llegada_min": 600,
+      "coordenadas": {
+        "lat": 41.6095,
+        "lon": 2.284
+      },
+      "clientes": [
+        {
+          "nombre": "PACK CATALUNYA BAR",
+          "total_cajas": 132,
+          "productos": [
+            {
+              "nombre": "Estrella Damm 50cl x12",
+              "sku": "ED50",
+              "cantidad_cajas": 60,
+              "tipo_envase": "caja"
+            },
+            {
+              "nombre": "Estrella Damm 33cl x24",
+              "sku": "ED33",
+              "cantidad_cajas": 24,
+              "tipo_envase": "caja"
+            },
+            {
+              "nombre": "Barril Damm 20L",
+              "sku": "BAR20",
+              "cantidad_cajas": 48,
+              "tipo_envase": "barril"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "orden": 1,
+      "llegada_min": 643,
+      "coordenadas": {
+        "lat": 41.611,
+        "lon": 2.2832
+      },
+      "clientes": [
+        {
+          "nombre": "BAR ROMERO",
+          "total_cajas": 108,
+          "productos": [
+            {
+              "nombre": "Estrella Damm 33cl x24",
+              "sku": "ED33",
+              "cantidad_cajas": 48,
+              "tipo_envase": "caja"
+            },
+            {
+              "nombre": "Barril Damm 20L",
+              "sku": "BAR20",
+              "cantidad_cajas": 24,
+              "tipo_envase": "barril"
+            },
+            {
+              "nombre": "Estrella Damm 50cl x12",
+              "sku": "ED50",
+              "cantidad_cajas": 36,
+              "tipo_envase": "caja"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "orden": 2,
+      "llegada_min": 780,
+      "coordenadas": {
+        "lat": 41.6155,
+        "lon": 2.283
+      },
+      "clientes": [
+        {
+          "nombre": "BAR BRICOLAJE DEPOT",
+          "total_cajas": 78,
+          "productos": [
+            {
+              "nombre": "Barril Damm 20L",
+              "sku": "BAR20",
+              "cantidad_cajas": 30,
+              "tipo_envase": "barril"
+            },
+            {
+              "nombre": "Estrella Damm 33cl x24",
+              "sku": "ED33",
+              "cantidad_cajas": 48,
+              "tipo_envase": "caja"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "orden": 3,
+      "llegada_min": 796,
+      "coordenadas": {
+        "lat": 41.6145,
+        "lon": 2.2838
+      },
+      "clientes": [
+        {
+          "nombre": "CELLER DEL FERRER",
+          "total_cajas": 48,
+          "productos": [
+            {
+              "nombre": "Estrella Damm 50cl x12",
+              "sku": "ED50",
+              "cantidad_cajas": 18,
+              "tipo_envase": "caja"
+            },
+            {
+              "nombre": "Estrella Damm 33cl x24",
+              "sku": "ED33",
+              "cantidad_cajas": 30,
+              "tipo_envase": "caja"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "orden": 4,
+      "llegada_min": 840,
+      "coordenadas": {
+        "lat": 41.6115,
+        "lon": 2.2841
+      },
+      "clientes": [
+        {
+          "nombre": "NOU CUSTOM BAR CAFETERIA (GRUPO CUS",
+          "total_cajas": 54,
+          "productos": [
+            {
+              "nombre": "Barril Damm 20L",
+              "sku": "BAR20",
+              "cantidad_cajas": 18,
+              "tipo_envase": "barril"
+            },
+            {
+              "nombre": "Estrella Damm 50cl x12",
+              "sku": "ED50",
+              "cantidad_cajas": 12,
+              "tipo_envase": "caja"
+            },
+            {
+              "nombre": "Estrella Damm 33cl x24",
+              "sku": "ED33",
+              "cantidad_cajas": 24,
+              "tipo_envase": "caja"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "orden": 5,
+      "llegada_min": 856,
+      "coordenadas": {
+        "lat": 41.608,
+        "lon": 2.2842
+      },
+      "clientes": [
+        {
+          "nombre": "BAR LA MIRANDA",
+          "total_cajas": 60,
+          "productos": [
+            {
+              "nombre": "Estrella Damm 50cl x12",
+              "sku": "ED50",
+              "cantidad_cajas": 30,
+              "tipo_envase": "caja"
+            },
+            {
+              "nombre": "Barril Damm 20L",
+              "sku": "BAR20",
+              "cantidad_cajas": 30,
+              "tipo_envase": "barril"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

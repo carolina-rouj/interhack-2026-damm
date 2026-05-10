@@ -29,18 +29,28 @@ from backend.models.zona import Zona
 DATA_DIR = Path(__file__).parent
 
 
-def load_zona(zona_id: str) -> dict:
-    """
-    Hydrate one zone from the four JSON files in backend/data/.
+def _resolve(preferred: Path, fallback: Path) -> Path:
+    """Return preferred if it exists, else fallback."""
+    return preferred if preferred.exists() else fallback
 
-    Only tiendas that appear in zona.json AND have at least one matching
-    pedido are attached to the returned Zona (so the matrix stays non-trivial
-    and solver input is always populated).
+
+def load_zona(zona_id: str, data_dir: Path | None = None) -> dict:
     """
-    with open(DATA_DIR / "tienda.json", encoding="utf-8-sig") as f:
+    Hydrate one zone from JSON files.
+
+    Parameters
+    ----------
+    zona_id:  Zone to load.
+    data_dir: Optional override directory.  Files found there take precedence
+              over the default DATA_DIR (useful for difficulty=hard inputs).
+              zona.json is always read from DATA_DIR.
+    """
+    _dir = Path(data_dir) if data_dir else DATA_DIR
+
+    with open(_resolve(_dir / "tienda.json", DATA_DIR / "tienda.json"), encoding="utf-8-sig") as f:
         raw_tiendas: dict[str, dict] = {t["tienda_id"]: t for t in json.load(f)}
 
-    with open(DATA_DIR / "producto.json", encoding="utf-8-sig") as f:
+    with open(_resolve(_dir / "producto.json", DATA_DIR / "producto.json"), encoding="utf-8-sig") as f:
         skus: dict[str, Product] = {
             p["sku"]: Product(
                 sku=p["sku"],
@@ -53,7 +63,7 @@ def load_zona(zona_id: str) -> dict:
             for p in json.load(f)
         }
 
-    with open(DATA_DIR / "pedido.json", encoding="utf-8-sig") as f:
+    with open(_resolve(_dir / "pedido.json", DATA_DIR / "pedido.json"), encoding="utf-8-sig") as f:
         raw_pedidos: list[dict] = json.load(f)
 
     with open(DATA_DIR / "zona.json", encoding="utf-8-sig") as f:

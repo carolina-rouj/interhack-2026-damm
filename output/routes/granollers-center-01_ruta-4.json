@@ -1,0 +1,120 @@
+{
+  "ruta_id": "ruta-4",
+  "zona_id": "granollers-center-01",
+  "tipo_camion": "mediano",
+  "num_palets": 9,
+  "paradas": [
+    {
+      "orden": 0,
+      "llegada_min": 600,
+      "coordenadas": {
+        "lat": 41.6087,
+        "lon": 2.2846
+      },
+      "clientes": [
+        {
+          "nombre": "KANSAS",
+          "total_cajas": 42,
+          "productos": [
+            {
+              "nombre": "Barril Damm 20L",
+              "sku": "BAR20",
+              "cantidad_cajas": 18,
+              "tipo_envase": "barril"
+            },
+            {
+              "nombre": "Estrella Damm 50cl x12",
+              "sku": "ED50",
+              "cantidad_cajas": 24,
+              "tipo_envase": "caja"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "orden": 1,
+      "llegada_min": 628,
+      "coordenadas": {
+        "lat": 41.6093,
+        "lon": 2.2853
+      },
+      "clientes": [
+        {
+          "nombre": "CASA FONDA EUROPA",
+          "total_cajas": 108,
+          "productos": [
+            {
+              "nombre": "Estrella Damm 33cl x24",
+              "sku": "ED33",
+              "cantidad_cajas": 36,
+              "tipo_envase": "caja"
+            },
+            {
+              "nombre": "Barril Damm 20L",
+              "sku": "BAR20",
+              "cantidad_cajas": 72,
+              "tipo_envase": "barril"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "orden": 2,
+      "llegada_min": 764,
+      "coordenadas": {
+        "lat": 41.6094,
+        "lon": 2.2856
+      },
+      "clientes": [
+        {
+          "nombre": "Bar Linares",
+          "total_cajas": 48,
+          "productos": [
+            {
+              "nombre": "Barril Damm 20L",
+              "sku": "BAR20",
+              "cantidad_cajas": 18,
+              "tipo_envase": "barril"
+            },
+            {
+              "nombre": "Estrella Damm 33cl x24",
+              "sku": "ED33",
+              "cantidad_cajas": 30,
+              "tipo_envase": "caja"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "orden": 3,
+      "llegada_min": 900,
+      "coordenadas": {
+        "lat": 41.6052,
+        "lon": 2.2857
+      },
+      "clientes": [
+        {
+          "nombre": "RESTAURANT LA SALUT",
+          "total_cajas": 156,
+          "productos": [
+            {
+              "nombre": "Voll-Damm 33cl x24",
+              "sku": "VD33",
+              "cantidad_cajas": 72,
+              "tipo_envase": "caja"
+            },
+            {
+              "nombre": "Free Damm 33cl x24",
+              "sku": "FR33",
+              "cantidad_cajas": 84,
+              "tipo_envase": "caja"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
