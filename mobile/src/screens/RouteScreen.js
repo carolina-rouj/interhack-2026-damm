@@ -6,9 +6,11 @@ import {
 import MapView, { Marker, Polyline, PROVIDER_GOOGLE } from 'react-native-maps'
 import * as Location from 'expo-location'
 import Constants from 'expo-constants'
-import { Check, Navigation } from 'lucide-react-native'
+import { Check, Navigation, FileDown } from 'lucide-react-native'
 import { COLORS, PRIORITY_COLORS, MOCK_DEPOT } from '../constants'
 import { fetchRouteLegs } from '../services/directionsService'
+import { generateAndShareReport } from '../utils/reportGenerator'
+import ReportPreviewModal from '../components/ReportPreviewModal'
 
 const MAPS_API_KEY = Constants.expoConfig?.extra?.googleMapsApiKey
 
@@ -113,6 +115,8 @@ export default function RouteScreen({ scenario, result, deliveredIds, toggleDeli
   const [navState, setNavState] = useState('preview')
   const [currentStopIndex, setCurrentStopIndex] = useState(0)
   const [driverLocation, setDriverLocation] = useState(null)
+  const [showReportPreview, setShowReportPreview] = useState(false)
+  const [generatingReport, setGeneratingReport] = useState(false)
 
   const mapRef = useRef(null)
   const locationSub = useRef(null)
@@ -202,6 +206,22 @@ export default function RouteScreen({ scenario, result, deliveredIds, toggleDeli
     setNavState('preview')
     setCurrentStopIndex(0)
     setDriverLocation(null)
+  }
+
+  async function handleDownloadReport() {
+    if (!result) return
+    setGeneratingReport(true)
+    try {
+      await generateAndShareReport(result)
+    } catch (e) {
+      Alert.alert('Error', 'No se pudo generar el informe.')
+    } finally {
+      setGeneratingReport(false)
+    }
+  }
+
+  function handleOpenReportPreview() {
+    setShowReportPreview(true)
   }
 
   const previewPolyline = routeLegs.length > 0
@@ -319,10 +339,25 @@ export default function RouteScreen({ scenario, result, deliveredIds, toggleDeli
             {totalStops} paradas entregadas
             {result?.route?.total_distance_km ? ` · ${result.route.total_distance_km.toFixed(1)} km` : ''}
           </Text>
+          <TouchableOpacity
+            style={styles.reportBtn}
+            onPress={handleOpenReportPreview}
+            activeOpacity={0.85}
+          >
+            <FileDown size={16} color="#fff" />
+            <Text style={styles.reportBtnText}>Ver informe</Text>
+          </TouchableOpacity>
           <TouchableOpacity style={styles.finalizeBtn} onPress={handleFinalize} activeOpacity={0.85}>
             <Text style={styles.finalizeBtnText}>Finalizar ruta</Text>
           </TouchableOpacity>
         </View>
+        <ReportPreviewModal
+          visible={showReportPreview}
+          result={result}
+          onClose={() => setShowReportPreview(false)}
+          onDownload={handleDownloadReport}
+          downloading={generatingReport}
+        />
       </View>
     )
   }
@@ -623,7 +658,13 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   completedTitle: { fontSize: 22, fontWeight: '800', color: '#0f172a', marginBottom: 6 },
-  completedSub: { fontSize: 14, color: '#64748b', fontWeight: '500', marginBottom: 28 },
+  completedSub: { fontSize: 14, color: '#64748b', fontWeight: '500', marginBottom: 20 },
+  reportBtn: {
+    flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8,
+    backgroundColor: '#3b82f6', borderRadius: 16, paddingVertical: 14, paddingHorizontal: 32,
+    marginBottom: 12, width: '100%',
+  },
+  reportBtnText: { fontSize: 15, fontWeight: '700', color: '#fff' },
   finalizeBtn: { backgroundColor: '#0f172a', borderRadius: 16, paddingVertical: 16, paddingHorizontal: 40 },
   finalizeBtnText: { fontSize: 15, fontWeight: '700', color: '#fff' },
 })
