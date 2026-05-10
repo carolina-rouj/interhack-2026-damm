@@ -122,6 +122,8 @@ function _transform(route, distanciaKm) {
 
   const result = {
     route: {
+      route_id: route.ruta_id ?? null,
+      zona_id: route.zona_id ?? null,
       stops,
       total_distance_km: distanciaKm,
     },
