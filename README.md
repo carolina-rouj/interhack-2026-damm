@@ -1,100 +1,100 @@
 # Damm Smart Truck
 
-Herramienta de optimización logística para rutas de última milla y planificación de carga de camiones, construida para **Interhack BCN 2026**. Simula la distribución de un camión de Estrella Damm por Barcelona, optimizando el orden de ruta, la carga de palés y la recogida de envases retornables.
+Logistics optimization tool for last-mile routing and truck-loading planning, built for **Interhack BCN 2026**. It simulates an Estrella Damm truck's distribution across Barcelona, optimizing route order, pallet loading, and returnable container pickup.
 
-El sistema tiene tres capas: un **backend** Python que corre los algoritmos de optimización, un **panel web** para gestores que visualiza las rutas resultantes, y una **app móvil** para el conductor con navegación GPS en tiempo real.
+The system has three layers: a Python **backend** that runs the optimization algorithms, a **web dashboard** for managers that visualizes the resulting routes, and a **mobile app** for the driver with real-time GPS navigation.
 
 ---
 
-## Stack tecnológico
+## Tech stack
 
-| Capa | Tecnología |
+| Layer | Technology |
 |------|-----------|
 | Backend | Python, FastAPI, OR-Tools (Google) |
-| Panel web | HTML + CSS + JavaScript vanilla |
-| App móvil | React Native, Expo, react-native-maps, Three.js |
-| Mapas (móvil) | Google Maps Directions API, expo-location |
+| Web dashboard | HTML + CSS + vanilla JavaScript |
+| Mobile app | React Native, Expo, react-native-maps, Three.js |
+| Maps (mobile) | Google Maps Directions API, expo-location |
 
 ---
 
-## Estructura del proyecto
+## Project structure
 
 ```
 interhack-2026-damm/
 ├── backend/
-│   ├── main.py                    # FastAPI — endpoints REST
-│   ├── pipeline.py                # Orquestador del pipeline completo
-│   ├── models/                    # Modelos de dominio
-│   │   ├── zona.py                # Zona con tiendas + matriz de distancias
-│   │   ├── tienda.py              # Punto de entrega (bar, restaurante, super...)
-│   │   ├── pedido.py              # Pedido con líneas de producto
-│   │   ├── product.py             # Definición de SKU
-│   │   ├── ruta.py                # Ruta con paradas ordenadas
-│   │   ├── palet.py               # Palé físico
-│   │   └── truck.py               # Tipo de camión y plan de carga
+│   ├── main.py                    # FastAPI — REST endpoints
+│   ├── pipeline.py                # Full pipeline orchestrator
+│   ├── models/                    # Domain models
+│   │   ├── zona.py                # Zone with stores + distance matrix
+│   │   ├── tienda.py              # Delivery point (bar, restaurant, supermarket...)
+│   │   ├── pedido.py              # Order with product lines
+│   │   ├── product.py             # SKU definition
+│   │   ├── ruta.py                # Route with ordered stops
+│   │   ├── palet.py               # Physical pallet
+│   │   └── truck.py               # Truck type and loading plan
 │   ├── solvers/
-│   │   ├── orchestrator.py        # run_pipeline() — punto de entrada
-│   │   ├── vrptw_solver.py        # Solver VRPTW con OR-Tools
-│   │   └── palletizer.py          # Paletizado, retornables, carga del camión
+│   │   ├── orchestrator.py        # run_pipeline() — entry point
+│   │   ├── vrptw_solver.py        # VRPTW solver with OR-Tools
+│   │   └── palletizer.py          # Palletizing, returnables, truck loading
 │   └── data/
-│       ├── loader.py              # load_zona() — carga los JSON
-│       ├── tienda.json            # ~1500 tiendas de Granollers
-│       ├── pedido.json            # Pedidos por tienda
-│       ├── producto.json          # Catálogo de SKUs
-│       └── zona.json              # Definición de zonas
+│       ├── loader.py              # load_zona() — loads the JSON files
+│       ├── tienda.json            # ~1500 stores in Granollers
+│       ├── pedido.json            # Orders per store
+│       ├── producto.json          # SKU catalog
+│       └── zona.json              # Zone definitions
 │
 ├── frontend/
-│   └── index.html                 # Panel web (app de una sola página)
+│   └── index.html                 # Web dashboard (single-page app)
 │
 ├── mobile/
-│   ├── App.js                     # Raíz de la app — navegación por pestañas
-│   ├── metro.config.js            # Configuración del bundler Metro
+│   ├── App.js                     # App root — tab navigation
+│   ├── metro.config.js            # Metro bundler configuration
 │   └── src/
-│       ├── api.js                 # Cliente HTTP hacia el backend
-│       ├── constants.js           # Colores, configs de camión, MOCK_DEPOT
+│       ├── api.js                 # HTTP client to the backend
+│       ├── constants.js           # Colors, truck configs, MOCK_DEPOT
 │       ├── screens/
-│       │   ├── RouteScreen.js     # Mapa + paradas + navegación GPS
-│       │   └── LoadScreen.js      # Visualización 3D del camión + listado
+│       │   ├── RouteScreen.js     # Map + stops + GPS navigation
+│       │   └── LoadScreen.js      # 3D truck visualization
 │       ├── components/
-│       │   ├── TruckGrid3D.js     # Modelo 3D del camión (Three.js)
-│       │   ├── TruckGrid.js       # Vista 2D de la rejilla de palés
-│       │   ├── ReportPreviewModal.js  # Modal de previsualización del informe
-│       │   ├── MetricsBar.js      # Barra de KPIs
-│       │   └── StopsList.js       # Lista de paradas
+│       │   ├── TruckGrid3D.js     # 3D truck model (Three.js)
+│       │   ├── TruckGrid.js       # 2D pallet grid view
+│       │   ├── ReportPreviewModal.js  # Report preview modal
+│       │   ├── MetricsBar.js      # KPI bar
+│       │   └── StopsList.js       # Stops list
 │       ├── services/
 │       │   └── directionsService.js   # Google Directions API
 │       └── utils/
-│           ├── transform.js       # JSON del backend → objetos internos
-│           └── reportGenerator.js # Generación y descarga de informes PDF
+│           ├── transform.js       # Backend JSON → internal objects
+│           └── reportGenerator.js # PDF report generation and download
 │
 └── output/
-    └── routes/                    # Archivos JSON de rutas generadas
+    └── routes/                    # Generated route JSON files
 ```
 
 ---
 
-## Flujo de datos — visión general
+## Data flow — overview
 
 ```
 ┌───────────────────────────────────────────────────────┐
-│                  PANEL WEB (gestor)                   │
-│  1. Selecciona zona                                   │
-│  2. Ajusta cajas/palé                                 │
-│  3. Pulsa "Optimizar"  ──── POST /api/solve ──────►  │
-│                                                       │
-│  ◄── rutas + métricas ────────────────────────────── │
-│  4. Visualiza rutas, paradas, métricas                │
+│                  WEB DASHBOARD (manager)               │
+│  1. Selects zone                                       │
+│  2. Adjusts boxes/pallet                                │
+│  3. Clicks "Optimize"  ──── POST /api/solve ──────►    │
+│                                                         │
+│  ◄── routes + metrics ───────────────────────────────  │
+│  4. Views routes, stops, metrics                        │
 └───────────────────────────────────────────────────────┘
                           │
-               Backend ejecuta pipeline
+               Backend runs pipeline
                           │
 ┌───────────────────────────────────────────────────────┐
-│                APP MÓVIL (conductor)                  │
-│  1. Carga ruta asignada                               │
-│  2. Pestaña "Ruta": mapa + navegación GPS             │
-│  3. Marca paradas como entregadas                     │
-│  4. Pestaña "Carga": visualización 3D del camión      │
-│  5. Genera informe PDF al finalizar                   │
+│                MOBILE APP (driver)                      │
+│  1. Loads assigned route                                │
+│  2. "Route" tab: map + GPS navigation                    │
+│  3. Marks stops as delivered                             │
+│  4. "Load" tab: 3D truck visualization                   │
+│  5. Generates a PDF report on completion                 │
 └───────────────────────────────────────────────────────┘
 ```
 
@@ -102,15 +102,15 @@ interhack-2026-damm/
 
 ## Backend
 
-### API REST — `backend/main.py`
+### REST API — `backend/main.py`
 
-FastAPI corriendo en el puerto 8000. Sirve también el panel web como archivos estáticos.
+FastAPI running on port 8000. It also serves the web dashboard as static files.
 
-| Método | Ruta | Descripción |
+| Method | Route | Description |
 |--------|------|-------------|
-| `GET` | `/api/zona/list` | Lista de zonas disponibles |
-| `GET` | `/api/zona/{zona_id}` | Metadatos de una zona |
-| `POST` | `/api/solve` | Ejecuta el pipeline completo de optimización |
+| `GET` | `/api/zona/list` | List of available zones |
+| `GET` | `/api/zona/{zona_id}` | Metadata for a zone |
+| `POST` | `/api/solve` | Runs the full optimization pipeline |
 | `GET` | `/health` | Health check |
 
 **`POST /api/solve`**
@@ -147,98 +147,98 @@ FastAPI corriendo en el puerto 8000. Sirve también el panel web como archivos e
 }
 ```
 
-### Pipeline de optimización — `backend/solvers/orchestrator.py`
+### Optimization pipeline — `backend/solvers/orchestrator.py`
 
-`run_pipeline(zona_id)` ejecuta estas etapas en orden:
+`run_pipeline(zona_id)` runs these stages in order:
 
-1. **Carga de datos** — `load_zona()` hidrata los objetos Zona, Tienda, Pedido desde los JSON
-2. **Matriz de distancias** — distancia euclídea entre tiendas (o Google Maps si está disponible)
-3. **Clustering** — agrupa tiendas cercanas en Paradas (una parada puede incluir varias tiendas)
-4. **VRPTW** — OR-Tools asigna paradas a camiones respetando ventanas horarias y capacidad
-5. **Paletizado** — asigna las cajas de cada parada a palés físicos
-6. **Retornables** — calcula envases vacíos a recoger, reserva slots traseros
-7. **Plan de carga** — mapea palés a los slots del camión respetando restricciones LIFO
+1. **Data loading** — `load_zona()` hydrates the Zona, Tienda, and Pedido objects from the JSON files
+2. **Distance matrix** — Euclidean distance between stores (or Google Maps if available)
+3. **Clustering** — groups nearby stores into Stops (a stop can include several stores)
+4. **VRPTW** — OR-Tools assigns stops to trucks while respecting time windows and capacity
+5. **Palletizing** — assigns each stop's boxes to physical pallets
+6. **Returnables** — calculates empty containers to pick up, reserves rear slots
+7. **Loading plan** — maps pallets to truck slots respecting LIFO constraints
 
-**Modelo de tráfico:**
+**Traffic model:**
 
-| Franja horaria | Velocidad |
+| Time slot | Speed |
 |----------------|-----------|
-| 07:00–09:00 | 15 km/h (hora punta) |
+| 07:00–09:00 | 15 km/h (rush hour) |
 | 09:00–13:00 | 25 km/h |
-| 13:00–15:00 | 20 km/h (mediodía) |
-| Resto | 30 km/h |
+| 13:00–15:00 | 20 km/h (midday) |
+| Rest of day | 30 km/h |
 
-**Tipos de camión:**
+**Truck types:**
 
-| Tipo | Slots de palé |
+| Type | Pallet slots |
 |------|--------------|
-| Furgoneta | 3 |
-| Mediano | 6 |
-| Grande | 8 |
+| Van | 3 |
+| Medium | 6 |
+| Large | 8 |
 
-**Geometría del camión (vista desde arriba):**
+**Truck geometry (top-down view):**
 ```
-[PUERTA TRASERA]
-[ P1 | P2 ]  fila 1  ← primero en descargar  (acceso trasero + lona)
-[ P3 | P4 ]  fila 2                           (acceso lona)
-[ P5 | P6 ]  fila 3  ← último en descargar   (acceso lona)
-[CABINA]
+[REAR DOOR]
+[ P1 | P2 ]  row 1  ← unloaded first  (rear access + tarp)
+[ P3 | P4 ]  row 2                     (tarp access)
+[ P5 | P6 ]  row 3  ← unloaded last    (tarp access)
+[CAB]
 ```
 
 ---
 
-## Panel web
+## Web dashboard
 
-**Archivo único:** `frontend/index.html` — HTML + CSS + JavaScript vanilla, sin framework ni build step.
+**Single file:** `frontend/index.html` — HTML + CSS + vanilla JavaScript, no framework or build step.
 
-**Flujo de uso:**
-1. Al cargar la página → `GET /api/zona/list` → renderiza tarjetas de zona
-2. El gestor selecciona una zona y ajusta el slider de cajas/palé
-3. Al pulsar "Optimizar" → `POST /api/solve` → muestra spinner con mensajes de carga
-4. Con la respuesta renderiza: métricas globales, productos por SKU y tarjetas de ruta con paradas
+**Usage flow:**
+1. On page load → `GET /api/zona/list` → renders zone cards
+2. The manager selects a zone and adjusts the boxes/pallet slider
+3. Clicking "Optimize" → `POST /api/solve` → shows a spinner with loading messages
+4. On response, renders: overall metrics, products by SKU, and route cards with stops
 
 ---
 
-## App móvil
+## Mobile app
 
-React Native + Expo con dos pestañas principales.
+React Native + Expo with two main tabs.
 
-### Pestaña Ruta — `RouteScreen.js`
+### Route tab — `RouteScreen.js`
 
-Gestiona la navegación del conductor desde la salida hasta la última entrega.
+Manages the driver's navigation from departure to the final delivery.
 
-**Estados de la pantalla:**
+**Screen states:**
 
-| Estado | Descripción |
+| State | Description |
 |--------|-------------|
-| `preview` | Vista completa de la ruta en el mapa, antes de salir |
-| `navigating` | Navegación activa: mapa centrado en el conductor, distancia a la próxima parada |
-| `completed` | Todas las paradas entregadas, opción de generar informe |
+| `preview` | Full route view on the map, before departing |
+| `navigating` | Active navigation: map centered on the driver, distance to next stop |
+| `completed` | All stops delivered, option to generate a report |
 
-**Al pulsar "Iniciar Ruta":**
-1. Solicita permisos de ubicación
-2. Obtiene la posición GPS actual del conductor (`getCurrentPositionAsync`)
-3. Recalcula los tramos de ruta desde esa posición real (Google Directions API)
-4. Inicia seguimiento continuo (`watchPositionAsync`) — el mapa sigue al conductor
+**On tapping "Start Route":**
+1. Requests location permissions
+2. Gets the driver's current GPS position (`getCurrentPositionAsync`)
+3. Recalculates route legs from that real position (Google Directions API)
+4. Starts continuous tracking (`watchPositionAsync`) — the map follows the driver
 
-**Seguimiento GPS:**
-- Actualización cada 2 segundos o cada 10 metros de desplazamiento
-- `haversineM()` calcula la distancia en tiempo real a la próxima parada
+**GPS tracking:**
+- Updates every 2 seconds or every 10 meters of movement
+- `haversineM()` calculates the real-time distance to the next stop
 
-### Pestaña Carga — `LoadScreen.js`
+### Load tab — `LoadScreen.js`
 
-Muestra el plan de carga del camión y el listado de entregas.
+Shows the truck's loading plan and the delivery list.
 
-- **TruckGrid3D** (Three.js): modelo 3D del camión con los palés coloreados por parada; las entregas realizadas se atenúan
-- **Listado de entregas** (panel deslizable): divide las paradas en "Por entregar" y "Entregado", con el conteo de cajas y barriles por cliente
+- **TruckGrid3D** (Three.js): 3D truck model with pallets color-coded by stop; completed deliveries are dimmed
+- **Delivery list** (slide-out panel): splits stops into "To deliver" and "Delivered", with box and keg counts per customer
 
-### Generación de informes — `reportGenerator.js`
+### Report generation — `reportGenerator.js`
 
-Al finalizar la ruta, el conductor puede generar un PDF con el resumen de entregas (paradas, cajas, barriles por SKU) y compartirlo vía la hoja de compartir nativa del dispositivo.
+On completing the route, the driver can generate a PDF with a delivery summary (stops, boxes, kegs per SKU) and share it via the device's native share sheet.
 
 ---
 
-## Ejecución
+## Running it
 
 **Backend:**
 ```bash
@@ -246,13 +246,13 @@ pip install -r requirements.txt
 uvicorn backend.main:app --reload --port 8000
 ```
 
-**Panel web:** abrir `frontend/index.html` directamente en el navegador (o servirlo desde FastAPI en `localhost:8000`).
+**Web dashboard:** open `frontend/index.html` directly in the browser (or serve it from FastAPI at `localhost:8000`).
 
-**App móvil:**
+**Mobile app:**
 ```bash
 cd mobile
 npm install
 npx expo start --clear
 ```
 
-Editar `mobile/src/constants.js` → `BASE_URL` con la IP local del servidor backend.
+Edit `mobile/src/constants.js` → `BASE_URL` with the backend server's local IP.
